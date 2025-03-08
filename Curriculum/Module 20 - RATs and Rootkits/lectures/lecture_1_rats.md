@@ -1,68 +1,100 @@
 # Remote Access Trojans
-## What is a RAT
 
-"A RAT (Remote Access Trojan) is malware an attacker uses to gain full administrative privileges and remote control of a target computer. RATs are often downloaded along with seemingly legitimate user-requested programs -- such as video games -- or are sent to their target as an email attachment via a [phishing](https://www.techtarget.com/searchsecurity/definition/phishing) email".
+The very basic idea of a RAT is that you have a program on the victim computer that executes commands sent to it, this is typically done with C2 (Control and Command) Infrastructure. These frameworks can be scaled up to be very flexible and sophisticated, with the most famous one being [Cobalt Strike](https://www.cobaltstrike.com/).
 
-"Once the host system is compromised, intruders use a [backdoor](https://www.techtarget.com/searchsecurity/definition/back-door) to control the host, or they may distribute RATs to other vulnerable computers and establish a [botnet](https://www.techtarget.com/searchsecurity/definition/botnet)".
+## Infection
 
-(Yasar 2022)
+Being classified as trojans that pretty much tells us how hosts are infected, that means there are not that many different methods we have to worry about:
 
-### How is it working
+- Classic Trojan: Might be bundled with cracked or [shady](https://www.youtube.com/watch?v=eKfZmcvo_2g) software since the user typically has to grant admin permissions for this. Another notable example is the use of a [trojanised RAT builder](https://www.cloudsek.com/blog/no-honour-among-thieves-uncovering-a-trojanized-xworm-rat-builder-propagated-by-threat-actors-and-disrupting-its-operations).
+- Phishing: Every now and then a new way of executing code using various windows features is found, from there the attacker just has to send it to HR departments and hope at least one of them actually executes.
+- Supply Chain Attack: There have been more of those, each getting more sophisticated. Sometimes it is easy to sneak malicious code poorly monitored repos or package managers, but there are also sophisticated attacks on FOSS from state actors, often with years of preparation.
 
-RATs can be deployed through a framework like Metasploit, the Hacker compromises an open port on the target computer over which the Hacker gets a connection to the target PC.![](https://lh7-us.googleusercontent.com/9C6Pvq9wSrhaP-BytOUXIKvXc9o6JE_L75oHslnWX9rU2RHirTwz6Zcnhj_9oTcajEpUwBsySqWUWQhmk7fjLtzBRQKFM-wTXH-0Na-cBBq4GKrU24LQFBx9-KE0of4PkAdZAF6vchWciAICxqYS7Q4)
+## Operation
 
-RATs can also be installed over phishing mails, "legit" software or torrent files. Sometimes RATs get installed after the hackers get first initial access.
+Depending on the target, the actual goal of the RAT can vary significantly:
 
-(see Yasar 2022)
+- When targeting regular users the data is on the same computer that gets infected so the operations get easier to the point of technically not even needing to have a C2 to run remote commands or even persistence. This then gets into infostealer territory, which is far easier and typically carries close to zero risk for the attacker.
 
-**Analyze real-world RAT attacks and identify the techniques used by attackers**
+- That changes when targeting companies, the sensitive data is typically not on the point of infection so there need to be more exploitation steps to actually get access to servers and exfiltrate or deploy ransomware.
 
-"In 2014, the Hacking Team, an Italian cybersecurity firm, fell victim to a RAT attack themselves. The attackers exploited vulnerabilities in their systems and stole sensitive data, including client information and zero-day exploits. This incident served as a stark reminder that even those tasked with defending against cyber threats are not immune from being targeted". (Sankaran, 2023)
+## Infostealers
 
-This is a perfect example of how difficult it can be for even a specialized company to avoid a vulnerability in its infrastructure.
+They can be classified as a subcategory of RATs that don't actually provide remote access but rather just perform a few predefined actions and then delete themselves or run until the system restarts.
 
-The next example is in connection with NotPetya, one of the most terrifying Ransomware attacks in history.
+Out of anything mentioned in this module, this is by far the most relevant threat to actual users because it is far easier to make and the lack of awareness most computer users exhibit makes it easy for attackers. Even calling them attackers is generous because copy-pasting existing stealers is extremely common particular corners of the internet.
 
-NotPetya was built up with different components, of which one took advantage of a vulnerability in the SMB protocol, called EternalBlue or CVE-2017-0144(see Positive Technologies, 2021). Because of the EternalBlue vulnerability, NotPetya could spread so immensely fast and infected thousands of computers. Even 6 years later, in 2023, EternalBlue is still used for security lessons, to show a pretty easy way to compromise a computer and gain full access to it.
+They typically rely on basic social engineering to deploy, often being spread via discord as:
 
-"Another notable example is the case of Blackshades RAT. In 2014, law enforcement agencies across the globe conducted a joint operation to dismantle the Blackshades network. This remote administration tool was used by hackers worldwide to perform various illegal activities, such as spying on victims through their webcams and stealing personal information".
+- Game Cheats/Mods
+- "Try my game" type social engineering
 
-(Sankaran, 2023)
+### Targets
 
-To conclude all these examples, it should be clear how damaging RATs can be for normal users and even more for companies.
+The usual files, basically anything an attacker can use down the line for profit:
 
-**Implement and use tools to detect and defend against RATs**
+- Auth tokens (Discord, Steam, etc.)
+- Password Vaults (Browser or Password manager)
+- Browser Cookies
+- Clipboard
+- Screenshots
 
-It can be pretty difficult to defend against RATs, because of the fact that they can often operate completely in the background processes of the computer. Even though it can be hard to detect them, there are several ways to do that:
+### Basic Structure
 
-- One of the most common ways to defend against RATs is Anti-Malware Software. The software scans the PC to search for known RATs and removes them. The efficiency of this process is determined by the antivirus software used and its database of known RATS.
+One of the key components that make infostealers so accessible are [webhooks](https://www.redhat.com/en/topics/automation/what-is-a-webhook), they let you exfiltrate data somewhat anonymously and usually for free.
 
-- A way more complex tool is an IDS(Intrusion Detection System). An IDS scans the network traffic for suspicious activities and sends out an alert if something was found. RATs need to get a connection with the victim's PC, this connection process can be detected via an IDS. An IDS is harder to implement, but for beginners Snort could be a good tool to start with.
+The typical runtime is very simple:
 
-- Another powerful tool is a FIM(File Integrity Monitoring). This solution validates the integrity of a given environment, namely, it checks to see whether the contents of your site's files have changed unexpectedly. With FIM it's hard for a malware to change something on the file system, because the files are continuously checked on their integrity, especially the critical system files. (see Robert Abela , 2023)
+1) Scan for target files.
+2) Extract the important information.
+3) Send to webhook.
 
-So it can be said that there are tools to defend against RATs. It's also important to update software on the computer, as well as informing on recently discovered vulnerabilities. Most RATs get installed by pressing on suspicious links in mails, so having a healthy skepticism is important.
+Because of the simple structure and intended targets they are usually not that heavily obfuscated, [PyInstaller](https://pyinstaller.org/en/stable/) or simple Java obfuscators are the most complicated techniques you can expect here.
 
-**Bibliography:**
+## Real RATs
 
-- Yasar, K. (2022) What is a rat (Remote Access Trojan)?: Definition from TechTarget, Security. Available at: https://www.techtarget.com/searchsecurity/definition/RAT-remote-access-Trojan (Accessed: 16 November 2023).
+They differ from the Infostealers not only in increased complexity but also in targets, they are getting used in more focussed attacks on high value targets where code execution actually matters.
 
-- Sankaran, S. (2023) Remote access trojans (rats), LinkedIn.
-  Available at: https://www.linkedin.com/pulse/remote-access-trojans-rats-subramaniam-sankaran (Accessed: 16 November 2023).
+Particularly with the rise of Cybercrime-as-a-Service it has become easier to obtain high complexity RATs, they are typically used to escalate into Databreaches or Ransomware.
 
-- Positive Technologies (2021) Everything you wanted to know about Notpetya but were afraid to ask, ptsecurity.com.
-  Available at: https://www.ptsecurity.com/ww-en/about/news/everything-you-wanted-to-know-about-notpetya-but-were-afraid-to-ask/ (Accessed: 16 November 2023).
+One especially interesting use is the target of infrastructure or [SCADA](https://en.wikipedia.org/wiki/SCADA) devices, this requires handcrafted payloads and is thus typically only performed by APTs and leveraged for profit or other international purposes.
 
-- Robert Abela  (2023) What's file integrity monitoring? (and why you need to know more about it), Kinsta®.
-  Available at: https://kinsta.com/blog/file-integrity-monitoring/ (Accessed: 20 November 2023).
+While it was still profitable, installing crypto miners was common , but that has become less profitable compared to the detection risk. Obligatory funny: https://github.com/xmrig/xmrig/issues/730
 
-- Kurt Baker - November 8, 2023 // Explain Rootkits are and how they work
-  Available at: <https://www.crowdstrike.com/cybersecurity-101/malware/rootkits/>
-  (Accessed: 21 November 2023)
+### Infrastructure
 
-- Mary E. Shacklett - October 2021 // Describe the common features and functionalities of RATs and Rootkits
-  Available at: https://www.techtarget.com/searchsecurity/definition/rootkit
-  (Accessed: 26 November 2023)
+One of the key differences from infostealers is the required infrastructure for RATs to function, an attacker needs to be able to handle many infected computers and the communication between the C2 server and the hosts must remain undetected.
 
-- Unknown - 3 November 2021 // Analyze real-world Rootkit attacks and identify the techniques used by attackers
-  Available at: https://www.ptsecurity.com/ww-en/analytics/rootkits-evolution-and-detection-methods (Accessed 26 November 2023)
+We already mentioned Cobalt Strike, perhaps the most famous RAT framework, with many threat actors using either the real version or cracked trial versions.
+For most attacks it is perfectly sufficient to use an existing C2 framework, rolling your own seems to be preferred in more sophisticated attacks.
+
+A key part to hide the presence of a RAT is to obfuscate the traffic to the C2 server, this can be done with [Domain Fronting](https://en.wikipedia.org/wiki/Domain_fronting) or [Fast Flux](https://en.wikipedia.org/wiki/Fast_flux). Obfuscation the traffic like this works because most detection mechanism rely on signatures or known C2 servers, so by using a CDN or other large service the traffic is harder to detect. But it is important to note that the goal is only to remain undetected just long enough to do whatever the initial goal was, getting detected does not matter once data has been stolen or ransomware deployed.
+
+While hiding the location of the C2 is important, you usually also want to hide the traffic on the network, abusing DNS seems to be at least [somewhat common](https://unit42.paloaltonetworks.com/dns-tunneling-how-dns-can-be-abused-by-malicious-actors/#section-3-title) with the available samples.
+
+One term that is often used in the context of RATs is "Beaconing", this is the process of the infected host sending a signal to the C2 server to indicate that it is still alive and ready to receive commands. 
+
+![Cobalt Strike Operation](../figures/cobalt-strike.jpg)
+
+Firewalls and other Intrusion Detection Systems keep evolving and as with everything else, this is pretty much a cat and mouse game. Some reading on ongoing detection here: https://unit42.paloaltonetworks.com/c2-traffic/ and https://www.netskope.com/netskope-threat-labs/effective-c2-beaconing-detection
+
+
+### Techniques
+
+Because we are trying to remain undetected in usermode with persistence, the malware needs to be at least somewhat decent.
+A few years ago you could just disable the AV and leave it at that but nowadays that will already set of alarms.
+
+But because Windows has a lot of "legacy code" there are many ways to establish persistence:
+- Registry HKCU: Simple but also easy to detect.
+- Startup Folder: Why is this even a thing?
+- Scheduled Task: `schtasks` command lets you do this with lots of flexibility.
+- DLLs: There are a few different options here depending on your privilege but a popular one is to abuse the [Windows DLL load order](https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-library-search-order). Example: [Xeno RAT](https://otx.alienvault.com/pulse/65ddf674e5b73a7b24306fde).
+
+More about persistence [here](https://swisskyrepo.github.io/InternalAllTheThings/redteam/persistence/windows-persistence/).
+
+Regarding AV evasion, you can go as fancy as you want but in the end it usually comes down to just dodging a signature detection unless you are a nation state actor. One of the things you will want to think about is sandbox detection as it might buy at least a little time.
+
+## Examples
+
+- [Discord Bot Infostealer](https://www.trellix.com/blogs/research/java-based-sophisticated-stealer-using-discord-bot-as-eventlistener/)
+- [RAT builder RAT](https://cyberpress.org/weaponized-xworm-rat-builder-targeting-script-kiddies/)
