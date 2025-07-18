@@ -18,7 +18,13 @@ jobs:
         with:
           fetch-depth: 0
           submodules: recursive
-
+      - name: Install FiraMath font
+        run: |
+          mkdir -p ~/.local/share/fonts
+          curl -L -o /tmp/FiraMath.ttf https://github.com/firamath/firamath/releases/latest/download/FiraMath-Regular.otf
+          mv /tmp/FiraMath.ttf ~/.local/share/fonts/
+          c-cache -f -v
+    
       - name: Install Typst 0.12
         run: |
           curl -L https://github.com/typst/typst/releases/download/v0.12.0/typst-x86_64-unknown-linux-musl.tar.xz -o typst.tar.xz
