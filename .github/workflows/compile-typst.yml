@@ -23,7 +23,7 @@ jobs:
           mkdir -p ~/.local/share/fonts
           curl -L -o /tmp/FiraMath.ttf https://github.com/firamath/firamath/releases/latest/download/FiraMath-Regular.otf
           mv /tmp/FiraMath.ttf ~/.local/share/fonts/
-          c-cache -f -v
+          fc-cache -f -v
     
       - name: Install Typst 0.12
         run: |
