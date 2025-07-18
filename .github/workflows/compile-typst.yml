@@ -32,6 +32,9 @@ jobs:
             typst compile "$file" "compiled-slides/${module_name}.pdf"
           done
 
+      - name: List compiled slides
+        run: ls -R compiled-slides
+
       - name: Create GitHub Release (if needed) and upload PDFs
         uses: softprops/action-gh-release@v2
         with:
