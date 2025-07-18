@@ -24,8 +24,8 @@ jobs:
 
       - name: Install Fira Math
         run: |
-          gem install fontist
-          sudo fontist install "Fira Math"
+          sudo gem install fontist
+          fontist install "Fira Math"
 
       - name: Setup Typst 0.12.0
         uses: typst-community/setup-typst@v3
