@@ -9,7 +9,7 @@ on:
       - '.github/workflows/compile-typst.yml'
 
 permissions:
-  contents: write  # Required for GitHub release
+  contents: write
 
 jobs:
   compile-and-release:
@@ -22,6 +22,11 @@ jobs:
           fetch-depth: 0
           submodules: recursive
 
+      - name: Install Fira Math
+        run: |
+          gem install fontist
+          fontist install "Fira Math"
+
       - name: Setup Typst 0.12.0
         uses: typst-community/setup-typst@v3
         with:
@@ -30,7 +35,7 @@ jobs:
       - name: Compile all slides.typ files
         run: |
           mkdir -p compiled-slides
-          find Curriculum -type f -path "*/slides/slides.typ" | while read file; do
+          find Curriculum -type f -path "*/slides/*.typ" | while read file; do
             echo "Compiling $file"
             module_dir=$(dirname "$file")
             module_name=$(echo "$module_dir" | sed 's|Curriculum/||;s|/|_|g')
