@@ -15,6 +15,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
 
       - name: Install Typst 0.12
         run: |
@@ -25,7 +28,6 @@ jobs:
 
       - name: Compile all slides.typ files
         run: |
-          pwd
           mkdir -p compiled-slides
           find Curriculum -type f -path "*/slides/*.typ" | while read file; do
             module_dir=$(dirname "$file")
