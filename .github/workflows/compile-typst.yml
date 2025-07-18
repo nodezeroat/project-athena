@@ -23,6 +23,9 @@ jobs:
           sudo mkdir -p /usr/share/fonts/opentype/firamath
           curl -L -o /usr/share/fonts/opentype/firamath/FiraMath-Regular.otf https://github.com/firamath/firamath/releases/latest/download/FiraMath-Regular.otf
           sudo fc-cache -f -v
+
+      - name: Check installed fonts
+        run: fc-list | grep -i "fira math"
     
       - name: Install Typst 0.12
         run: |
