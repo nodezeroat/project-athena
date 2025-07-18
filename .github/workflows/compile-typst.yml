@@ -1,0 +1,43 @@
+name: Compile Typst Slides and Release
+
+on:
+  push:
+    branches:
+      - main  # Or your default branch
+    paths:
+      - 'Curriculum/**/slides/**'
+      - '.github/workflows/compile-typst.yml'
+
+jobs:
+  compile-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Typst 0.12
+        run: |
+          curl -L https://github.com/typst/typst/releases/download/v0.12.0/typst-x86_64-unknown-linux-musl.tar.xz -o typst.tar.xz
+          tar -xf typst.tar.xz
+          sudo mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
+          typst --version
+
+      - name: Compile all slides.typ files
+        run: |
+          mkdir -p compiled-slides
+          find Curriculum -type f -path "*/slides/slides.typ" | while read file; do
+            module_dir=$(dirname "$file")
+            module_name=$(echo "$module_dir" | sed 's|Curriculum/||;s|/|_|g')
+            typst compile "$file" "compiled-slides/${module_name}.pdf"
+          done
+
+      - name: Create GitHub Release (if needed) and upload PDFs
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest-slides
+          name: "Latest Compiled Slides"
+          body: "This release contains all compiled slides as of the latest push."
+          files: compiled-slides/*.pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
