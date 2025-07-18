@@ -20,10 +20,9 @@ jobs:
           submodules: recursive
       - name: Install FiraMath font
         run: |
-          mkdir -p ~/.local/share/fonts
-          curl -L -o /tmp/FiraMath.ttf https://github.com/firamath/firamath/releases/latest/download/FiraMath-Regular.otf
-          mv /tmp/FiraMath.ttf ~/.local/share/fonts/
-          fc-cache -f -v
+          sudo mkdir -p /usr/share/fonts/opentype/firamath
+          curl -L -o /usr/share/fonts/opentype/firamath/FiraMath-Regular.otf https://github.com/firamath/firamath/releases/latest/download/FiraMath-Regular.otf
+          sudo fc-cache -f -v
     
       - name: Install Typst 0.12
         run: |
