@@ -25,8 +25,9 @@ jobs:
 
       - name: Compile all slides.typ files
         run: |
+          pwd
           mkdir -p compiled-slides
-          find Curriculum -type f -path "*/slides/*.typ" | while read file; do
+          find Curriculum -type f -path "*/slides/*.typ" --root . | while read file; do
             module_dir=$(dirname "$file")
             module_name=$(echo "$module_dir" | sed 's|Curriculum/||;s|/|_|g')
             typst compile "$file" "compiled-slides/${module_name}.pdf"
