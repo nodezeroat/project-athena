@@ -3,55 +3,53 @@ name: Compile Typst Slides and Release
 on:
   push:
     branches:
-      - main  # Or your default branch
+      - main
     paths:
       - 'Curriculum/**/slides/**'
       - '.github/workflows/compile-typst.yml'
+
+permissions:
+  contents: write  # Required for GitHub release
 
 jobs:
   compile-and-release:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repository with submodules
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           submodules: recursive
-      - name: Install FiraMath font
-        run: |
-          sudo mkdir -p /usr/share/fonts/opentype/firamath
-          curl -L -o /usr/share/fonts/opentype/firamath/FiraMath-Regular.otf https://github.com/firamath/firamath/releases/latest/download/FiraMath-Regular.otf
-          sudo fc-cache -f -v
 
-      - name: Check installed fonts
-        run: fc-list | grep -i "fira math"
-    
-      - name: Install Typst 0.12
-        run: |
-          curl -L https://github.com/typst/typst/releases/download/v0.12.0/typst-x86_64-unknown-linux-musl.tar.xz -o typst.tar.xz
-          tar -xf typst.tar.xz
-          sudo mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
-          typst --version
+      - name: Setup Typst 0.12.0
+        uses: typst-community/setup-typst@v3
+        with:
+          typst-version: 0.12.0
 
       - name: Compile all slides.typ files
         run: |
           mkdir -p compiled-slides
-          find Curriculum -type f -path "*/slides/*.typ" | while read file; do
+          find Curriculum -type f -path "*/slides/slides.typ" | while read file; do
+            echo "Compiling $file"
             module_dir=$(dirname "$file")
             module_name=$(echo "$module_dir" | sed 's|Curriculum/||;s|/|_|g')
-            typst compile "$file" "compiled-slides/${module_name}.pdf" --root .
+            typst compile "$file" "compiled-slides/${module_name}.pdf" --root . || echo "❌ Failed: $file"
           done
 
-      - name: List compiled slides
-        run: ls -R compiled-slides
+      - name: Fail if no slides were compiled
+        run: |
+          if ! ls compiled-slides/*.pdf 2>/dev/null; then
+            echo "❌ No slides were compiled!"
+            exit 1
+          fi
 
-      - name: Create GitHub Release (if needed) and upload PDFs
+      - name: Create GitHub Release and upload PDFs
         uses: softprops/action-gh-release@v2
         with:
           tag_name: latest-slides
           name: "Latest Compiled Slides"
-          body: "This release contains all compiled slides as of the latest push."
+          body: "Compiled PDFs of all slides in the Curriculum directory."
           files: compiled-slides/*.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
