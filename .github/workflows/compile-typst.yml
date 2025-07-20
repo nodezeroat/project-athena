@@ -23,7 +23,7 @@ jobs:
           submodules: recursive
 
       - uses: fontist/setup-fontist@v2
-      - run: fontist install "Noto Sans Math"
+      - run: fontist install "TeX Gyre Math"
       - run: fontist install "Noto Sans Mono"
 
       - uses: typst-community/setup-typst@v3

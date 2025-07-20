@@ -6,7 +6,7 @@
 )
 
 #set text(font: "Noto Sans Mono", weight: "regular", size: 20pt)
-#show math.equation: set text(font: "Noto Sans Math")
+#show math.equation: set text(font: "TeX Gyre Math")
 #set par(justify: true)
 
 #title-slide(
