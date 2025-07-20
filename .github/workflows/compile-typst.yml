@@ -23,7 +23,8 @@ jobs:
           submodules: recursive
 
       - uses: fontist/setup-fontist@v2
-      - run: fontist install "Fira Math"
+      - run: fontist install "Noto Sans Math"
+      - run: fontist install "Noto Sans Mono"
 
       - uses: typst-community/setup-typst@v3
         with:
@@ -32,9 +33,8 @@ jobs:
           mkdir -p compiled-slides
           find Curriculum -type f -path "*/slides/*.typ" | while read file; do
             echo "Compiling $file"
-            module_dir=$(dirname "$file")
-            module_name=$(echo "$module_dir" | sed 's|Curriculum/||;s|/|_|g')
-            typst compile "$file" "compiled-slides/${module_name}.pdf" --root . || echo "❌ Failed: $file"
+            filename=$(basename "$file" .typ)
+            typst compile "$file" "compiled-slides/${filename}.pdf" --root . || echo "❌ Failed: $file"
           done
 
       - name: Fail if no slides were compiled

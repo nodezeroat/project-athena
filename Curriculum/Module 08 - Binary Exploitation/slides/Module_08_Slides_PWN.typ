@@ -9,8 +9,8 @@
 
 #enable-handout-mode(false)
 
-#set text(font: "Berkeley Mono", weight: "regular", size: 20pt)
-#show math.equation: set text(font: "Fira Math")
+#set text(font: "Noto Sans Mono", weight: "regular", size: 20pt)
+#show math.equation: set text(font: "Noto Sans Math")
 #set strong(delta: 100)
 #set par(justify: true)
 
