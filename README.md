@@ -1,3 +1,5 @@
+[![Compile Typst Slides and Release](https://github.com/nodezeroat/project-athena/actions/workflows/compile-typst.yml/badge.svg)](https://github.com/nodezeroat/project-athena/actions/workflows/compile-typst.yml)
+
 # Project Athena
 
 ![](athena_banner.jpg)
