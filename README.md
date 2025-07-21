@@ -25,7 +25,7 @@ Each topic is covered in detail with markdown files containing easy-to-understan
 To access the Project Athena curriculum, simply clone the repository to your local machine.
 
 ```bash
-git clone https://github.com/your-username/project-athena.git
+git clone https://github.com/nodezeroat/project-athena.git
 ```
 
 ## Usage
@@ -42,7 +42,7 @@ If you would like to contribute content, please fork the repository, create a ne
 
 Current Contributors:
 
-[ ![contributors-img](https://contrib.rocks/image?repo=h4ckd0tm3/project-athena) ](https://github.com/h4ckd0tm3/project-athena/graphs/contributors)
+[ ![contributors-img](https://contrib.rocks/image?repo=nodezeroat/project-athena) ](https://github.com/nodezeroat/project-athena/graphs/contributors)
 
 ## License
 
