@@ -22,27 +22,15 @@ jobs:
           fetch-depth: 0
           submodules: recursive
 
-      - uses: fontist/setup-fontist@v2
-      - run: fontist install "TeX Gyre Math"
-      - run: fontist install "Noto Sans Mono"
-
-      - uses: typst-community/setup-typst@v3
+      - uses: cachix/install-nix-action@v26
         with:
-          typst-version: 0.12.0
+          install_url: https://nixos.org/nix/install
+          extra_nix_config: |
+            auto-optimise-store = true
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            experimental-features = nix-command flakes
       - run: |
-          mkdir -p compiled-slides
-          find Curriculum -type f -path "*/slides/*.typ" | while read file; do
-            echo "Compiling $file"
-            filename=$(basename "$file" .typ)
-            typst compile "$file" "compiled-slides/${filename}.pdf" --root . || echo "❌ Failed: $file"
-          done
-
-      - name: Fail if no slides were compiled
-        run: |
-          if ! ls compiled-slides/*.pdf 2>/dev/null; then
-            echo "❌ No slides were compiled!"
-            exit 1
-          fi
+          nix build .?submodules=1#
 
       - name: Create GitHub Release and upload PDFs
         uses: softprops/action-gh-release@v2
@@ -50,6 +38,6 @@ jobs:
           tag_name: latest-slides
           name: "Latest Compiled Slides"
           body: "Compiled PDFs of all slides in the Curriculum directory."
-          files: compiled-slides/*.pdf
+          files: result/*.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
