@@ -10,13 +10,13 @@ The packet data contains such information as its source, destination, content an
 
 For instance, the picture below illustrates how a firewall lets genuine traffic through to the user’s private network.
 
-<img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/Firewall_1.png" alt="drawing" style="width:500px"/>
+![Firewall 1](images/Firewall_1.png)
 
 _source: Firewalls \[3.\]_
 
 However, as you can see on the picture below, the malicious or per rules blocked traffic is not allowed to enter the users private network. The gatekeeper is doing his job pretty good!
 
-<img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/Firewall_2.png" alt="drawing" style="width:500px"/>
+![Firewall 2](images/Firewall_2.png)
 
 _source: Firewalls \[4.\]_
 
@@ -24,11 +24,11 @@ _source: Firewalls \[4.\]_
 
 Firewalls work by examining data packets passing through them and applying the rules to determine whether to allow or block the traffic. These rules can be based on various factors like IP addresses, port numbers, protocols, or specific types of content.
 
-## Softwarebased Firewall:
+## Softwarebased Firewall
 
 - **Software-based firewalls** are programs installed on individual computers or devices. They monitor traffic specific to that device, regulating incoming and outgoing connections based on predefined rules. They're often part of antivirus software or operating systems, offering granular control over what enters or leaves a particular device.
 
-## Hardwarebased Firewall:
+## Hardwarebased Firewall
 
 - **Hardware firewalls** are standalone devices positioned between an internal network and an external network (like the internet). They're often implemented within routers or dedicated firewall appliances. Hardware firewalls provide broader protection for entire networks and are managed separately from individual devices.
 
@@ -84,10 +84,8 @@ _source: Firewalls \[1.\], Firewalls \[2.\]_
 
 ## References
 
-**Firewalls**
-
-1. https://www.cisco.com/c/en/us/products/security/firewalls/what-is-a-firewall.html
-1. https://www.checkpoint.com/cyber-hub/network-security/what-is-firewall/
-1. https://www.simplilearn.com/ice9/free_resources_article_thumb/Firewall_1.png
-1. https://www.simplilearn.com/ice9/free_resources_article_thumb/Firewall_2.png
-1. https://www.simplilearn.com/tutorials/cyber-security-tutorial/what-is-firewall
+1. <https://www.cisco.com/c/en/us/products/security/firewalls/what-is-a-firewall.html>
+2. <https://www.checkpoint.com/cyber-hub/network-security/what-is-firewall/>
+3. <https://www.simplilearn.com/ice9/free_resources_article_thumb/Firewall_1.png>
+4. <https://www.simplilearn.com/ice9/free_resources_article_thumb/Firewall_2.png>
+5. <https://www.simplilearn.com/tutorials/cyber-security-tutorial/what-is-firewall>

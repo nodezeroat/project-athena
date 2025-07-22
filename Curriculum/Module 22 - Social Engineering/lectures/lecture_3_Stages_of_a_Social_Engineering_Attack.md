@@ -17,7 +17,7 @@ Embarking on the fascinating journey through the stages of a social engineering 
 
 Understanding the stages of a social engineering attack is akin to shining a light into the darkest corners of cybersecurity. By recognizing the intricate dance of manipulation, individuals and organizations can fortify their defenses, creating a more resilient barrier against the ever-present threat of social engineering.
 
-### Sources:
+## Sources
 
 - Krebs on Security - [https://krebsonsecurity.com/](https://krebsonsecurity.com/)
 - SANS Institute - [https://www.sans.org/](https://www.sans.org/)

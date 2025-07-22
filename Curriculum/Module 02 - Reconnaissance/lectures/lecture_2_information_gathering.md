@@ -49,4 +49,4 @@ Enumeration is the process of extracting detailed information about a network or
 - **Enumeration Tools Documentation**:
   - Enum4linux: [Github Repository](https://github.com/portcullislabs/enum4linux)
   - Nbtscan: Information available on various cybersecurity websites.
-  - SNMPwalk: Included in the NET-SNMP suite (http://www.net-snmp.org/)
+  - SNMPwalk: Included in the NET-SNMP suite (<http://www.net-snmp.org/>)

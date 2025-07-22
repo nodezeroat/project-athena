@@ -18,7 +18,7 @@ Intrusion Prevention Systems (IPS) → **diagnostic and incident response tool**
 
 _source: Intrusion Detection and Prevention Systems \[3.\]_
 
-**Intrusion Detection Systems (IDS)**
+### **Intrusion Detection Systems (IDS)**
 
 1. **Functionality**
    - monitor network traffic and detect unusual or suspicious activities
@@ -38,7 +38,7 @@ _source: Intrusion Detection and Prevention Systems \[3.\]_
 
 _source: Intrusion Detection and Prevention Systems \[2.\]_
 
-**Intrusion Prevention Systems (IPS)**
+### **Intrusion Prevention Systems (IPS)**
 
 1. **Functionality**
    - extends the capabilities of IDS → taking proactive measures
@@ -63,7 +63,7 @@ _source: Intrusion Detection and Prevention Systems \[1.\]_
 
 ## **Types of IDPS**
 
-**Host-Based IDPS (HIDPS)**
+### **Host-Based IDPS (HIDPS)**
 
 - HIDPS is deployed directly on individual hosts, such as servers
 - focuses on protecting specific endpoints → scanning system files, unauthorized changes and processes running on the system
@@ -71,7 +71,7 @@ _source: Intrusion Detection and Prevention Systems \[1.\]_
 
 _source: Intrusion Detection and Prevention Systems \[1.\]_
 
-**Network-Based IDPS (NIDPS)**:
+### **Network-Based IDPS (NIDPS)**:
 
 - monitors network traffic (entire network segment or subnet)
 - It's deployed in strategic network locations
@@ -80,7 +80,7 @@ _source: Intrusion Detection and Prevention Systems \[1.\]_
 
 ## **Recent Advancements in IDPS Technology**
 
-**Integration in other Solutions**
+### **Integration in other Solutions**
 
 - IDPS increasingly merging with other advanced security solutions
   - next-generation firewalls (NGFW)
@@ -90,7 +90,7 @@ _source: Intrusion Detection and Prevention Systems \[1.\]_
 
 _source: Intrusion Detection and Prevention Systems \[1.\]_
 
-**Adoption of Machine Learning and AI**
+### **Adoption of Machine Learning and AI**
 
 - Modern IDPS solutions are increasingly using machine learning and AI → process massive data faster
 - Detects what traditional signature and anomaly detection methods might miss
@@ -99,7 +99,7 @@ _source: Intrusion Detection and Prevention Systems \[1.\]_
 
 _source: Intrusion Detection and Prevention Systems \[4.\], Intrusion Detection and Prevention Systems \[5.\]_
 
-**Industry Cloud Platforms**
+### **Industry Cloud Platforms**
 
 - industry-specific cloud platforms offers scalability and functionality to unique industry needs.
 - a more targeted approach → enhancing the effectiveness of IDPS in specific operational contexts.
@@ -128,10 +128,8 @@ _source: Intrusion Detection and Prevention Systems \[1.\]_
 
 ## References
 
-**Intrusion Detection and Prevention Systems**
-
-1. https://www.esecurityplanet.com/products/intrusion-detection-and-prevention-systems/
-1. https://www.hindawi.com/journals/js/2023/6048087/
-1. https://www.comparitech.com/net-admin/ids-vs-ips/
-1. https://kirkpatrickprice.com/blog/idps-techniques/
-1. https://rossum.ai/blog/2023-idp-trends/#:~:text=,continue
+1. <https://www.esecurityplanet.com/products/intrusion-detection-and-prevention-systems/>
+2. <https://www.hindawi.com/journals/js/2023/6048087/>
+3. <https://www.comparitech.com/net-admin/ids-vs-ips/>
+4. <https://kirkpatrickprice.com/blog/idps-techniques/>
+5. <https://rossum.ai/blog/2023-idp-trends/#:~:text=,continue>

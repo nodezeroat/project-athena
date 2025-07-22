@@ -15,14 +15,12 @@ Incident Response plans are often tested through exercises known as table-top ex
 
 ## Incident Response Life Cycle
 
-<img src="https://criticalfault.com/wp-content/uploads/2022/03/Incident-Response-Lifecycle-black-text.png" alt="drawing" style="width:400px"/>
+![Incident Response Lfecycle](images/Incident-Response-Lifecycle-black-text.png)
 
 _source: Incident Response \[3.\], Incident Response \[1.\], Incident Response \[2.\]_
 
 ## References
 
-**Incident Response**
-
-1. https://www.techtarget.com/searchsecurity/definition/incident-response#:~:text=Incident%20response%20is%20an%20organized,recovery%20time%20and%20total%20costs.
-1. https://www.ibm.com/de-de/topics/incident-response
-1. **img:** https://criticalfault.com/wp-content/uploads/2022/03/Incident-Response-Lifecycle-black-text.png
+1. <https://www.techtarget.com/searchsecurity/definition/incident-response#:~:text=Incident%20response%20is%20an%20organized,recovery%20time%20and%20total%20costs>.
+2. <https://www.ibm.com/de-de/topics/incident-response>
+3. **img:** <https://criticalfault.com/wp-content/uploads/2022/03/Incident-Response-Lifecycle-black-text.png>

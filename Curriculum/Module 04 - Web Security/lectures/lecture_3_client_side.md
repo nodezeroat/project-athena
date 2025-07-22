@@ -139,42 +139,42 @@ Here is an example to make things clearer:
 
 ![CSRF Example](images/csrf.webp)
 
-1. Here we can see the user issuing a request to view http://nathanhauk.com, a malicious website hosted by the attacker.
+1. Here we can see the user issuing a request to view <http://nathanhauk.com>, a malicious website hosted by the attacker.
 
-1. When the server receives this request, it serves a page that contains a form designated to http://slack.com/fakevotingservice which allows you to vote on your favorite way to spell the word “grey”.
+1. When the server receives this request, it serves a page that contains a form designated to <http://slack.com/fakevotingservice> which allows you to vote on your favorite way to spell the word “grey”.
 
 1. When the user receives the response, their browser interprets the HTML and automatically issues the request with the session tokens that belong to that origin. (The browser automatically issues a request with the user’s cookies to the voting service)
 
 1. The server receives the victim’s state changing request, processes it and updates the state on the server accordingly.
 
-> Find another example at: https://portswigger.net/web-security/csrf#how-does-csrf-work
+> Find another example at: <https://portswigger.net/web-security/csrf#how-does-csrf-work>
 
 ### Defense against CSRF
 
 Nowadays, successfully finding and exploiting CSRF vulnerabilities often involves bypassing anti-CSRF measures deployed by the target website, the victim's browser, or both. The most common defenses you'll encounter are as follows:
 
-#### **CSRF Tokens**:
+#### **CSRF Tokens**
 
 - These are unique, secret values generated server-side and shared with the client. When the client performs sensitive actions, such as form submission, the correct CSRF token must be included in the request. This prevents attackers from crafting valid requests on behalf of victims.
 
-#### **SameSite Cookies**:
+#### **SameSite Cookies**
 
 - A browser mechanism where cookies are only sent in requests coming from the site that set the cookie. This can prevent attackers from initiating cross-site actions.
 
 - Note: Chrome has enforced Lax SameSite restrictions by default since 2021, with other browsers expected to follow.
 
-#### **Referer-based Validation**:
+#### **Referer-based Validation**
 
 - Utilizes the HTTP Referer header to confirm that requests are from the application's domain.
 
 - Limitation: Generally considered less effective than CSRF token validation.
 
-> **Note:** A lot of these countermeasures can potentially bypassed. For mire information see: https://portswigger.net/web-security/csrf/
+> **Note:** A lot of these countermeasures can potentially bypassed. For mire information see: <https://portswigger.net/web-security/csrf/>
 
-# Resources
+## Resources
 
-- https://portswigger.net/web-security/cross-site-scripting
-- https://owasp.org/www-community/attacks/xss/
-- https://portswigger.net/web-security/csrf
-- https://owasp.org/www-community/attacks/csrf
-- https://blog.securityevaluators.com/cracking-javas-rng-for-csrf-ea9cacd231d2
+- <https://portswigger.net/web-security/cross-site-scripting>
+- <https://owasp.org/www-community/attacks/xss/>
+- <https://portswigger.net/web-security/csrf>
+- <https://owasp.org/www-community/attacks/csrf>
+- <https://blog.securityevaluators.com/cracking-javas-rng-for-csrf-ea9cacd231d2>

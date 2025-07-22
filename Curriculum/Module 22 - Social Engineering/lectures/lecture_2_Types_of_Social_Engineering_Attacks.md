@@ -17,7 +17,7 @@ In the rapidly changing and complex world of cybersecurity, it is crucial to hav
 
 Understanding these types of social engineering attacks is like building a shield against the unseen threats lurking in the digital shadows. By recognizing the tactics employed by cyber adversaries, individuals can fortify their defenses and navigate the online world with greater resilience.
 
-### Sources:
+## Sources
 
 - Krebs on Security - [https://krebsonsecurity.com/](https://krebsonsecurity.com/)
 - SANS Institute - [https://www.sans.org/](https://www.sans.org/)

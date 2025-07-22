@@ -6,7 +6,7 @@
 
 SQL injection (SQLi) is a critical web security vulnerability that enables attackers to manipulate the database queries made by an application. This allows them to access unauthorized data, potentially compromising user privacy and application integrity. Attackers can also modify or delete data, leading to persistent changes in the application. In severe cases, SQLi can be used to compromise the server or launch denial-of-service attacks.
 
-### Impact of SQL Injections:
+### Impact of SQL Injections
 
 1. **Data Manipulation**: Attackers can tamper with existing data, potentially altering, deleting, or inserting new records.
 
@@ -66,7 +66,7 @@ The application directly uses user input in SQL, allowing query manipulation.
 - Avoid directly adding user input into SQL queries.
 - Utilize web application firewalls and security audits.
 
-> **For more Examples see:** https://portswigger.net/web-security/sql-injection#sql-injection-examples
+> **For more Examples see:** <https://portswigger.net/web-security/sql-injection#sql-injection-examples>
 
 ## Server-side request forgery (SSRF)
 
@@ -96,9 +96,9 @@ In a typical SSRF attack, the attacker might cause the server to make a connecti
 - Minimize exposure of internal services.
 - Implement network segmentation and firewall rules to restrict internal network access.
 
-# Resources
+## Resources
 
-- https://portswigger.net/web-security/sql-injection
-- https://owasp.org/www-community/attacks/SQL_Injection
-- https://book.hacktricks.xyz/pentesting-web/sql-injection
-- https://portswigger.net/web-security/ssrf
+- <https://portswigger.net/web-security/sql-injection>
+- <https://owasp.org/www-community/attacks/SQL_Injection>
+- <https://book.hacktricks.xyz/pentesting-web/sql-injection>
+- <https://portswigger.net/web-security/ssrf>

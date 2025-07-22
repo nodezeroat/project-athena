@@ -2,7 +2,7 @@
 
 > **Disclaimer:** This lecture primarily focuses on the legal framework and considerations pertaining to IT security in Austria.
 
-## Basic terms from Austrian Criminal Law (Strafgesetz):
+## Basic terms from Austrian Criminal Law (Strafgesetz)
 
 - **Place of Crime (Tatort) (§ 62 StGB):**
   - Offenses committed **within** the country.
@@ -555,4 +555,4 @@ Given his capture and sale of the credit card data, Lucas could face prosecution
 
 ## Resources
 
-- https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=bundesnormen&Gesetzesnummer=10002296
+- <https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=bundesnormen&Gesetzesnummer=10002296>

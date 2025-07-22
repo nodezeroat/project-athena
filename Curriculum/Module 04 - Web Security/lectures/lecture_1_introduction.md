@@ -83,7 +83,7 @@ Web applications often require a way to track users' interactions across multipl
   - Using the `Secure` attribute to ensure the cookie is only transmitted over HTTPS.
   - Using the `HttpOnly` attribute to prevent client-side scripts from accessing the cookie.
 
-# Resources
+## Resources
 
-- https://www3.ntu.edu.sg/home/ehchua/programming/webprogramming/http_basics.html
-- https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview
+- <https://www3.ntu.edu.sg/home/ehchua/programming/webprogramming/http_basics.html>
+- <https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview>

@@ -10,7 +10,7 @@ IDS are software or hardware systems that automate the process of tracking event
 
 The intrusion protection systems (IPS) are the network security devices responsible for examining network and/or system activities looking for malicious or unwanted behaviors and will instantly attempt to stop or prohibit them. These programs have the same features as intrusion detection system and are also able to prevent unauthorized access.
 
-### Security Information and Event Management (SIEM).
+### Security Information and Event Management (SIEM)
 
 The technology known as SIEM analyses security alerts that are produced on an ongoing basis by network hardware and software. It gives a detailed overview of an organisation’s information security.
 
@@ -50,14 +50,12 @@ _source: Overview \[1.\], Overview \[2.\]_
 
 ## Difference to Red Teaming
 
-<img src="https://lh6.googleusercontent.com/rx-60dcB6d-PkM2PyP3WGhJHMs64U9MZqYZvURexA_uXryKYdBLsgjHpvFsXz1khxNdqXxiQsziaTQ3_-Beyb-mlsmQvelSVw6ADi8TqSB7XtWxa-N01TWGoeJjvpVUXmGsCiP5UBVitXQQ_erdNcns" alt="drawing" style="width:500px"/>
+![Red vs. Blue](images/red_vs_blue.png)
 
 _source: Overview \[3.\]_
 
 ## References
 
-**Overview**
-
-1. https://picussecurity.com/resource/glossary/what-is-blue-teaming
-1. https://csrc.nist.gov/glossary/term/blue_team
-1. **img:** https://lh6.googleusercontent.com/rx-60dcB6d-PkM2PyP3WGhJHMs64U9MZqYZvURexA_uXryKYdBLsgjHpvFsXz1khxNdqXxiQsziaTQ3_-Beyb-mlsmQvelSVw6ADi8TqSB7XtWxa-N01TWGoeJjvpVUXmGsCiP5UBVitXQQ_erdNcns
+1. <https://picussecurity.com/resource/glossary/what-is-blue-teaming>
+2. <https://csrc.nist.gov/glossary/term/blue_team>
+3. **img:** <https://lh6.googleusercontent.com/rx-60dcB6d-PkM2PyP3WGhJHMs64U9MZqYZvURexA_uXryKYdBLsgjHpvFsXz1khxNdqXxiQsziaTQ3_-Beyb-mlsmQvelSVw6ADi8TqSB7XtWxa-N01TWGoeJjvpVUXmGsCiP5UBVitXQQ_erdNcns>

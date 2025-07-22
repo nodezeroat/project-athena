@@ -26,12 +26,12 @@ This uses the scheme http, the domain `normal-website.com`, and the port number 
 
 | **URL accessed**                        | **Access permitted?**              |
 | --------------------------------------- | ---------------------------------- |
-| http://normal-website.com/example/      | Yes: same scheme, domain, and port |
-| http://normal-website.com/example2/     | Yes: same scheme, domain, and port |
-| https://normal-website.com/example/     | No: different scheme and port      |
-| http://en.normal-website.com/example/   | No: different domain               |
-| http://www.normal-website.com/example/  | No: different domain               |
-| http://normal-website.com:8080/example/ | No: different port\*               |
+| <http://normal-website.com/example/>      | Yes: same scheme, domain, and port |
+| <http://normal-website.com/example2/>     | Yes: same scheme, domain, and port |
+| <https://normal-website.com/example/>     | No: different scheme and port      |
+| <http://en.normal-website.com/example/>   | No: different domain               |
+| <http://www.normal-website.com/example/>  | No: different domain               |
+| <http://normal-website.com:8080/example/> | No: different port\*               |
 
 > \*Internet Explorer will allow this access because IE does not take account of the port number when applying the same-origin policy.
 
@@ -104,11 +104,11 @@ Content-Security-Policy: policy
 
 A policy is made up of directives that set rules for various resource types. It's essential to have a `default-src` directive as a general fallback. To prevent inline scripts and the use of `eval()`, a `default-src` or `script-src` directive is required. Similarly, to limit inline styles, either a `default-src` or `style-src` directive is needed. Directives cater to diverse resource types like fonts, frames, images, media, scripts, and more.
 
-For examples and more information see: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#examples_common_use_cases
+For examples and more information see: <https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#examples_common_use_cases>
 
-# Resources
+## Resources
 
-- https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy
-- https://portswigger.net/web-security/cors/same-origin-policy
-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
-- https://portswigger.net/web-security/cross-site-scripting/content-security-policy
+- <https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy>
+- <https://portswigger.net/web-security/cors/same-origin-policy>
+- <https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP>
+- <https://portswigger.net/web-security/cross-site-scripting/content-security-policy>

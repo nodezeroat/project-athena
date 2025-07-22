@@ -15,7 +15,7 @@ In cryptography, there exists a similar concept named NONCE (Number only used on
 Nonces are used for ensuring the uniqueness of cryptographic operations, preventing the reuse of ciphertexts with the same key.
 While both of them seem similar, it is important not to confuse an IV (Used for providing randomness for the start of the encryption process) with a NONCE (Ensuring that cryptographic operations can only be performed once).
 
-### Block Ciphers
+## Block Ciphers
 
 A block cipher is another kind of algorithm, which encrypts data blockwise instead of one by one. In contrast to stream ciphers, they always operate on blocks of multiple bytes.
 Depending on the exact cipher mode, the encrypted data can be either dependend (as it is for CBC) or independent (applies to ECB, which is also why it should not be used, but more on that later) on the previous block. Several block ciphers also make the encrypted data depending on the plaintext,
@@ -26,7 +26,7 @@ indicating that data encrypted twice will not look like the same in it's encrypt
   - AES - CBC \[Cipher Block Chaining Mode\]
   - Blowfish
 
-### Stream Ciphers
+## Stream Ciphers
 
 There also exist so-called stream ciphers, which in contrast to block ciphers do not have a fixed blocksize. This means that no padding needs to be applied to the plaintext in order for it to be encrypted.
 
@@ -46,7 +46,7 @@ There also exist so-called stream ciphers, which in contrast to block ciphers do
 
 In the following, you can see the encryption process of a stream cipher (as example, CTR \[Counter-Mode\]) compared to a block cipher (as example, CFB \[AES Cipher Feedback Mode\])
 
-<img src="../resources/images/CTR.bmp" alt="image" width="400" height="auto"/> <img src="../resources/images/CFB.png" alt="image" width="400" height="auto"/>
+![CTR](../resources/images/CTR.bmp)
 
 ## Best Practice
 

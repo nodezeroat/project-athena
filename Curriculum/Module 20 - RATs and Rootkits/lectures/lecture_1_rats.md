@@ -59,7 +59,7 @@ Particularly with the rise of Cybercrime-as-a-Service it has become easier to ob
 
 One especially interesting use is the target of infrastructure or [SCADA](https://en.wikipedia.org/wiki/SCADA) devices, this requires handcrafted payloads and is thus typically only performed by APTs and leveraged for profit or other international purposes.
 
-While it was still profitable, installing crypto miners was common , but that has become less profitable compared to the detection risk. Obligatory funny: https://github.com/xmrig/xmrig/issues/730
+While it was still profitable, installing crypto miners was common , but that has become less profitable compared to the detection risk. Obligatory funny: <https://github.com/xmrig/xmrig/issues/730>
 
 ### Infrastructure
 
@@ -72,12 +72,11 @@ A key part to hide the presence of a RAT is to obfuscate the traffic to the C2 s
 
 While hiding the location of the C2 is important, you usually also want to hide the traffic on the network, abusing DNS seems to be at least [somewhat common](https://unit42.paloaltonetworks.com/dns-tunneling-how-dns-can-be-abused-by-malicious-actors/#section-3-title) with the available samples.
 
-One term that is often used in the context of RATs is "Beaconing", this is the process of the infected host sending a signal to the C2 server to indicate that it is still alive and ready to receive commands. 
+One term that is often used in the context of RATs is "Beaconing", this is the process of the infected host sending a signal to the C2 server to indicate that it is still alive and ready to receive commands.
 
 ![Cobalt Strike Operation](../figures/cobalt-strike.jpg)
 
-Firewalls and other Intrusion Detection Systems keep evolving and as with everything else, this is pretty much a cat and mouse game. Some reading on ongoing detection here: https://unit42.paloaltonetworks.com/c2-traffic/ and https://www.netskope.com/netskope-threat-labs/effective-c2-beaconing-detection
-
+Firewalls and other Intrusion Detection Systems keep evolving and as with everything else, this is pretty much a cat and mouse game. Some reading on ongoing detection here: <https://unit42.paloaltonetworks.com/c2-traffic/> and <https://www.netskope.com/netskope-threat-labs/effective-c2-beaconing-detection>
 
 ### Techniques
 
@@ -85,12 +84,13 @@ Because we are trying to remain undetected in usermode with persistence, the mal
 A few years ago you could just disable the AV and leave it at that but nowadays that will already set of alarms.
 
 But because Windows has a lot of "legacy code" there are many ways to establish persistence:
+
 - Registry HKCU: Simple but also easy to detect.
 - Startup Folder: Why is this even a thing?
 - Scheduled Task: `schtasks` command lets you do this with lots of flexibility.
 - DLLs: There are a few different options here depending on your privilege but a popular one is to abuse the [Windows DLL load order](https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-library-search-order). Example: [Xeno RAT](https://otx.alienvault.com/pulse/65ddf674e5b73a7b24306fde).
 
-More about persistence [here](https://swisskyrepo.github.io/InternalAllTheThings/redteam/persistence/windows-persistence/).
+More about persistence: [Swiss Key Repo](https://swisskyrepo.github.io/InternalAllTheThings/redteam/persistence/windows-persistence/).
 
 Regarding AV evasion, you can go as fancy as you want but in the end it usually comes down to just dodging a signature detection unless you are a nation state actor. One of the things you will want to think about is sandbox detection as it might buy at least a little time.
 

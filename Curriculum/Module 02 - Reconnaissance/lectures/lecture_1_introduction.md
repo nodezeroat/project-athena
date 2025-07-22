@@ -74,5 +74,5 @@ Reconnaissance is the initial phase where attackers collect as much information 
 
 ## Resources
 
-- https://redriver.com/security/target-data-breach
-- https://www.zdnet.com/article/anatomy-of-the-target-data-breach-missed-opportunities-and-lessons-learned/
+- <https://redriver.com/security/target-data-breach>
+- <https://www.zdnet.com/article/anatomy-of-the-target-data-breach-missed-opportunities-and-lessons-learned/>

@@ -5,6 +5,7 @@
 Anyone who runs computer infrastructure they rely upon should be concerned about hardening their systems. This is especially important where user data such as Personally Identifiable Information are involved.
 
 There are different kinds of system hardening:
+
 - Server hardening
 - OS Hardening
 - Application hardening
@@ -44,14 +45,22 @@ The following topics aim to enhance the security of a server by implementing a s
 To ensure that a user cannot change the kernel or distribution, it is recommended to change access to the bootloader config files. To completely thwart a boot into another OS on the computer, the bios should have a admin password set.
 
 Steps for root for grub:
-1. Set the owner and group of ```/etc/grub.conf and /etc/grub.d``` or in some cases ```/etc/default/grub```
-	```chown root:root /etc/grub.conf```
-	```chown -R root:root /etc/grub.d```
-	```chown root:root /etc/default/grub```
-1. Set permissions for ```/etc/grub.conf and /etc/grub.d``` or in some cases ```/etc/default/grub```
-	```chmod og-rwx /etc/grub.conf```
-	```chmod -R or-rwx /etc/grub.d```
-	```chown or-rwx /etc/default/grub```
+
+1. Set the owner and group of `/etc/grub.conf` and `/etc/grub.d` or in some cases `/etc/default/grub`.
+
+	```bash
+	chown root:root /etc/grub.conf
+	chown -R root:root /etc/grub.d
+	chown root:root /etc/default/grub
+	```
+
+2. Set permissions for `/etc/grub.conf` and `/etc/grub.d` or in some cases `/etc/default/grub`
+
+	```bash
+	chmod og-rwx /etc/grub.conf
+	chmod -R or-rwx /etc/grub.d
+	chown or-rwx /etc/default/grub
+	```
 
 ### Linux Kernel
 
@@ -62,42 +71,55 @@ The heart of a linux distribution is the kernel, protecting it is absolutely nec
 Kernel logs are a crucial aspect of a machine administration. Logs can reveal information about the state of daemons, show warnings or other critical messages. The logs are split into eight log levels, starting at level 0 and decreasing in severity until level 7, which are debug logs. In order to protect these logs from unauthorized access, one can restrict the permissions of the logs with the following command:
 
 Steps for root:
+
 1. Restrict access to the kernel logs in the sysctl.d config files
-	```echo "kernel.dmesg_restrict = 1" > /etc/sysctl.d/50-dmesg-restrict.conf```
+	```bash
+	echo "kernel.dmesg_restrict = 1" > /etc/sysctl.d/50-dmesg-restrict.conf
+	```
 
 #### Kernel pointer
 
-A kernel pointer is basically a way of exposing kernel address via /proc and other interfaces. By setting the kernel.kptr_restrict to 1, all kernel pointers are when printed, are replaced with 0s. 
+A kernel pointer is basically a way of exposing kernel address via /proc and other interfaces. By setting the kernel.kptr_restrict to 1, all kernel pointers are when printed, are replaced with 0s.
 
 Steps for root:
+
 1. Restrict access to the kernel pointers in the sysctl.d config files
-	```echo "kernel.kptr_restrict = 1" > /etc/sysctl.d/50-kptr-restrict.conf```
+	```bash
+	echo "kernel.kptr_restrict = 1" > /etc/sysctl.d/50-kptr-restrict.conf
+	```
 
 #### Exec Shield
 
 Exec Shield is a project that has its origins at Red Hat. It was developed in late 2002 with the aim of reducing the risk of worms or other automated remote attacks on Linux systems. It attempts to flag data memory as non-executable and program memory as non-writable, therefore suppressing many security exploits such as buffer overflows or other techniques relying on overwriting data and inserting code.
 
 Steps for root:
+
 1. Enable Exec Shield in the sysctl.d config files
-	```echo "kernel.exec-shield = 2" > /etc/sysctl.d/50-exec-shield.conf```
+	```bash
+	echo "kernel.exec-shield = 2" > /etc/sysctl.d/50-exec-shield.conf
+	```
 
 #### Memory protection
 
-The Linux kernel has a defense mechanism named address space layout randomization (ASLR), which is tuneable with the ```randomize_va_space``` setting. The main goal of this patch is to randomize memory segments to make abuse by malicious programs harder.
+The Linux kernel has a defense mechanism named address space layout randomization (ASLR), which is tuneable with the `randomize_va_space` setting. The main goal of this patch is to randomize memory segments to make abuse by malicious programs harder.
 
 Steps for root:
+
 1. Enable memory randomization in the sysctl.d config files
-	```echo "kernel.randomize_va_space=2" > /etc/sysctl.d/50-rand-va-space.conf```
+	```bash
+	echo "kernel.randomize_va_space=2" > /etc/sysctl.d/50-rand-va-space.conf
+	```
 
 ### Config SELinux
 
 A incredibly crucial setting is to enforce the SELinux rules. SELinux stands for Security-Enhanced Linux and is a kernel security module. It has been integrated into various distributions but is set to only warn the user upon a rule violation.
 
 Steps as root:
-1. Change the ```SELINUXTYPE```in```/etc/selinux/config```
-	```SELINUXTYPE=enforcing```
-2. Remove this line from ```/etc/default/grub``` if it exists
-	```selinux=0```
+
+1. Change the `SELINUXTYPE`in`/etc/selinux/config`
+ `SELINUXTYPE=enforcing`
+2. Remove this line from `/etc/default/grub` if it exists
+ `selinux=0`
 
 ### Network
 
@@ -108,34 +130,48 @@ To protect from potential risks in the network layer there are several settings 
 The TCP SYN Cookie protection setting in Linux is a precaution against TCP SYN flood attacks that can cause a denial of service by overloading the system's TCP connection table. Using SYN cookies prevents connection from being tracked until an ACK is received.
 
 Steps as root:
+
 1. Enable TCP SYN Cookie protection
-	```echo "net.ipv4.tcp_syncookies = 1" > /etc/sysctl.d/50-net-stack.conf``` 
+	```bash
+	echo "net.ipv4.tcp_syncookies = 1" > /etc/sysctl.d/50-net-stack.conf
+	```
 
 #### Routing
 
-Source routing is a IP mechanism that allows IP packets to carry a list of addresses that tells a router the path the packet must take. This allows the "source" to specify the route, ignoring the routing tables of other routers. It can allow a user to redirect network traffic for malicious purposes. 
+Source routing is a IP mechanism that allows IP packets to carry a list of addresses that tells a router the path the packet must take. This allows the "source" to specify the route, ignoring the routing tables of other routers. It can allow a user to redirect network traffic for malicious purposes.
 
 Steps as root:
+
 1. Disable IP source routing
-	```echo "net.ipv4.conf.all.accept_source_route = 0" > /etc/sysctl.d/50-net-stack.conf``` 
+	```bash
+	echo "net.ipv4.conf.all.accept_source_route = 0" > /etc/sysctl.d/50-net-stack.conf
+	```
 
 #### ICMP
 
 By ignoring ICMP requests ones device cannot be found as easily, also hiding precious information. O ne should keep in mind that this setting will lead to a harder time debugging.
 
 Steps as root:
+
 1. Disable ICMP redirect acceptance
-	```echo "net.ipv4.conf.all.accept_redirects = 0" > /etc/sysctl.d/50-net-stack.conf``` 
+	```bash
+	echo "net.ipv4.conf.all.accept_redirects = 0" > /etc/sysctl.d/50-net-stack.conf
+	```
 2. Enable ignoring to ICMP requests
-	```echo "net.ipv4.icmp_echo_ignore_all = 1" > /etc/sysctl.d/50-net-stack.conf```
+	```bash
+	echo "net.ipv4.icmp_echo_ignore_all = 1" > /etc/sysctl.d/50-net-stack.conf
+	```
 
 #### Broadcast
 
 This setting deals with the IPv4 ICMP echo broadcasts. There messages are the messages used by the "ping" tool. By ignoring broadcast ICMP echo requests the machine won't respond when someone tried to ping a broadcast address to find all hosts on the network.
 
 Steps as root:
+
 1. Enable ignoring broadcast requests
-	```echo "net.ipv4.icmp_echo_ignore_broadcasts = 1" > /etc/sysctl.d/50-net-stack.conf``` 
+	```bash
+	echo "net.ipv4.icmp_echo_ignore_broadcasts = 1" > /etc/sysctl.d/50-net-stack.conf
+	```
 
 ## Application hardening
 
@@ -159,7 +195,7 @@ Most applications have a large number of software libraries and dependencies, an
 
 ## Resources
 
-- https://www.cyberciti.biz/tips/linux-security.html
-- https://www.netwrix.com/linux_hardening_security_best_practices.html
-- https://linuxsecurity.expert/checklists/linux-security-and-system-hardening
-- https://ubuntu.com/blog/what-is-system-hardening-definition-and-best-practices
+- <https://www.cyberciti.biz/tips/linux-security.html>
+- <https://www.netwrix.com/linux_hardening_security_best_practices.html>
+- <https://linuxsecurity.expert/checklists/linux-security-and-system-hardening>
+- <https://ubuntu.com/blog/what-is-system-hardening-definition-and-best-practices>

@@ -10,11 +10,7 @@ _source: Security Information and Event Management \[1.\]_
 
 ## **Core Functions**
 
-<img src="https://securityintelligence.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2023/07/SIB_SOAR-SIEM_FeatureImage@2x-1200x630.png.webp" alt="drawing" style="width:600px"/>
-
-_source: Security Information and Event Management \[6.\]_
-
-**Data Correlation and Analysis**
+### **Data Correlation and Analysis**
 
 - **Reactive Nature**: Traditional SIEM systems focused on reactive logging and event management.
 - **Proactive Shift**: Recent trends show a shift towards more proactive measures, integrating new threat data for better issue identification.
@@ -22,7 +18,7 @@ _source: Security Information and Event Management \[6.\]_
 
 _source: Security Information and Event Management \[3.\]_
 
-**Event Log Management**
+### **Event Log Management**
 
 - **Essential Component**: Involves collection, normalization, and analysis of log data for network visibility and detecting security incidents.
 - **Evolution and Challenges**: Modern SIEM solutions are evolving to address dynamic cybersecurity challenges, with an emphasis on cloud-based solutions for flexibility.
@@ -32,7 +28,7 @@ _source: Security Information and Event Management \[4.\]_
 
 _source: Security Information and Event Management \[3.\]_
 
-**Monitoring and Alerting**
+### **Monitoring and Alerting**
 
 - **Real-Time Monitoring**: SIEM is crucial for real-time monitoring and alerting in cloud and on-premise infrastructures.
 - **Automation and AI**: Increasing use of AI and automation in SIEM and SOAR tools to save time and improve efficiency in threat response.
@@ -94,11 +90,8 @@ _source: Security Information and Event Management \[2.\]_
 
 ## References
 
-**Security Information and Event Management**
-
-1. https://www.selecthub.com/siem/siem/
-1. https://www.esecurityplanet.com/products/siem-tools/#:~:text=,Premises
-1. https://securityintelligence.com/articles/soar-and-siem-in-2023-key-trends-and-new-changes/
-1. https://www.manageengine.com/log-management/siem/siem-functions.html
-1. https://www.itsasap.com/blog/pros-cons-siem
-1. **img:** https://securityintelligence.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2023/07/SIB_SOAR-SIEM_FeatureImage@2x-1200x630.png.webp
+1. <https://www.selecthub.com/siem/siem/>
+2. <https://www.esecurityplanet.com/products/siem-tools/#:~:text=,Premises>
+3. <https://securityintelligence.com/articles/soar-and-siem-in-2023-key-trends-and-new-changes/>
+4. <https://www.manageengine.com/log-management/siem/siem-functions.html>
+5. <https://www.itsasap.com/blog/pros-cons-siem>

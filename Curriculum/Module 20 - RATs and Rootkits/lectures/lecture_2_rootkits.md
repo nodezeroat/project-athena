@@ -14,7 +14,7 @@ Especially in modern systems architecture there is quite a lot of software that 
 ## Variants
 
 - Userland: Getting very rare now, but somewhat used to be the default long ago. Replacing libc to get a backdoor is a classic example.
-- Mobile: Not that many known examples, possible use in state spyware. 
+- Mobile: Not that many known examples, possible use in state spyware.
 - BIOS/UEFI: Firmware rootkits, requires high severity vuln to install but still happens occasionally. Functionally not too different from enterprise management or anti-theft solutions.
 - Bootkits: Traditionally targeted Boot Sector but nowadays similar to BIOS/UEFI rootkits, sometimes used as name for firmware rootkits.
 - Hypervisor: Difficult to categorize, otherwise relatively similar to firmware rootkits.
@@ -26,6 +26,7 @@ We have to touch a little bit on this topic, leaving this out doesn't really mak
 Ring 0 means that code runs with kernel privileges, that means full access to all things used and managed by the kernel, which is why rootkits and ring 0 programs cannot really be detected or circumvented from userland.
 
 Some of the most important kernel structures/operations are:
+
 - Memory Management
 - Process Management
 - Networking
@@ -37,7 +38,7 @@ There are also some more specific structures in kernelspace such as the [IDT](ht
 
 Running at the typically elevated privileges means the rootkit gets full access to these structures, which is how they can hide so well. Kernels have tried to mitigate this by preventing writes to certain areas or checking for integrity but this ends up being just another cat and mouse game.
 
-Especially on x86 there is a lot of, for the lack of a better word, [fuckery](https://wiki.osdev.org/Protected_Mode) that causes attacking and defending the kernel to be an entirely different beast than anything in userland. 
+Especially on x86 there is a lot of, for the lack of a better word, [fuckery](https://wiki.osdev.org/Protected_Mode) that causes attacking and defending the kernel to be an entirely different beast than anything in userland.
 
 Sometimes, through mistakes or possibly even backdoors, it is possible to run at levels that don't fit within the traditional ring model, such as [hypervisors](https://www.blackhat.com/docs/us-16/materials/us-16-Wilhelm-Xenpwn-Breaking-Paravirtualized-Devices-wp.pdf), [SMM](https://www.blackhat.com/docs/us-15/materials/us-15-Domas-The-Memory-Sinkhole-Unleashing-An-x86-Design-Flaw-Allowing-Universal-Privilege-Escalation-wp.pdf) or sometimes even [the hardware itself](https://invisiblethingslab.com/resources/bh09usa/Ring%20-3%20Rootkits.pdf).
 

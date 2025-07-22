@@ -26,7 +26,7 @@ The provided steps serve as a generic illustration about how to create an RSA ke
 1. Public key: (e, N).
 1. Private key: (d, N).
 
-### Encryption & Decryption
+## Encryption & Decryption
 
 The plain data is defined as m, whereas the encrypted data is defined as c.
 Both m and c are treated as unsigned integer.
@@ -36,7 +36,7 @@ Both m and c are treated as unsigned integer.
 - **Decryption:**
   - m = c^d mod N.
 
-## Digital Signatures
+### Digital Signatures
 
 Digital signatures are cryptographic techniques used to ensure the authenticity & integrity of digital messages.
 Here, you'll find an overview about the most common ways to sign & verify messages.
@@ -55,8 +55,7 @@ In contrast to RSA, a shared secret is used instead of the private key. Here, th
 In context of symmetric encryption, the tag is created based on both the plaintext & the secret code. After transmission, the tag can be re-created by the receiver, which can be compared against the initial tag in order to detect transmission errors.\
 While HMAC can be used to verify the integrity and authenticity of data, it is important to note that it's not a signing method, and not to be used as such.
 
-
-## Public Key Infrastructure (PKI)
+### Public Key Infrastructure (PKI)
 
 PKI, also know as Public Key Infrastructure, is a hierarchical system for issuing, distributing and verifying digital certificates.
 Digital certificates allow a trustworthy and secure association between various entities and their public keys.
