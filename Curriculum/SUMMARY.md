@@ -55,6 +55,11 @@
 
 ### Module 11 - Linux and Server Security
 * [Introduction](./Module%2011%20-%20Linux%20and%20Server%20Security/introduction.md)
+* Lectures
+  * [Introduction Linux Security](./Module%2011%20-%20Linux%20and%20Server%20Security/lectures/lecture_1_introduction.md)
+  * [Linux Hardening](./Module%2011%20-%20Linux%20and%20Server%20Security/lectures/lecture_2_hardening.md)
+  * [Privilege escalation](./Module%2011%20-%20Linux%20and%20Server%20Security/lectures/lecture_3_privilege_escalation.md)
+  * [GTFO Bins](./Module%2011%20-%20Linux%20and%20Server%20Security/lectures/lecture_4_GTFOBins.md)
 
 ### Module 12 - Windows and AD Security
 * [Introduction](./Module%2012%20-%20Windows%20and%20AD%20Security/introduction.md)
@@ -72,8 +77,8 @@
 * [Introduction](./Module%2014%20-%20Cryptography/introduction.md)
 * Lectures
   * [What is Cryptography?](./Module%2014%20-%20Cryptography/lectures/lecture_1_cryptography_intro.md)
-  * [Symmetric Cryptography](./Module%2014%20-%20Cryptography/lectures/lecture_2_symmetric_cryptography.md)
-  * [Asymmetric Cryptography](./Module%2014%20-%20Cryptography/lectures/lecture_3_asymmetric_cryptography.md)
+  * [Symmetric Cryptography](./Module%2014%20-%20Cryptography/lectures/lecture_2_symmetric_cryptography.md)
+  * [Asymmetric Cryptography](./Module%2014%20-%20Cryptography/lectures/lecture_3_asymmetric_cryptography.md)
   * [ Cryptographic Attacks](./Module%2014%20-%20Cryptography/lectures/lecture_4_cryptographic_attacks.md)
 
 ### Module 15 - Password Cracking
@@ -110,7 +115,7 @@
 * [Introduction](./Module%2020%20-%20RATs%20and%20Rootkits/introduction.md)
 * Lectures
   * [Remote Access Trojans](./Module%2020%20-%20RATs%20and%20Rootkits/lectures/lecture_1_rats.md)
-  * [ What is a Rootkit?](./Module%2020%20-%20RATs%20and%20Rootkits/lectures/lecture_2_rootkits.md)
+  * [Rootkits](./Module%2020%20-%20RATs%20and%20Rootkits/lectures/lecture_2_rootkits.md)
 
 ### Module 21 - AI in offensive Security
 * [Introduction](./Module%2021%20-%20AI%20in%20offensive%20Security/introduction.md)
