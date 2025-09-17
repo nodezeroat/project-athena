@@ -340,7 +340,7 @@
 #slide(title: "Verurteilungs Statistik")[
   // TODO fix image manually
 
-  #image("./figures/verurteilungs_statistik.jpg", width: 80%)
+  #image("./figures/verurteilungs_statistik.png", width: 80%)
 
   #set text(font: "Noto Sans Mono", weight: "regular", size: 11pt)
   Quelle: Statistik Austria, www.statistik.at (21.02.2023)
