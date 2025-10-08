@@ -9,44 +9,36 @@
       url = "github:typst/packages";
       flake = false;
     };
-    typst-pkg-src = {
-      url = "github:NixOS/nixpkgs/20c4598c84a671783f741e02bf05cbfaf4907cff";
-      inputs = {};
-    };
   };
 
-  outputs = { self, nixpkgs, utils, typst-packages, typst-pkg-src, ... }:
-    utils.lib.eachDefaultSystem (system:
-      let
-        p = import nixpkgs { inherit system; };
-        typstFromOldCommit = import typst-pkg-src { inherit system; };
-
+  outputs = {
+    self,
+    nixpkgs,
+    utils,
+    ...
+  } @ inputs:
+    utils.lib.eachDefaultSystem (
+      system: let
+        p = import nixpkgs {inherit system;};
         fonts = with p; [
-          noto-fonts 
-          fira-math
+          fira
         ];
-
-        fontPaths = (builtins.map (x: x + "/share/fonts/opentype") fonts)
-                  ++ (builtins.map (x: x + "/share/fonts/truetype") fonts)
-                  ++ [ ./athena-fonts/fonts ];
+        fontPaths = (builtins.map (x: x + "/share/fonts/opentype") fonts) ++ (builtins.map (x: x + "/share/fonts/truetype") fonts) ++ [./athena-fonts/fonts];
         fontParam = p.lib.concatStringsSep ":" fontPaths;
-
         typstPackagesCache = p.stdenv.mkDerivation {
           name = "typst-packages-cache";
-          src = "${typst-packages}/packages";
+          src = "${inputs.typst-packages}/packages";
           dontBuild = true;
           installPhase = ''
             mkdir -p "$out/typst/packages"
             cp -LR --reflink=auto --no-preserve=mode -t "$out/typst/packages" "$src"/*
           '';
         };
-
-        derivation = { stdenvNoCC, ... }:
+        derivation = {stdenvNoCC, ...}:
           stdenvNoCC.mkDerivation {
-            name = "typst-build";
+            name = "main.typ";
             src = ./.;
-            buildInputs = [ typstFromOldCommit.typst ] ++ fonts;
-
+            buildInputs = [p.typst] ++ fonts;
             buildPhase = ''
               echo "Current directory contents:"
               ls -la
@@ -67,22 +59,24 @@
             '';
           };
       in {
-        devShell = p.mkShell.override { stdenv = p.stdenv; } rec {
-          packages = [
-            typstFromOldCommit.typst
-            p.tinymist
-            # p.typst-live  # Remove if not in nixpkgs 25.05
-          ] ++ fonts;
+        devShell = p.mkShell.override {stdenv = p.stdenv;} rec {
+          packages = with p;
+            [
+              typst
+              tinymist
+              typst-live
+            ]
+            ++ fonts;
 
           shellHook = ''
-            export XDG_CACHE_HOME=${typstPackagesCache}
             export TYPST_FONT_PATHS=${fontParam}
           '';
 
           name = "Typst build";
         };
-
-        packages.default = p.callPackage derivation {};
+        packages = {
+          default = p.callPackage derivation {};
+        };
       }
     );
 }
