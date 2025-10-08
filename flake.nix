@@ -28,7 +28,7 @@
 
         fontPaths = (builtins.map (x: x + "/share/fonts/opentype") fonts)
                   ++ (builtins.map (x: x + "/share/fonts/truetype") fonts)
-                  ++ [ ./athena-fonts ];
+                  ++ [ ./athena-fonts/fonts ];
         fontParam = p.lib.concatStringsSep ":" fontPaths;
 
         typstPackagesCache = p.stdenv.mkDerivation {
