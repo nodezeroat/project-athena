@@ -22,6 +22,7 @@ jobs:
         with:
           fetch-depth: 0
           submodules: recursive
+          token: ${{ secrets.ATHENA_FONTS_PAT }}
 
       - uses: cachix/install-nix-action@v26
         with:
