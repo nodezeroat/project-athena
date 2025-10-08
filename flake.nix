@@ -36,13 +36,14 @@
         };
         derivation = {stdenvNoCC, ...}:
           stdenvNoCC.mkDerivation {
-            name = "main.typ";
+            name = "typst-build";
             src = ./.;
             buildInputs = [p.typst] ++ fonts;
             buildPhase = ''
               echo "Current directory contents:"
               ls -la
               mkdir -p out
+              export HOME=$(mktemp -d)
               export XDG_CACHE_HOME=${typstPackagesCache}
               export TYPST_FONT_PATHS=${fontParam}
 
