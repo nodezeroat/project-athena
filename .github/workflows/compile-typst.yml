@@ -26,7 +26,7 @@ jobs:
           lfs: true
           token: ${{ secrets.ATHENA_FONTS_PAT }}
 
-      - uses: cachix/install-nix-action@v26
+      - uses: cachix/install-nix-action@v31
         with:
           install_url: https://nixos.org/nix/install
           extra_nix_config: |
