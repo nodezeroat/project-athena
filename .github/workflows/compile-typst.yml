@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   compile-and-release:
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository with submodules
