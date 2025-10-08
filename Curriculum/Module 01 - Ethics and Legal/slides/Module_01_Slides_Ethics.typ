@@ -1,26 +1,25 @@
-#import "../../../athena-typst-theme/athena-polylux.typ": *
-#import "@preview/pinit:0.1.4": *
+#import "../../../typst-athena-slides-template/1.0.1/src/lib.typ": *
+
 #show: athena-theme.with(
-  footer: [Marcel Schnideritsch],
-  progress-bar: true,
+  font: "Berkeley Mono",
+  config-info(
+    title: [Module 01: Ethics],
+    subtitle: [Hacker Ethics – Guiding Principles in IT Security],
+    authors: ([*Marcel Schnideritsch*]),
+    extra: [],
+    footer: [Marcel Schnideritsch],
+  ),
+  config-common(
+    handout: false,
+  )
 )
 
-#set text(font: "Noto Sans Mono", weight: "regular", size: 20pt)
-#show math.equation: set text(font: "Fira Math")
+#title-slide()
 
-#title-slide(
-  title: [Module 01: Ethics],
-  subtitle: [Hacker Ethics – Guiding Principles in IT Security],
-)
-
-#slide(title: "Outline")[
-  #metropolis-outline
-]
-
-#new-section-slide("Introduction to Hacker Ethics")
+#section-slide(title: "Introduction to Hacker Ethics")
 
 #slide(title: "Definition")[
-  #defbox(
+  #color-block(
     title: [Hacker Ethics],
     [
       *Hacker ethics* are moral values shaping how individuals in the cybersecurity community act.
@@ -36,7 +35,7 @@
   )
 ]
 
-#new-section-slide("Core Principles")
+#section-slide(title: "Core Principles")
 
 #slide(title: "Core Principles – Part 1")[
   1. *Information should be free*
@@ -68,7 +67,7 @@
     #alert("Ethical use of tech to empower people and fix broken systems.")
 ]
 
-#new-section-slide("Ethical Dilemmas")
+#section-slide(title: "Ethical Dilemmas")
 
 #slide(title: "Ethical Dilemmas Overview")[
   #set table(
@@ -123,7 +122,7 @@
   #alert("⚠️ Even good intentions can lead to legal consequences.")
 ]
 
-#new-section-slide("Conclusion")
+#section-slide(title: "Conclusion")
 
 #slide(title: "Conclusion")[
   Hacker ethics are about #alert("how") and #alert("why") we hack.

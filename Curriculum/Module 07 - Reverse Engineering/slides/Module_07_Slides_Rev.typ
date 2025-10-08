@@ -1,549 +1,536 @@
-#import "../../../athena-typst-theme/athena-polylux.typ": *
-#import "@preview/pinit:0.1.4": *
-#import "@preview/codly:1.0.0": *
-#show: codly-init.with()
+#import "../../../typst-athena-slides-template/1.0.1/src/lib.typ": *
+
 #show: athena-theme.with(
-  footer: [Sebastian Felix],
-  progress-bar: true
+  font: "Berkeley Mono",
+  config-info(
+    title: [Module 07: Rev],
+    subtitle: [Reverse Engineering 101],
+    authors: [*Sebastian Felix*],
+    extra: [],
+    footer: [Sebastian Felix],
+  ),
+  config-common(
+    handout: false,
+  ),
 )
 
-#enable-handout-mode(false)
-
-#set text(font: "Noto Sans Mono", weight: "regular", size: 20pt)
-#show math.equation: set text(font: "Fira Math")
-#set strong(delta: 100)
-#set par(justify: true)
-
-#title-slide(
-  author: [Sebastian Felix],
-  title: [Reverse Engineering 101],
-  subtitle: [],
-)
-
-#slide(title: "Outline")[
-  #metropolis-outline
-]
+#title-slide()
 
 #slide(title: "Reverse Engineering 101")[
-As I like to call it:
+  As I like to call it:
 
-// TODO fix image manually
-
-#image("./figures/intro.png")
+  #image("./figures/intro.png", height: 92%)
 ]
 
-#new-section-slide("Assembly")
+#section-slide(title: "Assembly")
 
 #slide(title: "Architecture")[
-  #figure(image("figures/Von_Neumann_Architecture.svg.png"), caption:[Van Neumann Architecture])
+  #figure(image("figures/Von_Neumann_Architecture.svg.png"), caption: [Van Neumann Architecture])
 ]
 
 #slide(title: "Assembly Recap")[
-CPUs work with registers and memory
+  CPUs work with registers and memory
 
-x86-64 has many registers such as ` rax, rbx, rcx, rdx, rdi, rsi, rsp, rip, r8-r15`
+  x86-64 has many registers such as ` rax, rbx, rcx, rdx, rdi, rsi, rsp, rip, r8-r15`
 
-Special registers:
+  Special registers:
 
-- `rip`: Current instruction pointer
+  - `rip`: Current instruction pointer
 
-- `rsp`: Current stack pointer
+  - `rsp`: Current stack pointer
 
-- `rbp`: Stack frame base pointer
+  - `rbp`: Stack frame base pointer
 
-- `cr3`: Virtual memory selector for a process
+  - `cr3`: Virtual memory selector for a process
 ]
 
 #slide(title: "Assembly Recap")[
-We can access certain bits of registers individually:
+  We can access certain bits of registers individually:
 
-#image("./figures/multi-access-register.png")
+  #image("./figures/multi-access-register.png")
 
-This allows for backwards compatability
+  This allows for backwards compatability
 
-32-bit programs can just use `eax`
+  32-bit programs can just use `eax`
 ]
 
 #slide(title: "Assembly Recap")[
-- Each thread has its own set of registers and dedicated stack memory
-- Registers are faster than memory
-- Registers are limited in size
-- Switch between threads:
-  - CPU context switches
-  - Exchange registers on the executing core
+  - Each thread has its own set of registers and dedicated stack memory
+  - Registers are faster than memory
+  - Registers are limited in size
+  - Switch between threads:
+    - CPU context switches
+    - Exchange registers on the executing core
 ]
 
 #slide(title: "Assembly Recap")[
-Instruction format:
+  Instruction format:
 
-```asm
-<instruction_mnemonic>  <destination>, <source>
-mov    rax,            rbx
-```
+  ```asm
+  <instruction_mnemonic>  <destination>, <source>
+  mov    rax,            rbx
+  ```
 
--> Means move rbx to rax
+  -> Means move rbx to rax
 
--> The compiler turns assembly into actual opcodes
+  -> The compiler turns assembly into actual opcodes
 
-```asm
-mov rax, rbx``` => 0x48, 0x89, 0xd8
+  ```asm
+  mov rax, rbx``` => 0x48, 0x89, 0xd8
 
-Online (dis)assembler: https://defuse.ca/online-x86-assembler.htm#disassembly
+  Online (dis)assembler: https://defuse.ca/online-x86-assembler.htm#disassembly
 ]
 
 #slide(title: "Data Movement")[
-```asm
-// Moves rbx into rax
-mov rax, rbx 
-// Moves 0x4000 into rax
-mov rax, 0x4000
-// Moves the 8-byte value at the address of rbx into rax
-mov rax, [rbx]
-```
-=> rbx = 0x400000 `mov rax, [0x400000]`
+  ```asm
+  // Moves rbx into rax
+  mov rax, rbx
+  // Moves 0x4000 into rax
+  mov rax, 0x4000
+  // Moves the 8-byte value at the address of rbx into rax
+  mov rax, [rbx]
+  ```
+  => rbx = 0x400000 `mov rax, [0x400000]`
 
-C equivalent:
+  C equivalent:
 
-=> `rax = *0x400000;`
+  => `rax = *0x400000;`
 ]
 
 #slide(title: "Arithmetics")[
-```asm
-// Adds rbx to rax
-add rax, rbx 
-// Substracts rbx from rax
-sub rax, rbx
-// ...
-xor rax, rbx
-// ...
-and rax, rbx
-...
-```
+  ```asm
+  // Adds rbx to rax
+  add rax, rbx
+  // Substracts rbx from rax
+  sub rax, rbx
+  // ...
+  xor rax, rbx
+  // ...
+  and rax, rbx
+  ...
+  ```
 ]
 
 #slide(title: "Control Flow")[
-```asm
-// Calls a function
-call function
-// Returns from a function to the next instruction
-ret
-```
+  ```asm
+  // Calls a function
+  call function
+  // Returns from a function to the next instruction
+  ret
+  ```
 ]
 
 #slide(title: "Control Flow")[
-Example:
+  Example:
 
-```asm
-call target
-// in target:
-=> mov rax, 3
-=> ret
-// back in caller:
-mov rbx, rax
-```
-rbx = 3
+  ```asm
+  call target
+  // in target:
+  => mov rax, 3
+  => ret
+  // back in caller:
+  mov rbx, rax
+  ```
+  rbx = 3
 ]
 
 #slide(title: "Control Flow")[
-```asm
-// Always jump to address
-jmp address
-// Jump if not zero
-jnz address
-// Jump if equal
-je address
-// Jump if less or equal
-jle address
-```
-=> Based on EFLAGS (special registers)
+  ```asm
+  // Always jump to address
+  jmp address
+  // Jump if not zero
+  jnz address
+  // Jump if equal
+  je address
+  // Jump if less or equal
+  jle address
+  ```
+  => Based on EFLAGS (special registers)
 ]
 
 #slide(title: "Control Flow")[
-```asm
-cmp rax, rbx
-jle error
-ret
-```
+  ```asm
+  cmp rax, rbx
+  jle error
+  ret
+  ```
 
-Jump to error IF RAX \<= RBX
+  Jump to error IF RAX \<= RBX
 
-Otherwise return from the function
+  Otherwise return from the function
 ]
 
 #slide(title: "C to assembly")[
-```c
-int x;
-x = 10;
-```
-Becomes:
-```asm
-mov rax, 10
-```
-Not every C line is atomic in asm:
+  ```c
+  int x;
+  x = 10;
+  ```
+  Becomes:
+  ```asm
+  mov rax, 10
+  ```
+  Not every C line is atomic in asm:
 
-x = x + 10;
+  x = x + 10;
 
-```asm
-mov rbx, rax // temporary value
-add rbx, 10  // add 10
-mov rax, rbx // move temp back to x
-```
+  ```asm
+  mov rbx, rax // temporary value
+  add rbx, 10  // add 10
+  mov rax, rbx // move temp back to x
+  ```
 ]
 
 #slide(title: "C to assembly")[
-C to asm in the browser: https://godbolt.org/#
+  C to asm in the browser: https://godbolt.org/#
 
+  #image("./figures/hello_world_c.png")
 
-#image("./figures/hello_world_c.png")
+  #image("./figures/hello_world_asm.png")
 
-
-#image("./figures/hello_world_asm.png")
-]
-
-
-
-#image("./figures/assembly.png", width: 90%, height: 90%)
+  #image("./figures/assembly.png", width: 90%, height: 90%)
 ]
 
 #slide(title: "Rev 101")[
-- Analysis of a system, program or (obfuscated) source code
+  - Analysis of a system, program or (obfuscated) source code
 
-- Often binary analysis
+  - Often binary analysis
 
-- Find out what it’s doing
+  - Find out what it’s doing
 
-- Revertible, Exploitable?
+  - Revertible, Exploitable?
 ]
 
 #slide(title: "Real world usage")[
-- Malware research
+  - Malware research
 
-- Bug hunting in consumer software & operating systems
+  - Bug hunting in consumer software & operating systems
 
-- Modding games
+  - Modding games
 
-- Cracking
+  - Cracking
 
-- Debugging
+  - Debugging
 
-// TODO fix image manually
+  // TODO fix image manually
 
-#image("./figures/keygen.png")
+  #image("./figures/keygen.png")
 ]
 
 #slide(title: "Executables")[
-- ELF
-  - Executable and Linking Format (UNIX)
+  - ELF
+    - Executable and Linking Format (UNIX)
 
-- PE
-  - Portable Executable (WINDOWS)
+  - PE
+    - Portable Executable (WINDOWS)
 
-- Tells our OS how to load and execute it
+  - Tells our OS how to load and execute it
 
-- Contains Imports (Libraries), Exports, Sections, Entrypoint
+  - Contains Imports (Libraries), Exports, Sections, Entrypoint
 ]
 
 #slide(title: "Tools for executables")[
-- UNIX:
+  - UNIX:
 
-  - file: Tries to determine the filetype
+    - file: Tries to determine the filetype
 
-  - strings: Print all ascii strings in the file
+    - strings: Print all ascii strings in the file
 
-  - hexdump: See raw bytes of the file
+    - hexdump: See raw bytes of the file
 
-  - readelf: Parses the elf file and prints info
+    - readelf: Parses the elf file and prints info
 
-  - objdump: ELF infos & disassembly
+    - objdump: ELF infos & disassembly
 
-- Windows:
+  - Windows:
 
-  - CFF Explorer/ Explorer Suite by NTCore
+    - CFF Explorer/ Explorer Suite by NTCore
 ]
 
 #slide(title: "Concepts")[
-- Static analysis
+  - Static analysis
 
-- Dynamic analysis
+  - Dynamic analysis
 
-  - Emulation/Tracing
+    - Emulation/Tracing
 
-- Diffing
+  - Diffing
 
-- Patching
+  - Patching
 
-- Sidechannels
+  - Sidechannels
 
-- Symbolic execution
+  - Symbolic execution
 ]
 
 #slide(title: "Static analysis")[
-- "Offline" analysis
+  - "Offline" analysis
 
-- Binary is not executed
+  - Binary is not executed
 
-- Disassembler
+  - Disassembler
 
-  - Turns opcodes into asm instructions
+    - Turns opcodes into asm instructions
 
-  - `68 6e 2f 73 68` => `push 0x68732f6e`
+    - `68 6e 2f 73 68` => `push 0x68732f6e`
 
-- Decompiler
+  - Decompiler
 
-  - Turn asm instructions into somewhat readable code
+    - Turn asm instructions into somewhat readable code
 ]
 
 #slide(title: "Static tools")[
-- Native binaries:
+  - Native binaries:
 
-  - Ghidra (Free, works well on most arches + languages)
+    - Ghidra (Free, works well on most arches + languages)
 
-  - Gui sucks => Cutter Plugin
+    - Gui sucks => Cutter Plugin
 
-  - IDA: Gold standard for x86, okayish on other arches
+    - IDA: Gold standard for x86, okayish on other arches
 
-  - BinaryNinja: Mix of IDA and Ghidra
+    - BinaryNinja: Mix of IDA and Ghidra
 
-    - Especially good for newer languages such as Go and Rust
+      - Especially good for newer languages such as Go and Rust
 ]
 
 #slide(title: "Static tools cont")[
-- Python:
+  - Python:
 
-  - Pyinstxtractor
+    - Pyinstxtractor
 
-    - Extract bundled python files
+      - Extract bundled python files
 
-  - Pycdc
+    - Pycdc
 
-    - Disassemble/Decompile python bytecode
+      - Disassemble/Decompile python bytecode
 ]
 
 #slide(title: "Static tools cont")[
-- Android APKs
+  - Android APKs
 
-  - Essentially Java
+    - Essentially Java
 
-  - Jadx: GUI for apktool essentially
+    - Jadx: GUI for apktool essentially
 
-  - apktool: CLI to decompile/compile apks
+    - apktool: CLI to decompile/compile apks
 
-  - github/patrickfav/uber-apk-signer: Automatically sign apks
+    - github/patrickfav/uber-apk-signer: Automatically sign apks
 ]
 
 #slide(title: "Static tools cont")[
-- .NET
+  - .NET
 
-  - DotPeek: Disassembler/Decompiler for .NET
+    - DotPeek: Disassembler/Decompiler for .NET
 
-  - ILSpy/dnspy : Same as above
+    - ILSpy/dnspy : Same as above
 
-  - github/Droppers/SingleFileExtractor: Extract .NET from native libraries
+    - github/Droppers/SingleFileExtractor: Extract .NET from native libraries
 ]
 
 #slide(title: "Dynamic analysis")[
-- Run/emulate the binary and attach a debugger/tracer
+  - Run/emulate the binary and attach a debugger/tracer
 
-- Breakpoints
+  - Breakpoints
 
-  - Addresses in memory where execution shall be paused
+    - Addresses in memory where execution shall be paused
 
-  - PAUSE IF = rip == TARGET
+    - PAUSE IF = rip == TARGET
 
-- Prints infos about current registers/memory
+  - Prints infos about current registers/memory
 
-- Static analysis to find breakpoints
+  - Static analysis to find breakpoints
 ]
 
 #slide(title: "Dynamic analysis")[
-- Single stepping / tracing
+  - Single stepping / tracing
 
-  - One instruction at a time, print infos
+    - One instruction at a time, print infos
 ]
 
 #slide(title: "Dynamic tools")[
-- Native:
+  - Native:
 
-  - strace/ltrace: Traces syscalls/library calls
+    - strace/ltrace: Traces syscalls/library calls
 
-  - GDB
+    - GDB
 
-  - pwndbg, gef
+    - pwndbg, gef
 
-  - Emulators
+    - Emulators
 
-    - QEMU
+      - QEMU
 
-    - qiling
+      - qiling
 
-  - Inbuilt debuggers of decompilers
+    - Inbuilt debuggers of decompilers
 
-    - Supports breaking in pseudocode
+      - Supports breaking in pseudocode
 ]
 
 #slide(title: "Dynamic tools cont")[
-- Android APKs:
+  - Android APKs:
 
-  - Android Studio for emulation
+    - Android Studio for emulation
 
-  - FRIDA
+    - FRIDA
 
-- .NET
+  - .NET
 
-  - JetBrains RIDER
+    - JetBrains RIDER
 
-    - Supports binary debugging
+      - Supports binary debugging
 
-    - Disassembles automatically
+      - Disassembles automatically
 ]
 
 #slide(title: "'Just run it lmao' - analysis")[
-- Running unknown executables
+  - Running unknown executables
 
-- *Bad idea*
+  - *Bad idea*
 
-- Even dockerfiles can be malicious
+  - Even dockerfiles can be malicious
 
-- Insomnihack 23 (https://cryptax.github.io/2023/03/25/shame.html)
+  - Insomnihack 23 (https://cryptax.github.io/2023/03/25/shame.html)
 
-- Always emulate unknown binaries in a sandbox or use a VM
+  - Always emulate unknown binaries in a sandbox or use a VM
 ]
 
 #slide(title: "'Just run it lmao' - done right")[
-- Emulation
+  - Emulation
 
-  - Works cross OS
+    - Works cross OS
 
-- Full system emulation
+  - Full system emulation
 
-  - Qiling, QEMU System/Usermode
+    - Qiling, QEMU System/Usermode
 
-- Instruction emulation
+  - Instruction emulation
 
-  - *No syscall support*
+    - *No syscall support*
 
-  - e.g. Unicorn Engine
+    - e.g. Unicorn Engine
 
-  - Lots of manual work
+    - Lots of manual work
 ]
 
 #slide(title: "Diffing")[
-- Prerequisite: Static analysis
+  - Prerequisite: Static analysis
 
-- Needs 2+ program databases (e.g. from IDA)
+  - Needs 2+ program databases (e.g. from IDA)
 
-- BinDiff databases
+  - BinDiff databases
 
-- Find matching functions/patterns
+  - Find matching functions/patterns
 
-- See newly added functions
+  - See newly added functions
 ]
 
 #slide(title: "Diffing")[
-#image("./figures/bindiff.png")
+  #image("./figures/bindiff.png")
 ]
 
 #slide(title: "Patching")[
-- Modify instructions to get different behaviour
+  - Modify instructions to get different behaviour
 
-  - e.g. `jnz address` => `jz address`
+    - e.g. `jnz address` => `jz address`
 
-- Remove instructions by using NOPs
+  - Remove instructions by using NOPs
 
-  - `mov eax, ebx` => `nop nop`
+    - `mov eax, ebx` => `nop nop`
 
-- Used to bypass checks or security
+  - Used to bypass checks or security
 
-- What happens if we leak some infos by doing this?
+  - What happens if we leak some infos by doing this?
 ]
 
 #slide(title: "Sidechannels")[
-- Leak infos
+  - Leak infos
 
-- Bruteforce inputs much faster e.g 26\*6 instead of 26\*\*6
+  - Bruteforce inputs much faster e.g 26\*6 instead of 26\*\*6
 
-- Timing attacks
+  - Timing attacks
 
-or
+  or
 
-- CPU metric attacks
+  - CPU metric attacks
 
-- perf-tools on Linux
+  - perf-tools on Linux
 ]
 
 #slide(title: "Symbolic execution")[
-- Execute a program
+  - Execute a program
 
-- Find all paths and values that satisfy each branching condition
+  - Find all paths and values that satisfy each branching condition
 
-- Output inputs that satisfy certain branches
+  - Output inputs that satisfy certain branches
 ]
 
 #slide(title: "Symbolic execution")[
-Given this function, how many paths are there?
+  Given this function, how many paths are there?
 
-```c
-int get_sign(int x) {
-if (x == 0)
-  return 0;
-if (x < 0)
-  return -1;
-else
-  return 1;
-}
-```
+  ```c
+  int get_sign(int x) {
+  if (x == 0)
+    return 0;
+  if (x < 0)
+    return -1;
+  else
+    return 1;
+  }
+  ```
 ]
 
 #slide(title: "Symbolic execution")[
-Three branching conditions, which inputs satisfy each path?
+  Three branching conditions, which inputs satisfy each path?
 
-```c
-int get_sign(int x) {
-if (x == 0)
-...
-if (x < 0)
-...
-if (x > 0)
-...
-}
-```
+  ```c
+  int get_sign(int x) {
+  if (x == 0)
+  ...
+  if (x < 0)
+  ...
+  if (x > 0)
+  ...
+  }
+  ```
 ]
 
 #slide(title: "Symbolic execution tools")[
-- angr
-  - Black box (works on binary level)
+  - angr
+    - Black box (works on binary level)
 
-- klee
-  - White box (requires source code)
+  - klee
+    - White box (requires source code)
 
-- manticore (unmaintained)
-  - Like angr black box, requires more fine tuning
+  - manticore (unmaintained)
+    - Like angr black box, requires more fine tuning
 ]
 
 #slide(title: "How2Start")[
-1. Run strings and gather infos about the binary
+  1. Run strings and gather infos about the binary
 
-2. What's the goal?
+  2. What's the goal?
 
-  - Want a key/input?
+    - Want a key/input?
 
-  - Optimization problem?
+    - Optimization problem?
 
-3. Optional: Can we cheese it?
+  3. Optional: Can we cheese it?
 
-  - Sidechannels? Do we have an oracle?
+    - Sidechannels? Do we have an oracle?
 
-  - Symbolic execution
+    - Symbolic execution
 
-  - Patching or info leaks?
+    - Patching or info leaks?
 ]
 
 #slide(title: "How2Start cont")[
-4. *Actually* reverse the binary and figure out the *actual* solution
+  4. *Actually* reverse the binary and figure out the *actual* solution
 
-5. ???
+  5. ???
 
-6. Validate solution
+  6. Validate solution
 ]
 
-#focus-slide("Live demo - cracking")
+#standout-slide(title: "Live demo - cracking")
+
+#title-slide()

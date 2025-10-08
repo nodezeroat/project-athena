@@ -10,7 +10,7 @@
       flake = false;
     };
     typst-pkg-src = {
-      url = "github:NixOS/nixpkgs/21808d22b1cda1898b71cf1a1beb524a97add2c4";
+      url = "github:NixOS/nixpkgs/20c4598c84a671783f741e02bf05cbfaf4907cff";
       inputs = {};
     };
   };
@@ -28,7 +28,7 @@
 
         fontPaths = (builtins.map (x: x + "/share/fonts/opentype") fonts)
                   ++ (builtins.map (x: x + "/share/fonts/truetype") fonts)
-                  ++ [ ./fonts ];
+                  ++ [ ./athena-fonts ];
         fontParam = p.lib.concatStringsSep ":" fontPaths;
 
         typstPackagesCache = p.stdenv.mkDerivation {

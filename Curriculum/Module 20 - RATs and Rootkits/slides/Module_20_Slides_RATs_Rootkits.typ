@@ -1,36 +1,39 @@
-#import "../../../athena-typst-theme/athena-polylux.typ": *
-#import "@preview/pinit:0.1.4": *
+#import "../../../typst-athena-slides-template/1.0.1/src/lib.typ": *
+
 #show: athena-theme.with(
-  footer: [Reapie],
-  progress-bar: true,
+  font: "Berkeley Mono",
+  config-info(
+    title: [Module 20: RATs and Rootkits],
+    subtitle: [Introduction to RATs and Rootkits],
+    authors: ([*Marcel Schnideritsch*, *Martin Juritsch*]),
+    extra: [],
+    footer: [Marcel Schnideritsch, Martin Juritsch],
+  ),
+  config-common(
+    handout: false,
+  )
 )
 
-#set text(font: "Noto Sans Mono", weight: "regular", size: 20pt)
-#show math.equation: set text(font: "Fira Math")
-#set strong(delta: 100)
-#set par(justify: true)
+#title-slide()
 
-#title-slide(
-  title: [Module 20: RATs and Rootkits],
-  subtitle: [Introduction],
-)
-
-#slide(title: "Outline")[
-  #metropolis-outline
-]
-
-#new-section-slide("Introduction")
+#section-slide(title: "Introduction")
 
 #slide(title: "RATs and Rootkits")[
-  #side-by-side[
+  #grid(
+    columns: (1fr, 1fr),
+    gutter: 6mm,
+    align: (top, center),
+  )[
+    // Left column — text
     - Remote Access
     - Backdoors
   ][
+    // Right column — image
     #image("../figures/fartware.gif", width: 90%)
   ]
 ]
 
-#new-section-slide("RATs")
+#section-slide(title: "RATs")
 
 #slide(title: "RATs")[
   - Remote Access Trojans
@@ -47,12 +50,18 @@
 ]
 
 #slide(title: "Real RATs")[
-  #side-by-side(gutter: 3mm, columns: (2fr, 1fr))[
+  #grid(
+    columns: (2fr, 1fr),
+    gutter: 3mm,
+    align: (top, center),
+  )[
+    // Left: bullets
     - More complex, requires C2 infra
     - Not worth for individual targets
     - Can pivot into Ransomware or related
   ][
-    #image("../figures/xmrig.gif")
+    // Right: animated graphic — adjust width/height if needed
+    #image("../figures/xmrig.gif", width: 120%)
   ]
 ]
 
@@ -66,7 +75,7 @@
   4) Profit
 ]
 
-#new-section-slide("Command and Control (C2")
+#section-slide(title: "Command and Control (C2")
 
 #slide(title: "Command and Control (C2)")[
   - Recieve and execute commands
@@ -92,42 +101,57 @@
 ]
 
 #slide(title: "More traffic obfuscation")[
-  #side-by-side(gutter: 3mm, columns: (1.2fr, 1fr))[
+  #grid(
+    columns: (1.2fr, 1fr),
+    gutter: 3mm,
+    align: (top, center),
+  )[
+    // Left: bullet list
     - Domain Fronting
     - Fast Flux
     - DNS Tunneling
     - Other generic traffic obfuscation
   ][
-    #image("../figures/domain-fronting-scheme.png")
+    // Right: image (adjust width/height to taste)
+    #image("../figures/domain-fronting-scheme.png", width: 100%)
   ]
 ]
 
 #slide(title: "Persistence")[
-  #side-by-side(gutter: 3mm, columns: (1fr, 1fr))[
+  #grid(
+    columns: (1fr, 1fr),
+    gutter: 3mm,
+    align: (top, center),
+  )[
+    // Left: bullets
     - Registry
     - Startup
     - Scheduled Tasks
     - DLLs
   ][
-    #image("../figures/DLL-load-order.png", height: 120%)
+    // Right: image — adjust height or width if needed
+    #image("../figures/DLL-load-order.png", height: 110%)
   ]
 ]
 
 #slide(title: "Protection")[
-  #side-by-side[
+  #grid(
+    columns: (1fr, 1fr),
+    gutter: 6mm,
+    align: (top, top),
+  )[
+    // Left column — Prevent infection block
     === Prevent infection
     - User training
     - Patching
     - Minimal permissions
-
   ][
+    // Right column — Detect block
     === Detect
     - Monitor traffic
     - EDR monitoring
   ]
 ]
-
-
 
 #slide(title: "Examples")[
   - Discord Bot Infostealer
@@ -138,7 +162,7 @@
   https://cyberpress.org/weaponized-xworm-rat-builder-targeting-script-kiddies/)
 ]
 
-#new-section-slide("Rootkits")
+#section-slide(title: "Rootkits")
 
 #slide(title: "Rootkits")[
   - Backdoor with typically elevated privileges

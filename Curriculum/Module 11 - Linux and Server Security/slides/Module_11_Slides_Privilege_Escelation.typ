@@ -1,24 +1,33 @@
-#import "../../../athena-typst-theme/athena-polylux.typ": *
-#import "@preview/pinit:0.1.4": *
-#show: athena-theme.with(
-  footer: [Marcel Schnideritsch, Simon Possegger],
-  progress-bar: true,
-)
+#import "../../../typst-athena-slides-template/1.0.1/src/lib.typ": *
 
-#set text(font: "Noto Sans Mono", weight: "regular", size: 20pt)
-#show math.equation: set text(font: "Fira Math")
-#set par(justify: true)
+#show: athena-theme.with(
+  aspect-ratio: "16-9",
+  slide-alignment: horizon,
+  progress-bar: true,
+  font: "Berkeley Mono",
+  institute: [\@nodezeroat/project-athena],
+  logo: [#nodezero-logo],
+  config-info(
+    title: [Module 11: Linux and Server Security],
+    subtitle: [Introduction to \*NIX Privilege Escalation],
+    authors: [*Marcel Schnideritsch*, *Simon Possegger*],
+    extra: [],
+    footer: [Marcel Schnideritsch],
+  ),
+  config-common(
+    handout: false,
+  ),
+  config-colors(
+    primary: rgb("14b5fc"),
+  ),
+)
 
 #title-slide(
   title: [Module 11: Linux and Server Security],
   subtitle: [Introduction to \*NIX Privilege Escalation],
 )
 
-#slide(title: "Outline")[
-  #metropolis-outline
-]
-
-#new-section-slide("Introduction")
+#section-slide(title: "Introduction")
 #slide(title: "What is Privilege Escalation")[
   - *MITRE Framework*: "Privilege Escalation consists of techniques that adversaries use to gain higher-level permissions on a system or network."
 
@@ -36,7 +45,7 @@
 
   - Has (near) limitless permissions, allowing complete control over the system
 
-
+  #codly(number-format: none)
   ```bash
   $ id
   uid=0(root) gid=0(root) groups=0(root)
@@ -58,10 +67,9 @@
 
 ]
 
-#new-section-slide("Basics of Linux Security Model")
+#section-slide(title: "Basics of Linux Security Model")
 #slide(title: "User Accounts and Groups")[
   - Users and groups are identified by their IDs
-
 
   ```bash
   $ id
@@ -106,8 +114,6 @@
     ),
     [
       ```bash
-
-
       $ sudo -l
       User user may run the following commands on server:
           (ALL) NOPASSWD: ALL
@@ -122,7 +128,7 @@
 
 ]
 
-#new-section-slide("Common Vulnerabilities")
+#section-slide(title: "Common Vulnerabilities")
 #slide(title: "Incorrect File Permissions")[
   - When files have access permissions they shouldn’t, they can be exploited.
     - Examples:
@@ -169,6 +175,7 @@
   - Scripts or binaries with higher privileges may use relative paths, which can be manipulated.
 
   Example:
+  #codly(number-format: numbering.with("1"))
   ```c
   int main(void) {
       setuid(0);
@@ -180,6 +187,7 @@
   ```
 
   - Path Environment Variable:
+  #codly(number-format: none)
   ```bash
   $ echo $PATH
   /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -223,6 +231,7 @@
 #slide(title: "Scheduled Tasks / Cron Jobs")[
   - Scheduled tasks and cron jobs run regularly on systems and can be exploited if improperly configured.
 
+  #codly(number-format: numbering.with("1"))
   ```bash
   $ cat /etc/crontab
   # Example job definition:
@@ -241,7 +250,7 @@
   - Identify the kernel and software versions, then search for public exploits.
 
   To check kernel version:
-
+  #codly(number-format: none)
   ```bash
   $ cat /proc/version
   $ uname -a
@@ -259,7 +268,7 @@
 
 ]
 
-#new-section-slide("Enumeration")
+#section-slide(title: "Enumeration")
 #slide(title: "Manual Enumeration")[
   - Search the system for anything unusual or potentially exploitable:
     - *User Files*: `/home`, `/var/mail`
@@ -296,7 +305,7 @@
 
 ]
 
-#new-section-slide("Quality of Life Improvements")
+#section-slide(title: "Quality of Life Improvements")
 #slide(title: "Upgrading Your Reverse Shell")[
   - Interactive tools (like `sudo` and `passwd`) don’t work without a proper PTY/TTY.
   - Steps to upgrade the shell:
@@ -342,3 +351,7 @@
   - Initial Slide Deck by https://github.com/chr0x6eos
 ]
 
+#title-slide(
+  title: [Module 11: Linux and Server Security],
+  subtitle: [Introduction to \*NIX Privilege Escalation],
+)

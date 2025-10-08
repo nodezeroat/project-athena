@@ -1,25 +1,22 @@
-#import "../../../athena-typst-theme/athena-polylux.typ": *
-#import "@preview/pinit:0.1.4": *
+#import "../../../typst-athena-slides-template/1.0.1/src/lib.typ": *
+
 #show: athena-theme.with(
-  footer: [Marcel Schnideritsch],
-  progress-bar: true,
+  font: "Berkeley Mono",
+  config-info(
+    title: [Module 00: Mindset],
+    subtitle: [Introduction to the Offensive Security Mindset],
+    authors: [*Marcel Schnideritsch*],
+    extra: [],
+    footer: [Marcel Schnideritsch],
+  ),
+  config-common(
+    handout: false,
+  ),
 )
 
-#set text(font: "Noto Sans Mono", weight: "regular", size: 20pt)
-#show math.equation: set text(font: "Fira Math")
-#set strong(delta: 100)
-#set par(justify: true)
+#title-slide()
 
-#title-slide(
-  title: [Module 00: Mindset],
-  subtitle: [Introduction to the Offensive Security Mindset],
-)
-
-#slide(title: "Outline")[
-  #metropolis-outline
-]
-
-#new-section-slide("Introduction")
+#section-slide(title: "Introduction")
 
 #slide(title: "What is the Offensive Security Mindset")[
   - The offensive security mindset is characterized by a proactive approach to cybersecurity.
@@ -32,7 +29,7 @@
 
 ]
 
-#new-section-slide("Red vs. Blue")
+#section-slide(title: "Red vs. Blue")
 
 #set page(background: image("figures/red_vs_blue_team.jpg", width: 100%, height: 100%))
 #slide(title: "")[
@@ -61,26 +58,32 @@
 ]
 
 
-#new-section-slide("Three Key Traits")
+#section-slide(title: "Three Key Traits")
 
 #slide(title: "")[
-  #side-by-side(gutter: 3mm, columns: (1fr, 2fr))[
+  #grid(
+    columns: (1fr, 2fr),
+    gutter: 3mm,
+    align: (center, center),
+  )[
     #place(
-      dx: -40pt,
-      dy: -80pt,
-      image("figures/asimov.png", width: 130%),
+      dx: -41pt,
+      dy: -88pt,
+      image("figures/asimov.png", width: 140%),
     )
   ][
-    #text[
-      "The most exciting phrase to hear in science, the one that heralds new discoveries, is not 'Eureka!' but 'That's funny...'"
-
-      \- Isaac Asimov
+    // Right: quote
+    #text(size: 24pt)[
+      “The most exciting phrase to hear in science, the one that heralds new discoveries,
+      is not ‘Eureka!’ but ‘That’s funny…’”
     ]
+
+    #text(size: 14pt, style: "italic")[— Isaac Asimov]
   ]
 ]
 
 #slide(title: "")[
-  #defbox(
+  #color-block(
     title: [Curiosity],
     [
       Stay updated on evolving threats, understand complex systems, discover hidden vulnerabilities, drive innovation, and build collaborative communities.
@@ -90,7 +93,7 @@
 ]
 
 #slide(title: "")[
-  #defbox(
+  #color-block(
     title: [Creativity],
     [
       Think like attackers, discover new attack vectors, develop custom exploits, adapt to evolving threats, and overcome obstacles.
@@ -99,7 +102,7 @@
 ]
 
 #slide(title: "")[
-  #defbox(
+  #color-block(
     title: [Consistency],
     [
       Handle complex challenges, learn from failure, adapt to changing environments, maintain motivation, and achieve long-term success.
@@ -107,7 +110,7 @@
   )
 ]
 
-#new-section-slide("Mental Health")
+#section-slide(title: "Mental Health")
 
 #slide(title: "Burnout")[
   #image("./figures/burnout_01.png", width: 100%)
@@ -126,13 +129,13 @@
 ]
 
 #slide(title: "Prevent Burnout")[
-- Work-Life Balance: Set boundaries and recharge.
-- Collaborate: Don’t hack alone — support and be supported.
-- Keep Learning: Curiosity keeps burnout at bay.
-- Manage Stress: Use healthy coping strategies.
-- Celebrate Wins: Big or small, every success counts.
-- Seek Feedback: Growth comes from reflection.
-- Learn from Failure: Every setback teaches you something new.
+  - Work-Life Balance: Set boundaries and recharge.
+  - Collaborate: Don’t hack alone — support and be supported.
+  - Keep Learning: Curiosity keeps burnout at bay.
+  - Manage Stress: Use healthy coping strategies.
+  - Celebrate Wins: Big or small, every success counts.
+  - Seek Feedback: Growth comes from reflection.
+  - Learn from Failure: Every setback teaches you something new.
 ]
 
 #set page(background: image("figures/zen.jpg", width: 100%, height: 100%))
