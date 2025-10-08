@@ -1,6 +1,3 @@
-[submodule "athena-typst-theme"]
-	path = athena-typst-theme
-	url = git@github.com:h4ckd0tm3/athena-typst-theme.git
 [submodule "athena-fonts"]
 	path = athena-fonts
 	url = https://github.com/nodezeroat/athena-fonts.git
