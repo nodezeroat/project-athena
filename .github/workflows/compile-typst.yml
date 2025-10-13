@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   compile-and-release:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - name: Checkout repository with submodules
