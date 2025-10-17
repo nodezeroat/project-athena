@@ -31,10 +31,9 @@
 
 #section-slide(title: "Red vs. Blue")
 
-#set page(background: image("figures/red_vs_blue_team.jpg", width: 100%, height: 100%))
-#slide(title: "")[
+#blank-slide()[
+  #image("figures/red_vs_blue_team.jpg", width: 100%)
 ]
-#set page(background: none)
 
 #slide(title: "Red Team")[
   - Offensive security experts
