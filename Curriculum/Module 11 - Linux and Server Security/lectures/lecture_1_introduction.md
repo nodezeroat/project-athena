@@ -19,7 +19,7 @@ Most of the Linux distributions are suitable for a secure server, but there are 
 
 What now follows are some basic configuration to restrict access and hinder privilege escalation:
 
-#### Sudo
+### Sudo
 
 Sudo is a command that let's users run commands as other users, including the root user. This can be quite dangerous and access should be restricted.
 
@@ -34,7 +34,7 @@ Steps as root:
 4. Tell sudo to only allow user in the sudousers group to use sudo by adding this line at the end:
  `%sudousers   ALL=(ALL:ALL) ALL`
 
-#### Su
+### Su
 
 Su also enables user to run commands as other user, by switching to other accounts, including root. It is restricted in almost the same way as sudo:
 
@@ -47,7 +47,7 @@ Steps as root:
 3. Edit who can execute the su command:
  `dpkg-statoverride --update --add root suusers 4750 /bin/su`
 
-#### Enforce Secure Passwords
+### Enforce Secure Passwords
 
 New accounts can set their password to anything, one should use "libpam_pwquality" to enforce good passwords. PAM is responsible for authentication in Linux, it handles password changes and creations. The named packages enable requirements to be set.
 
@@ -62,7 +62,7 @@ Steps as root:
 
 These are only example options, for the full list look at [this](https://manpages.debian.org/testing/libpam-pwquality/pam_pwquality.8.en.html) site.
 
-#### Install a Firewall
+### Install a Firewall
 
 A basic Linux firewall is managed by iptables, but since it is hard to understand how to create rules for iptables I will demonstrate a simple firewall with ufw. Ufw is a program that is user friendly, but in the background still uses iptables.
 
@@ -74,7 +74,7 @@ Steps as root:
  `apt install ufw`
 2. Allow SSH if needed
  `ufw allow ssh`
-4. Deny all incoming traffic by default
+3. Deny all incoming traffic by default
  `ufw default deny incoming`
 4. Start ufw
  `ufw enable`
@@ -82,7 +82,7 @@ Steps as root:
 To check the status of ufw type: `ufw status numbered`
 To delete some rules: `ufw delete <number>`
 
-#### Check Logging
+### Check Logging
 
 The rsyslog service should normally already be running but one should check.
 

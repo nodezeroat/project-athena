@@ -40,7 +40,7 @@ The payload in question might be submitted to the application via HTTP requests;
 
 Here is a simple example of a stored XSS vulnerability. Suppose a website allows users to submit comments on blog posts, which are displayed to other users. Users submit comments using an HTTP request like the following:
 
-```
+```html
 POST /post/comment HTTP/1.1
 Host: vulnerable-website.com
 Content-Length: 100
@@ -62,7 +62,7 @@ Assuming the application doesn't perform any other processing of the data, an at
 
 Within the attacker's request, this comment would be URL-encoded as:
 
-```
+```html
 comment=%3Cscript%3E%2F*%2BBad%2Bstuff%2Bhere...%2B*%2F%3C%2Fscript%3E
 ```
 

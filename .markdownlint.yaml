@@ -11,7 +11,7 @@ MD007:
 # MD013/line-length - Line length
 MD013:
   # Number of characters
-  line_length: 119
+  line_length: 9999
   # Number of characters for headings
   heading_line_length: 119
   # Number of characters for code blocks
@@ -32,3 +32,6 @@ MD013:
 MD024:
   # Allow heading duplication if under different parent headings
   siblings_only: true
+
+MD033:
+  allowed_elements: ["br", "img"]

@@ -98,7 +98,7 @@ WLANs use radio frequencies, divided into channels, to transmit and receive data
 
 Frames are the fundamental units of data transmission in WLANs. Understanding their structure is key to comprehending how WLANs manage data.
 
-**Frame Types**
+#### **Frame Types**
 
 - **Management Frames:** Used for maintaining and managing the network.
   - **Beacon Frames:** Used for advertising and probing SSIDs.
@@ -106,7 +106,7 @@ Frames are the fundamental units of data transmission in WLANs. Understanding th
 - **Control Frames:** Aid in the delivery of data.
 - **Data Frames:** Carry the user data.
 
-**General Frame Structure**
+#### **General Frame Structure**
 
 - **Header:** Contains source and destination addresses, frame control fields, and a sequence number.
 - **Payload:** The actual data being transmitted.
@@ -136,7 +136,7 @@ This process involves several steps for a device to connect to a WLAN.
 - **Authentication:** Authenticates the user to the network. More on this topic will be covered in later lectures.
 - **Association:** After authentication, the device sends an association request to the AP. If accepted, the AP responds with an association response, and the device is connected.
 
-**Discovery Options**
+#### **Discovery Options**
 
 - **Active Discovery (SSID Shown)**
 

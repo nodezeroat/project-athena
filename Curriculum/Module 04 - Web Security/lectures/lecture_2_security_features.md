@@ -18,7 +18,7 @@ Two URLs have the **same origin** only if all three of these components are iden
 
 For example, consider the following URL:
 
-```
+```html
 http://normal-website.com/example/example.html
 ```
 
@@ -96,7 +96,7 @@ Configuring Content Security Policy involves adding the `Content-Security-Policy
 
 A policy can be defined using the `Content-Secure-Policy` HTTP Header like this:
 
-```
+```html
 Content-Security-Policy: policy
 ```
 

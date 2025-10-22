@@ -2,7 +2,7 @@
 
 Cloud security encompasses policies, technologies, and procedures designed to safeguard data, applications, and infrastructure in cloud environments. As the digital shift continues to shape the technological landscape, the importance of robust cloud security measures becomes increasingly evident.
 
-### **Cloud Security**
+## **Cloud Security**
 
 Cloud security focuses on the protection of online data, applications, and networks to ensure confidentiality, integrity, and availability.
 

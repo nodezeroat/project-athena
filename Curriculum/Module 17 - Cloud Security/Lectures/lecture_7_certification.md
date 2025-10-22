@@ -79,7 +79,7 @@ Selecting the appropriate certification or standard depends on factors such as o
 
 Whether safeguarding on-premises infrastructure, migrating to the cloud, or operating in a hybrid environment, a robust security framework is essential. By investing in relevant certifications and adhering to recognized standards, organizations can fortify their defenses and instill confidence in stakeholders regarding the security and resilience of their information systems.
 
-# Sources
+## Sources
 
 - [Wikipedia ISO 27001](https://en.wikipedia.org/wiki/ISO/IEC_27001)
 - [Wikipedia CISSP](https://en.wikipedia.org/wiki/Certified_information_systems_security_professional)

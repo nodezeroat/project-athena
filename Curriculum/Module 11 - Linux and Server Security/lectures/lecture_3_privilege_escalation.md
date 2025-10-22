@@ -6,7 +6,7 @@
 - "Privilege Escalation is the act of exploiting a bug, a design flaw, or a configuration oversight in an operating system or software application to gain elevated access to resources that are normally protected from an application or user." - Wikipedia
 - "Privilege Escalation is the process of gaining unauthorized access to higher-level permissions or privileges within a system or network." - ChatGPT
 
-#### What is the goal?
+### What is the goal?
 
 The goal of almost every privilege escalation is becoming root. The Root user is the administrator account on Linux, who has near limitless permissions.
 

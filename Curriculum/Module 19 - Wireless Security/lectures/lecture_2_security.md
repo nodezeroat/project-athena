@@ -39,6 +39,6 @@ The first line of defense in securing a WiFi network involves choosing the right
 
 Securing a WiFi network is a critical task in safeguarding your digital life. By implementing these practices, you significantly reduce the risk of security breaches and protect sensitive information. Regular vigilance and adherence to these security measures will help ensure that your network remains a safe gateway to the digital world.
 
-# Sources
+## Sources
 
 - [https://en.wikipedia.org/wiki/Wireless_security](https://en.wikipedia.org/wiki/Wireless_security)

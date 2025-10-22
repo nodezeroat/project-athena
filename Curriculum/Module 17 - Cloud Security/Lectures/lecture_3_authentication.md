@@ -8,7 +8,7 @@ How to manage users easily and securely in the cloud?
 
 <https://cloud.google.com/iam>
 
-![](https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_copy_3.max-2000x2000.jpg)
+![Google IAM Overview](https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_copy_3.max-2000x2000.jpg)
 
 - **Roles**: Predefined sets of permissions that determine what actions are allowed on resources.
 
@@ -27,7 +27,7 @@ How to manage users easily and securely in the cloud?
 
 ### 1.3. **Organization**
 
-![](https://ermetic.com/wp-content/uploads/2022/04/image3-1.png)
+![Organization](https://ermetic.com/wp-content/uploads/2022/04/image3-1.png)
 
 ## 2. Amazon Web Services (AWS)
 

@@ -57,10 +57,10 @@ ______________________________________________________________________
 > **German:** Vorbereiten des Ausspähens und Abfangens
 > von Daten
 
-> **Note:** This paragraph is also called the "Hacker Paragraph".
-
 **Definition:**
 This section addresses the criminal act of preparing for the unauthorized accessing or interception of data as per § 202a and § 202b.
+
+> **Note:** This paragraph is also called the "Hacker Paragraph".
 
 **Key Elements:**
 
@@ -78,35 +78,35 @@ The essence of this section is to criminalize not just the act of unauthorized d
 
 The Austrian and German legal systems both criminalize unauthorized data access and hacking-related activities. Yet, there are differences in the way these actions are framed and punished under the laws of each country. Let's examine some of these differences:
 
-#### Definition and Scope
+### Definition and Scope
 
 - Austria:
   - Comprehensive approach covering different types of cybercrimes: unauthorized access, data damage, impairing systems, malicious software, digital fraud.
 - Germany:
   - Focuses on unauthorized data access, especially when data is particularly safeguarded.
 
-#### Penalties
+### Penalties
 
 - Austria:
   - Varied penalties depending on severity: from 6 months for basic data impairment, up to 5-10 years for substantial financial loss or targeting critical infrastructure.
 - Germany:
   - Up to 3 years or fine for unauthorized data access (§ 202a). Up to 2 years or fine for creating/distributing hacking tools (§ 202c).
 
-#### Special Provisions
+### Special Provisions
 
 - Austria:
   - Specific laws for non-cash payment methods, e.g., § 241h.
 - Germany:
   - Emphasis on creation and distribution of hacking tools (§ 202c).
 
-#### Exemptions and Defenses
+### Exemptions and Defenses
 
 - Austria:
   - Exemptions for those who voluntarily prevent potential harm/damage from their actions.
 - Germany:
   - No explicit exemptions in provided sections.
 
-#### Terminology and Emphasis
+### Terminology and Emphasis
 
 - Austria:
   - Emphasizes potential damage and impact: impairment of systems, financial loss, threats to critical infrastructure.
