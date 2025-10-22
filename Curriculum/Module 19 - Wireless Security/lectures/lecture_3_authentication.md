@@ -2,7 +2,7 @@
 
 ## 3.1 Introduction
 
-In today’s increasingly connected world, the security of wireless networks is more critical than ever. With the widespread adoption of WiFi in various environments - from homes and offices to public spaces - the need to safeguard these networks against unauthorized access and data breaches is paramount. This lecture delves into the intricate world of WiFi Authentication and Encryption, the twin pillars of WiFi security.
+In today's increasingly connected world, the security of wireless networks is more critical than ever. With the widespread adoption of WiFi in various environments - from homes and offices to public spaces - the need to safeguard these networks against unauthorized access and data breaches is paramount. This lecture delves into the intricate world of WiFi Authentication and Encryption, the twin pillars of WiFi security.
 
 ## 3.2 Authentication Fundamentals
 
@@ -117,7 +117,7 @@ Enterprise WiFi Authentication using RADIUS and TACACS+ represents advanced auth
 1. **Authentication Request:** When a user attempts to connect to a WiFi network, the Access Point acts as a client to the RADIUS/TACACS+ server and forwards the user's credentials to the server.
 1. **Server Processing:** The RADIUS/TACACS+ server verifies the credentials against its database. It may use various authentication methods, such as EAP, LDAP, or Kerberos.
 1. **Access Approval or Denial:** Based on the verification, the server responds to the AP, either granting or denying access to the user.
-1. **Authorization and Accounting:** Once authenticated, the user’s activities can be tracked for billing, auditing, or reporting purposes.
+1. **Authorization and Accounting:** Once authenticated, the user's activities can be tracked for billing, auditing, or reporting purposes.
 
 **Functionality**
 
@@ -161,7 +161,7 @@ WiFi Protected Access (WPA) was developed as a response to the significant secur
 
 - **Improved Encryption:** WPA introduced TKIP (Temporal Key Integrity Protocol) for encryption. TKIP was designed to be a more secure alternative to WEP's encryption mechanism, while still being able to operate on older hardware not designed for WPA.
 - **Dynamic Key Encryption:** Unlike WEP's static key, TKIP generates a new key for each packet, reducing the risk of key compromise. It uses a key-mixing function that combines the secret root key with an initialization vector before each packet is encrypted.
-- **Message Integrity Check:** WPA implemented an enhanced integrity check called Michael to replace WEP’s flawed CRC-32 checksum. This was designed to prevent attackers from altering and resubmitting data packets.
+- **Message Integrity Check:** WPA implemented an enhanced integrity check called Michael to replace WEP's flawed CRC-32 checksum. This was designed to prevent attackers from altering and resubmitting data packets.
 - **Pre-shared Key (PSK) and Enterprise Modes:** WPA can be used in two modes:
   - **WPA-PSK (Personal):** This mode is designed for home and small office networks and uses a pre-shared key.
   - **WPA-Enterprise:** Intended for enterprise networks, it uses a RADIUS server for authentication and supports more advanced authentication methods through EAP.
@@ -175,9 +175,9 @@ WiFi Protected Access (WPA) was developed as a response to the significant secur
 **TKIP: Temporal Key Integrity Protocol**
 
 - **Dynamic Key Encryption:** TKIP employs a different encryption key for each data packet, addressing one of the major vulnerabilities of WEP, which used static keys. This dynamic key generation is achieved through a mixing function that combines the base key with an initialization vector.
-- **Key Mixing Function:** The key mixing function takes the base key and the IV, along with the transmitter's MAC address, to produce a unique key for each packet. This approach significantly improves security over WEP’s static key method.
+- **Key Mixing Function:** The key mixing function takes the base key and the IV, along with the transmitter's MAC address, to produce a unique key for each packet. This approach significantly improves security over WEP's static key method.
 - **IV Sequence Counter:** TKIP implements a sequence counter for IVs to prevent replay attacks. This counter ensures that old IVs are not reused, thereby thwarting an attack vector that was viable under WEP.
-- **Message Integrity Check (MIC):** Known as "Michael", this feature provides a stronger integrity check compared to WEP’s CRC-32. It helps in protecting against data tampering and forgery.
+- **Message Integrity Check (MIC):** Known as "Michael", this feature provides a stronger integrity check compared to WEP's CRC-32. It helps in protecting against data tampering and forgery.
 - **Re-Keying Mechanism:** TKIP includes a built-in re-keying mechanism that changes the encryption key periodically during the session, further enhancing security by reducing the window of opportunity for attackers to compromise the key.
 
 ### 3.3.4 WPA2: WiFi Protected Access Version 2
@@ -193,7 +193,7 @@ WPA2 is an enhanced version of WPA and has been the standard for WiFi security s
 
 - **Stronger Encryption:** The shift to AES encryption in WPA2 marked a significant improvement in terms of security, making it resilient to many attacks that could compromise WPA.
 - **Enhanced Data Protection:** The introduction of CCMP provided better data integrity checks, ensuring that the data transmitted over the network is better protected from tampering and forgery.
-- **Vulnerability to KRACK Attack:** Researchers disclosed the KRACK (Key Reinstallation Attack) vulnerability that affected WPA2, showing that even WPA2’s robust protocol could be compromised.
+- **Vulnerability to KRACK Attack:** Researchers disclosed the KRACK (Key Reinstallation Attack) vulnerability that affected WPA2, showing that even WPA2's robust protocol could be compromised.
 
 **AES: Advanced Encryption Standard**
 

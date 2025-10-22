@@ -39,15 +39,15 @@
 
 #slide(title: "Core Principles – Part 1")[
   1. *Information should be free*
-    
+
     Open knowledge promotes innovation and transparency.
 
   2. *Unlimited access to learning tools*
-    
+
     Hands-on exploration (*tinkering*) fosters understanding.
 
   3. *Mistrust authority – promote decentralization*
-    
+
     Power should be distributed, not centralized.
 
   #alert("Inspired by hacker subcultures at MIT and beyond.")
@@ -55,15 +55,15 @@
 
 #slide(title: "Core Principles – Part 2")[
   4. *Judge by skill, not status*
-    
+
     Merit over formal credentials.
 
   5. *Code as art*
-    
+
     Beauty in elegant solutions and creative hacks.
 
   6. *Computers can improve lives*
-    
+
     #alert("Ethical use of tech to empower people and fix broken systems.")
 ]
 
@@ -109,7 +109,7 @@
     - Privacy-preserving tech (e.g., encryption)
     - Transparent oversight and accountability
 
-  #alert("“Security” is not an excuse to erase rights.")
+  #alert(""Security" is not an excuse to erase rights.")
 ]
 
 #slide(title: "Dilemma 3: Gray Hat Behavior")[

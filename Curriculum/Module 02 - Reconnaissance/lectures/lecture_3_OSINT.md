@@ -34,7 +34,7 @@
 ## Additional Resources
 
 - **Books**:
-  - “Open Source Intelligence Techniques: Resources for Searching and Analyzing Online Information” by Michael Bazzell.
+  - "Open Source Intelligence Techniques: Resources for Searching and Analyzing Online Information" by Michael Bazzell.
 - **Websites**:
   - [OSINT Framework](https://osintframework.com/)
   - [Bellingcat's Online Investigation Toolkit](https://docs.google.com/document/d/1BfLPJpRtyq4RFtHJoNpvWQjmGnyVkfE2HYoICKOGguA/edit)

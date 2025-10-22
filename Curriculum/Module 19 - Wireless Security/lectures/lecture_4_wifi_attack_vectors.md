@@ -15,7 +15,7 @@ Active and passive attacks are two fundamental categories of cybersecurity threa
 ## 4.2.1 Passive Attacks
 
 - Passive attacks involve monitoring or 'eavesdropping' on a network. The attacker intercepts data transmitted over the network without altering the data or affecting the network's operation. The goal is usually to gather information stealthily.
-- They are harder to detect because they don’t involve any alteration of the network's data or behavior. The network operates normally, unaware of the ongoing surveillance.
+- They are harder to detect because they don't involve any alteration of the network's data or behavior. The network operates normally, unaware of the ongoing surveillance.
 - Examples include sniffing to capture unencrypted data packets, listening for network traffic to identify network resources and configurations, and analyzing traffic patterns.
 - Measures such as strong encryption (e.g., WPA3 for WiFi), VPNs, and secure protocols help mitigate the risk of passive attacks by ensuring that intercepted data cannot be easily understood.
 
@@ -85,6 +85,6 @@ This chapter's exploration of WiFi attack vectors reveals a key insight: the maj
 
 # Sources
 
-- https://www.webtitan.com/blog/most-common-wireless-network-attacks/
-- https://www.examcollection.com/certification-training/security-plus-wireless-attacks-and-their-types.html
-- https://www.giac.org/paper/gsec/4116/wireless-ids-exposures-attack-vectors-detection/106559
+- <https://www.webtitan.com/blog/most-common-wireless-network-attacks/>
+- <https://www.examcollection.com/certification-training/security-plus-wireless-attacks-and-their-types.html>
+- <https://www.giac.org/paper/gsec/4116/wireless-ids-exposures-attack-vectors-detection/106559>

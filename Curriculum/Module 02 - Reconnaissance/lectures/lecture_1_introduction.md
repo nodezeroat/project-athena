@@ -64,7 +64,7 @@ Reconnaissance is the initial phase where attackers collect as much information 
 
 - **Reconnaissance Role:**
   - Attackers performed extensive reconnaissance to find a vulnerable third-party HVAC vendor.
-  - Used the vendor’s credentials to infiltrate Target’s network.
+  - Used the vendor's credentials to infiltrate Target's network.
   - Mapped out the internal network to plan the subsequent attack phases.
 
 ## Real-World Example

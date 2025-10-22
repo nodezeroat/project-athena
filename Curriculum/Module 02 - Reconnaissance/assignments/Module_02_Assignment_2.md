@@ -1,10 +1,10 @@
 ## Assignment 2: Enumerating and Analyzing a Server
 
-### Objective:
+### Objective
 
 This assignment focuses on server enumeration, a critical part of the reconnaissance phase in cybersecurity. You will use various tools to identify and document the services running on a target server. For the bonus task, you will go further to identify a vulnerability, exploit it, and document your process in detail.
 
-### Instructions:
+### Instructions
 
 #### 1. **Server Enumeration:**
 
@@ -33,14 +33,14 @@ This assignment focuses on server enumeration, a critical part of the reconnaiss
 - Ensure the report is clear, concise, and uses professional language.
 - Include a conclusion summarizing the key findings of your enumeration.
 
-### Submission Guidelines:
+### Submission Guidelines
 
 1. **Report:**
    - Submit your report as a PDF document.
    - The cover page should include your name, date, and the title of the report.
    - Organize your report with sections: introduction, enumeration process, discovered services, analysis, and conclusion.
 
-### Evaluation Criteria:
+### Evaluation Criteria
 
 1. **Enumeration:**
    - Completeness of the enumeration process.
@@ -56,10 +56,11 @@ This assignment focuses on server enumeration, a critical part of the reconnaiss
 
 ### Bonus Points: Finding and Exploiting a Vulnerability
 
-#### Objective:
+#### Objective
+
 Gain bonus points by identifying a vulnerability on the server, exploiting it, and documenting the entire process.
 
-#### Instructions:
+#### Instructions
 
 1. **Vulnerability Identification:**
    - Use **Nmap** scripts (e.g., `nmap --script vuln`) or other vulnerability scanning tools to identify a potential vulnerability in one of the enumerated services.
@@ -78,12 +79,12 @@ Gain bonus points by identifying a vulnerability on the server, exploiting it, a
    - Include screenshots or logs that demonstrate the exploitation process and the retrieval of the `/flag` file.
    - Explain how the vulnerability could be mitigated or prevented.
 
-### Additional Submission Guidelines for Bonus Points:
+### Additional Submission Guidelines for Bonus Points
 
 - Include the bonus task in your report as a distinct section.
 - Clearly label this section as "Bonus Points Task: Vulnerability Exploitation" for ease of evaluation.
 
-### Evaluation Criteria for Bonus Points:
+### Evaluation Criteria for Bonus Points
 
 1. **Vulnerability Identification:**
    - Effectiveness in using Nmap or other tools to find a server vulnerability.

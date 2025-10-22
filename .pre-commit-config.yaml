@@ -1,0 +1,56 @@
+---
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: "v6.0.0"
+    hooks:
+      - id: check-added-large-files
+        args: [--maxkb=500000]
+        stages: [pre-commit]
+      - id: check-case-conflict
+        stages: [pre-commit]
+      - id: check-merge-conflict
+        stages: [pre-commit]
+      - id: check-yaml
+        stages: [pre-commit]
+      - id: end-of-file-fixer
+        stages: [pre-commit]
+      - id: mixed-line-ending
+        stages: [pre-commit]
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+        stages: [pre-commit]
+  - repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: "v1.5.5"
+    hooks:
+      - id: remove-crlf
+        stages: [pre-commit]
+      - id: remove-tabs
+        stages: [pre-commit]
+  - repo: https://github.com/sirosen/texthooks
+    rev: "0.7.1"
+    hooks:
+      - id: fix-smartquotes
+        stages: [pre-commit]
+      - id: fix-ligatures
+        stages: [pre-commit]
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: "v0.45.0"
+    hooks:
+      - id: markdownlint
+        args: ["-f"]
+        stages: [post-commit]
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.14.1
+    hooks:
+      - id: ruff
+        args: [--fix]
+        stages: [pre-commit, manual]
+  - repo: https://github.com/psf/black
+    rev: "25.9.0"
+    hooks:
+      - id: black
+        stages: [pre-commit, manual]

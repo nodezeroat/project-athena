@@ -6,7 +6,7 @@ How to manage users easily and securely in the cloud?
 
 ### 1.1. **Identity and Access Management (IAM)**
 
-https://cloud.google.com/iam
+<https://cloud.google.com/iam>
 
 ![](https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_copy_3.max-2000x2000.jpg)
 
@@ -33,7 +33,7 @@ https://cloud.google.com/iam
 
 ### 2.1. **Identity and Access Management (IAM)**
 
-https://aws.amazon.com/de/iam/
+<https://aws.amazon.com/de/iam/>
 
 - **Users**: End-users or services that interact with AWS resources.
 
@@ -55,7 +55,7 @@ https://aws.amazon.com/de/iam/
 
 ## 3. Microsoft Azure
 
-https://www.microsoft.com/de-de/security/business/identity-access/microsoft-entra-id
+<https://www.microsoft.com/de-de/security/business/identity-access/microsoft-entra-id>
 
 ### 3.1. **Azure Active Directory (Azure AD)**
 

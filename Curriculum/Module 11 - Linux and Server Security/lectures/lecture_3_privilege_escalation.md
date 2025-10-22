@@ -2,9 +2,9 @@
 
 ## What is privilege escalation?
 
-- ”Privilege Escalation consists of techniques that adversaries use to gain higher-level permissions on a system or network.” - MITRE Framework
-- ”Privilege Escalation is the act of exploiting a bug, a design flaw, or a configuration oversight in an operating system or software application to gain elevated access to resources that are normally protected from an application or user.” - Wikipedia
-- ”Privilege Escalation is the process of gaining unauthorized access to higher-level permissions or privileges within a system or network.” - ChatGPT
+- "Privilege Escalation consists of techniques that adversaries use to gain higher-level permissions on a system or network." - MITRE Framework
+- "Privilege Escalation is the act of exploiting a bug, a design flaw, or a configuration oversight in an operating system or software application to gain elevated access to resources that are normally protected from an application or user." - Wikipedia
+- "Privilege Escalation is the process of gaining unauthorized access to higher-level permissions or privileges within a system or network." - ChatGPT
 
 #### What is the goal?
 

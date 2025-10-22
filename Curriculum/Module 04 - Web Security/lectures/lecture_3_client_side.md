@@ -123,7 +123,7 @@ In general, effectively preventing XSS vulnerabilities is likely to involve a co
 
 ## Cross-site request forgery (CSRF)
 
-Cross-Site Request Forgery (CSRF) is an attack that abuses the browser’s automatic cookie submission for cross-origin requests to issue state changing requests on the user’s behalf. In other words, the attack is meant to trick users into issuing requests by abusing browser session cookie management.
+Cross-Site Request Forgery (CSRF) is an attack that abuses the browser's automatic cookie submission for cross-origin requests to issue state changing requests on the user's behalf. In other words, the attack is meant to trick users into issuing requests by abusing browser session cookie management.
 
 ### How does CSRF work?
 
@@ -141,11 +141,11 @@ Here is an example to make things clearer:
 
 1. Here we can see the user issuing a request to view <http://nathanhauk.com>, a malicious website hosted by the attacker.
 
-1. When the server receives this request, it serves a page that contains a form designated to <http://slack.com/fakevotingservice> which allows you to vote on your favorite way to spell the word “grey”.
+1. When the server receives this request, it serves a page that contains a form designated to <http://slack.com/fakevotingservice> which allows you to vote on your favorite way to spell the word "grey".
 
-1. When the user receives the response, their browser interprets the HTML and automatically issues the request with the session tokens that belong to that origin. (The browser automatically issues a request with the user’s cookies to the voting service)
+1. When the user receives the response, their browser interprets the HTML and automatically issues the request with the session tokens that belong to that origin. (The browser automatically issues a request with the user's cookies to the voting service)
 
-1. The server receives the victim’s state changing request, processes it and updates the state on the server accordingly.
+1. The server receives the victim's state changing request, processes it and updates the state on the server accordingly.
 
 > Find another example at: <https://portswigger.net/web-security/csrf#how-does-csrf-work>
 

@@ -1,10 +1,10 @@
 ## Assignment: Reverse Engineering a simple keygen checker
 
-### Objective:
+### Objective
 
 This assignment aims to deepen your understanding of the reverse engineering process of native binaries.
 
-### Instructions:
+### Instructions
 
 1. **Analysis:**
 
@@ -18,14 +18,14 @@ This assignment aims to deepen your understanding of the reverse engineering pro
 
    - Upon a valid key, the program will print: "You win".
 
-### Submission Guidelines:
+### Submission Guidelines
 
 1. **Report with key:**
    - Submit a short writeup of what the program does, your username as stated above and the valid key for your username.
    - The report should be in PDF format
    - Ensure your name, date, and the title of your writeup are included.
 
-### Evaluation Criteria:
+### Evaluation Criteria
 
 1. **Valid key:**
 
@@ -39,10 +39,11 @@ By completing this assignment, you will gain a richer understanding of the rever
 
 ### Bonus Points Task: Debugger Usage or Program Patching
 
-#### Objective:
+#### Objective
+
 For bonus points, demonstrate your proficiency in using a debugger for reverse engineering or show your skills in patching the binary to bypass the key validation mechanism.
 
-#### Instructions:
+#### Instructions
 
 1. **Using a Debugger:**
    - Use a debugger to step through the binary and document your observations.
@@ -61,12 +62,12 @@ For bonus points, demonstrate your proficiency in using a debugger for reverse e
    - Detail your approach, whether using a debugger or patching, and describe your findings or the steps you took.
    - Include screenshots or code snippets as necessary to illustrate your process.
 
-### Additional Submission Guidelines for Bonus Points:
+### Additional Submission Guidelines for Bonus Points
 
 - Add this bonus task as a separate section in your report.
 - Clearly label this section for easy identification by evaluators.
 
-### Evaluation Criteria for Bonus Points:
+### Evaluation Criteria for Bonus Points
 
 1. **Effectiveness of Technique:**
    - Successful use of a debugger to trace key validation or successful patching of the binary.

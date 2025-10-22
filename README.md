@@ -42,7 +42,7 @@ If you would like to contribute content, please fork the repository, create a ne
 
 Current Contributors:
 
-[ ![contributors-img](https://contrib.rocks/image?repo=nodezeroat/project-athena) ](https://github.com/nodezeroat/project-athena/graphs/contributors)
+[![contributors-img](https://contrib.rocks/image?repo=nodezeroat/project-athena)](https://github.com/nodezeroat/project-athena/graphs/contributors)
 
 ## License
 

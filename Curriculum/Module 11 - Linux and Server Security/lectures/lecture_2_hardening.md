@@ -18,7 +18,7 @@ The idea is to make the server as robust as possible against local attacks, i.e.
 
 ### BIOS updates
 
-Manufacturers frequently release new BIOS versions to address security issues, and it’s important to keep on top of these by updating to the latest version as soon as is reasonable.
+Manufacturers frequently release new BIOS versions to address security issues, and it's important to keep on top of these by updating to the latest version as soon as is reasonable.
 
 ### SecureBoot
 
@@ -26,15 +26,15 @@ This uses digital signatures to ensure that the system boots genuine signed code
 
 ### Set BIOS passwords
 
- Features such as SecureBoot can be disabled in the BIOS, so it’s important to set a BIOS password to prevent that.
+ Features such as SecureBoot can be disabled in the BIOS, so it's important to set a BIOS password to prevent that.
 
 ### Disable USB ports
 
-If the server doesn’t need to use certain hardware features, these can often be disabled in the BIOS, to further prevent physical attacks against the system.
+If the server doesn't need to use certain hardware features, these can often be disabled in the BIOS, to further prevent physical attacks against the system.
 
 ### Full disk encryption
 
-Disk encryption means that someone can’t take the disks out of the machine and access or modify the contents offline. In cloud environments and virtual machines, disk encryption also prevents a malicious actor at the hypervisor level from accessing ones virtual disks.
+Disk encryption means that someone can't take the disks out of the machine and access or modify the contents offline. In cloud environments and virtual machines, disk encryption also prevents a malicious actor at the hypervisor level from accessing ones virtual disks.
 
 ## OS Hardening
 
@@ -48,19 +48,19 @@ Steps for root for grub:
 
 1. Set the owner and group of `/etc/grub.conf` and `/etc/grub.d` or in some cases `/etc/default/grub`.
 
-	```bash
-	chown root:root /etc/grub.conf
-	chown -R root:root /etc/grub.d
-	chown root:root /etc/default/grub
-	```
+    ```bash
+    chown root:root /etc/grub.conf
+    chown -R root:root /etc/grub.d
+    chown root:root /etc/default/grub
+    ```
 
 2. Set permissions for `/etc/grub.conf` and `/etc/grub.d` or in some cases `/etc/default/grub`
 
-	```bash
-	chmod og-rwx /etc/grub.conf
-	chmod -R or-rwx /etc/grub.d
-	chown or-rwx /etc/default/grub
-	```
+    ```bash
+    chmod og-rwx /etc/grub.conf
+    chmod -R or-rwx /etc/grub.d
+    chown or-rwx /etc/default/grub
+    ```
 
 ### Linux Kernel
 
@@ -73,9 +73,10 @@ Kernel logs are a crucial aspect of a machine administration. Logs can reveal in
 Steps for root:
 
 1. Restrict access to the kernel logs in the sysctl.d config files
-	```bash
-	echo "kernel.dmesg_restrict = 1" > /etc/sysctl.d/50-dmesg-restrict.conf
-	```
+
+    ```bash
+    echo "kernel.dmesg_restrict = 1" > /etc/sysctl.d/50-dmesg-restrict.conf
+    ```
 
 #### Kernel pointer
 
@@ -84,9 +85,10 @@ A kernel pointer is basically a way of exposing kernel address via /proc and oth
 Steps for root:
 
 1. Restrict access to the kernel pointers in the sysctl.d config files
-	```bash
-	echo "kernel.kptr_restrict = 1" > /etc/sysctl.d/50-kptr-restrict.conf
-	```
+
+    ```bash
+    echo "kernel.kptr_restrict = 1" > /etc/sysctl.d/50-kptr-restrict.conf
+    ```
 
 #### Exec Shield
 
@@ -95,9 +97,10 @@ Exec Shield is a project that has its origins at Red Hat. It was developed in la
 Steps for root:
 
 1. Enable Exec Shield in the sysctl.d config files
-	```bash
-	echo "kernel.exec-shield = 2" > /etc/sysctl.d/50-exec-shield.conf
-	```
+
+    ```bash
+    echo "kernel.exec-shield = 2" > /etc/sysctl.d/50-exec-shield.conf
+    ```
 
 #### Memory protection
 
@@ -106,9 +109,10 @@ The Linux kernel has a defense mechanism named address space layout randomizatio
 Steps for root:
 
 1. Enable memory randomization in the sysctl.d config files
-	```bash
-	echo "kernel.randomize_va_space=2" > /etc/sysctl.d/50-rand-va-space.conf
-	```
+
+    ```bash
+    echo "kernel.randomize_va_space=2" > /etc/sysctl.d/50-rand-va-space.conf
+    ```
 
 ### Config SELinux
 
@@ -132,9 +136,10 @@ The TCP SYN Cookie protection setting in Linux is a precaution against TCP SYN f
 Steps as root:
 
 1. Enable TCP SYN Cookie protection
-	```bash
-	echo "net.ipv4.tcp_syncookies = 1" > /etc/sysctl.d/50-net-stack.conf
-	```
+
+    ```bash
+    echo "net.ipv4.tcp_syncookies = 1" > /etc/sysctl.d/50-net-stack.conf
+    ```
 
 #### Routing
 
@@ -143,9 +148,10 @@ Source routing is a IP mechanism that allows IP packets to carry a list of addre
 Steps as root:
 
 1. Disable IP source routing
-	```bash
-	echo "net.ipv4.conf.all.accept_source_route = 0" > /etc/sysctl.d/50-net-stack.conf
-	```
+
+    ```bash
+    echo "net.ipv4.conf.all.accept_source_route = 0" > /etc/sysctl.d/50-net-stack.conf
+    ```
 
 #### ICMP
 
@@ -154,13 +160,16 @@ By ignoring ICMP requests ones device cannot be found as easily, also hiding pre
 Steps as root:
 
 1. Disable ICMP redirect acceptance
-	```bash
-	echo "net.ipv4.conf.all.accept_redirects = 0" > /etc/sysctl.d/50-net-stack.conf
-	```
+
+    ```bash
+    echo "net.ipv4.conf.all.accept_redirects = 0" > /etc/sysctl.d/50-net-stack.conf
+    ```
+
 2. Enable ignoring to ICMP requests
-	```bash
-	echo "net.ipv4.icmp_echo_ignore_all = 1" > /etc/sysctl.d/50-net-stack.conf
-	```
+
+    ```bash
+    echo "net.ipv4.icmp_echo_ignore_all = 1" > /etc/sysctl.d/50-net-stack.conf
+    ```
 
 #### Broadcast
 
@@ -169,9 +178,10 @@ This setting deals with the IPv4 ICMP echo broadcasts. There messages are the me
 Steps as root:
 
 1. Enable ignoring broadcast requests
-	```bash
-	echo "net.ipv4.icmp_echo_ignore_broadcasts = 1" > /etc/sysctl.d/50-net-stack.conf
-	```
+
+    ```bash
+    echo "net.ipv4.icmp_echo_ignore_broadcasts = 1" > /etc/sysctl.d/50-net-stack.conf
+    ```
 
 ## Application hardening
 
@@ -179,7 +189,7 @@ When it comes to application security, it is more difficult to be prescriptive a
 
 ### Enforce strong encryption
 
-For example, web-based applications use TLS, for which certificates can be provisioned through Let’s Encrypt.
+For example, web-based applications use TLS, for which certificates can be provisioned through Let's Encrypt.
 
 ### Principle of Least Privilege
 
@@ -187,7 +197,7 @@ For the best security practices, system privileges should only be granted to tho
 
 ### Configure logging, and monitor logs for anomalies
 
-Application logs should be aggregated remotely to ensure that they can’t be altered or destroyed by an attacker, and the logs should be analysed to detect anomalous behaviour which could reveal the start of an active attack.
+Application logs should be aggregated remotely to ensure that they can't be altered or destroyed by an attacker, and the logs should be analysed to detect anomalous behaviour which could reveal the start of an active attack.
 
 ### Check dependencies for vulnerabilities
 

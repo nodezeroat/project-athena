@@ -1,9 +1,9 @@
 # Tools and Techniques for Social Engineering
 
 <span style="float: left; margin-right: 10px;">
-	<img src="../resources/images/ToolsSocialEngineering.png" alt="Social Engineering" width="300">
-	<br>
-	<small>Source: [ChatGPT/DALL&middot;E]</small>
+    <img src="../resources/images/ToolsSocialEngineering.png" alt="Social Engineering" width="300">
+    <br>
+    <small>Source: [ChatGPT/DALL&middot;E]</small>
 </span>
 <span>
 In this section of the module Social Engineering, we will explore the Tools and Techniques used in these sophisticated engineering attacks. Because such attacks consist not only of psychological tricks, but involve a whole process that can be divided into several steps.
@@ -63,7 +63,7 @@ This article delves into how an social engineer operates and what Tools and Tech
 
 **Techniques**:
 
-- Crafting questions and statements that guide the target’s responses.
+- Crafting questions and statements that guide the target's responses.
 - Using conversational techniques to uncover sensitive information without raising suspicion.
 
 ## Utilizing Nonverbal Communication

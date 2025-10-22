@@ -1,12 +1,12 @@
 # Prevention and Defense against Social Engineering Attacks
 
 <span style="float: left; margin-right: 10px;">
-	<img src="../resources/images/PreventionSocialEngineering.png" alt="Social Engineering" width="200">
-	<br>
-	<small>Source: [ChatGPT/DALL&middot;E]</small>
+    <img src="../resources/images/PreventionSocialEngineering.png" alt="Social Engineering" width="200">
+    <br>
+    <small>Source: [ChatGPT/DALL&middot;E]</small>
 </span>
 <span>
-In this section of the module Social Engineering, we will explore how to prevent and defend against social engineering attacks. 
+In this section of the module Social Engineering, we will explore how to prevent and defend against social engineering attacks.
 
 In an age where digital interactions are commonplace, social engineering attacks have emerged as a significant threat. These sophisticated attacks exploit human psychology rather than technological vulnerabilities, making them particularly challenging to detect and prevent.
 
@@ -37,7 +37,7 @@ This article aims to shed light on effective strategies for prevention and defen
 
 ## Creating a Security Awareness Culture
 
-- **Fostering Vigilance**: Cultivate a workplace culture where security is everyone’s responsibility.
+- **Fostering Vigilance**: Cultivate a workplace culture where security is everyone's responsibility.
 - **Learning from Mistakes**: Use real-world examples and past breaches as learning tools.
 
 ## Conclusion

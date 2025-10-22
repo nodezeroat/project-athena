@@ -195,7 +195,7 @@
 
   - Often binary analysis
 
-  - Find out what it’s doing
+  - Find out what it's doing
 
   - Revertible, Exploitable?
 ]

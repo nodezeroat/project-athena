@@ -33,7 +33,7 @@
   [1;31mRED[0m: You must take a look at it
   [1;96mLightCyan[0m: Users with console
   [1;34mBlue[0m: Users without console & mounted devs
-  [1;32mGreen[0m: Common things (users, groups, SUID/SGID, mounts, .sh scripts, cronjobs) 
+  [1;32mGreen[0m: Common things (users, groups, SUID/SGID, mounts, .sh scripts, cronjobs)
   LightMangeta: Your username
 
 
@@ -114,10 +114,10 @@ _=/usr/bin/env
 [0m
 [1;33m[+] [1;32mUnmounted file-system?
 [0m[1;34m[i] [1;33mCheck if you can mount umounted devices
-[0m[1;34m[0mproc	/proc	proc	defaults	0 0
-[1;34m[0mUUID=be5bb36f-7bb4-4900-b459-196278f714b6	/	ext3	errors=remount-ro	0 1
-[1;34m[0mUUID=468658fa-a304-4ed0-981a-d725bf98a790	none	[1;32mswap[0m	sw	0 0
-[1;34m[0mdebugfs	/sys/kernel/debug/	debugfs	defaults	0 0
+[0m[1;34m[0mproc /proc   proc    defaults    0 0
+[1;34m[0mUUID=be5bb36f-7bb4-4900-b459-196278f714b6    /   ext3    errors=remount-ro   0 1
+[1;34m[0mUUID=468658fa-a304-4ed0-981a-d725bf98a790    none    [1;32mswap[0m sw  0 0
+[1;34m[0mdebugfs  /sys/kernel/debug/  debugfs defaults    0 0
 [1;34m[0m
 
 
@@ -178,7 +178,7 @@ ii  gcc-4.4                             4.4.5-8                      The GNU C c
 [1;96m[1;95muser[0m[0m     12636  4.7  0.4  11672  2300 pts/0    S+   11:57   0:01 bash linpeas.sh
 [1;96m[1;95muser[0m[0m     13134 15.0  0.2  16380  1180 pts/0    R+   11:58   0:00 ps aux
 [1;96m[1;95muser[0m[0m     13136  0.0  0.1  50268   808 pts/0    S+   11:58   0:00 sort
-[1;96m[1;95muser[0m[0m      2579  0.0  0.3  70544  1668 ?        S    11:56   0:00 [1;34msshd[0m: user@pts/0 
+[1;96m[1;95muser[0m[0m      2579  0.0  0.3  70544  1668 ?        S    11:56   0:00 [1;34msshd[0m: user@pts/0
 [1;96m[1;95muser[0m[0m      2580  0.0  0.4  19284  2108 pts/0    Ss   11:56   0:00 -bash
 USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 [1;96m[1;32mwww-data[0m[0m  1745  0.0  0.3  71156  1984 ?        S    11:50   0:00 /usr/sbin/[1;32mapache2[0m -k start
@@ -309,8 +309,8 @@ PATH=[1;31;103m/home/[1;96m[1;95muser[0m[0m[0m:/usr/local/sbin:/usr/local/
 [1;34m===================================( [1;32mNetwork Information[1;34m )====================================
 [0m[1;33m[+] [1;32mHostname, hosts and DNS
 [0mdebian
-127.0.0.1	localhost
-127.0.1.1	debian.localdomain	debian
+127.0.0.1   localhost
+127.0.1.1   debian.localdomain  debian
 
 ::1     ip6-localhost ip6-loopback
 fe00::0 ip6-localnet
@@ -326,27 +326,27 @@ localdomain
 [0m[1;90m/etc/inetd.conf Not Found
 [0m
 [1;33m[+] [1;32mNetworks and neighbours
-[0mdefault		0.0.0.0
-loopback	127.0.0.0
-link-local	169.254.0.0
+[0mdefault     0.0.0.0
+loopback    127.0.0.0
+link-local  169.254.0.0
 
-eth0      Link encap:Ethernet  HWaddr 02:57:15:11:4a:07  
+eth0      Link encap:Ethernet  HWaddr 02:57:15:11:4a:07
           inet addr:10.10.211.23  Bcast:10.10.255.255  Mask:255.255.0.0
           inet6 addr: fe80::57:15ff:fe11:4a07/64 Scope:Link
           UP BROADCAST RUNNING MULTICAST  MTU:9001  Metric:1
           RX packets:849 errors:0 dropped:0 overruns:0 frame:0
           TX packets:698 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000 
+          collisions:0 txqueuelen:1000
           RX bytes:294015 (287.1 KiB)  TX bytes:209406 (204.4 KiB)
-          Interrupt:20 
+          Interrupt:20
 
-lo        Link encap:Local Loopback  
+lo        Link encap:Local Loopback
           inet addr:127.0.0.1  Mask:255.0.0.0
           inet6 addr: ::1/128 Scope:Host
           UP LOOPBACK RUNNING  MTU:16436  Metric:1
           RX packets:104 errors:0 dropped:0 overruns:0 frame:0
           TX packets:104 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:0 
+          collisions:0 txqueuelen:0
           RX bytes:8756 (8.5 KiB)  TX bytes:8756 (8.5 KiB)
 
 Kernel IP routing table
@@ -361,26 +361,26 @@ default         ip-10-10-0-1.eu 0.0.0.0         UG    0      0        0 eth0
 [0m[1;34m[i] [1;33mhttps://book.hacktricks.xyz/linux-unix/privilege-escalation#internal-open-ports
 [0mActive Internet connections (servers and established)
 Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
-tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      -               
-tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      -               
-tcp        0      0 0.0.0.0:59570           0.0.0.0:*               LISTEN      -               
-tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -               
-tcp        0      0 0.0.0.0:25              0.0.0.0:*               LISTEN      -               
-tcp        0      0 0.0.0.0:46202           0.0.0.0:*               LISTEN      -               
-tcp        0      0 0.0.0.0:2049            0.0.0.0:*               LISTEN      -               
-tcp        0      0 0.0.0.0:44136           0.0.0.0:*               LISTEN      -               
-tcp        0      0 [1;31m127.0.0.1[0m:3306          0.0.0.0:*               LISTEN      -               
-tcp        0      0 10.10.211.23:53691      10.10.37.125:1234       ESTABLISHED 12636/bash      
-tcp        0      0 10.10.211.23:22         10.10.37.125:47932      ESTABLISHED -               
-tcp6       0      0 :::80                   :::*                    LISTEN      -               
-tcp6       0      0 :::22                   :::*                    LISTEN      -               
-udp        0      0 0.0.0.0:68              0.0.0.0:*                           -               
-udp        0      0 0.0.0.0:50634           0.0.0.0:*                           -               
-udp        0      0 0.0.0.0:111             0.0.0.0:*                           -               
-udp        0      0 [1;31m127.0.0.1[0m:637           0.0.0.0:*                           -               
-udp        0      0 0.0.0.0:2049            0.0.0.0:*                           -               
-udp        0      0 0.0.0.0:58755           0.0.0.0:*                           -               
-udp        0      0 0.0.0.0:41092           0.0.0.0:*                           -               
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:59570           0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:25              0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:46202           0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:2049            0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:44136           0.0.0.0:*               LISTEN      -
+tcp        0      0 [1;31m127.0.0.1[0m:3306          0.0.0.0:*               LISTEN      -
+tcp        0      0 10.10.211.23:53691      10.10.37.125:1234       ESTABLISHED 12636/bash
+tcp        0      0 10.10.211.23:22         10.10.37.125:47932      ESTABLISHED -
+tcp6       0      0 :::80                   :::*                    LISTEN      -
+tcp6       0      0 :::22                   :::*                    LISTEN      -
+udp        0      0 0.0.0.0:68              0.0.0.0:*                           -
+udp        0      0 0.0.0.0:50634           0.0.0.0:*                           -
+udp        0      0 0.0.0.0:111             0.0.0.0:*                           -
+udp        0      0 [1;31m127.0.0.1[0m:637           0.0.0.0:*                           -
+udp        0      0 0.0.0.0:2049            0.0.0.0:*                           -
+udp        0      0 0.0.0.0:58755           0.0.0.0:*                           -
+udp        0      0 0.0.0.0:41092           0.0.0.0:*                           -
 
 [1;33m[+] [1;32mCan I sniff with tcpdump?
 [0m[1;90mNo
@@ -478,13 +478,13 @@ USER     TTY      FROM              LOGIN@   IDLE   JCPU   PCPU WHAT
 [1;96m[1;95muser[0m[0m     pts/0    ip-10-10-37-125. 11:56   35.00s  1.82s  0.08s w
 
 [1;33m[+] [1;32mLast logons
-[0m[1;96m[1;95muser[0m[0m     pts/0        ip-10-10-37-125. Thu Jan 11 11:56   still logged in   
-[1;96m[1;95muser[0m[0m     pts/0        ip-10-10-37-125. Thu Jan 11 11:54 - 11:54  (00:00)    
-reboot   system boot  2.6.32-5-amd64   Thu Jan 11 11:50 - 11:58  (00:07)    
-reboot   system boot  2.6.32-5-amd64   Fri May 15 11:32 - 11:35  (00:03)    
-[1;96m[1;95muser[0m[0m     pts/0        192.168.1.125    Fri May 15 06:41 - 06:41  (00:00)    
-[1;96m[1;95muser[0m[0m     pts/0        192.168.1.125    Fri May 15 06:39 - 06:41  (00:01)    
-[1;96m[1;95muser[0m[0m     pts/0        192.168.1.125    Fri May 15 06:39 - 06:39  (00:00)    
+[0m[1;96m[1;95muser[0m[0m     pts/0        ip-10-10-37-125. Thu Jan 11 11:56   still logged in
+[1;96m[1;95muser[0m[0m     pts/0        ip-10-10-37-125. Thu Jan 11 11:54 - 11:54  (00:00)
+reboot   system boot  2.6.32-5-amd64   Thu Jan 11 11:50 - 11:58  (00:07)
+reboot   system boot  2.6.32-5-amd64   Fri May 15 11:32 - 11:35  (00:03)
+[1;96m[1;95muser[0m[0m     pts/0        192.168.1.125    Fri May 15 06:41 - 06:41  (00:00)
+[1;96m[1;95muser[0m[0m     pts/0        192.168.1.125    Fri May 15 06:39 - 06:41  (00:01)
+[1;96m[1;95muser[0m[0m     pts/0        192.168.1.125    Fri May 15 06:39 - 06:39  (00:00)
 
 wtmp begins Fri May 15 06:39:11 2020
 
@@ -494,9 +494,9 @@ wtmp begins Fri May 15 06:39:11 2020
 [1;96m[1;95muser[0m[0m             pts/0    ip-10-10-37-125. Thu Jan 11 11:56:02 -0500 2024
 
 [1;33m[+] [1;32mPassword policy
-[0mPASS_MAX_DAYS	99999
-PASS_MIN_DAYS	0
-PASS_WARN_AGE	7
+[0mPASS_MAX_DAYS   99999
+PASS_MIN_DAYS   0
+PASS_WARN_AGE   7
 
 
 [1;34m===================================( [1;32mSoftware Information[1;34m )===================================
@@ -510,38 +510,38 @@ PASS_WARN_AGE	7
 [0mFrom '/etc/[1;34mmysql[0m/my.cnf' Mysql [1;96m[1;95muser[0m[0m: user = [1;31mroot[0m
 Found readable /etc/mysql/my.cnf
 [client]
-port		= 3306
-socket		= /var/run/mysqld/mysqld.sock
+port        = 3306
+socket      = /var/run/mysqld/mysqld.sock
 [mysqld_safe]
-socket		= /var/run/mysqld/mysqld.sock
-nice		= 0
+socket      = /var/run/mysqld/mysqld.sock
+nice        = 0
 [mysqld]
 user = root
-pid-file	= /var/run/mysqld/mysqld.pid
-socket		= /var/run/mysqld/mysqld.sock
-port		= 3306
-basedir		= /usr
-datadir		= /var/lib/mysql
-tmpdir		= /tmp
-language	= /usr/share/mysql/english
+pid-file    = /var/run/mysqld/mysqld.pid
+socket      = /var/run/mysqld/mysqld.sock
+port        = 3306
+basedir     = /usr
+datadir     = /var/lib/mysql
+tmpdir      = /tmp
+language    = /usr/share/mysql/english
 skip-external-locking
-bind-address		= 127.0.0.1
-key_buffer		= 16M
-max_allowed_packet	= 16M
-thread_stack		= 192K
+bind-address        = 127.0.0.1
+key_buffer      = 16M
+max_allowed_packet  = 16M
+thread_stack        = 192K
 thread_cache_size       = 8
 myisam-recover         = BACKUP
-query_cache_limit	= 1M
+query_cache_limit   = 1M
 query_cache_size        = 16M
-expire_logs_days	= 10
+expire_logs_days    = 10
 max_binlog_size         = 100M
 [mysqldump]
 quick
 quote-names
-max_allowed_packet	= 16M
+max_allowed_packet  = 16M
 [mysql]
 [isamchk]
-key_buffer		= 16M
+key_buffer      = 16M
 !includedir /etc/mysql/conf.d/
 From '/usr/share/[1;34mmysql[0m/debian-start.inc.sh' Mysql [1;96m[1;95muser[0m[0m:   ret=$( echo "SELECT count(*) FROM mysql.user WHERE user='[1;31mroot[0m' and password='';" | $MYSQL --skip-column-names )
 
@@ -688,24 +688,24 @@ Searching inside /etc/ssh/ssh_config for interesting info
 [0m[1;33m[+] [1;32mSUID - Check easy privesc, exploits and write perms
 [0m[1;34m[i] [1;33mhttps://book.hacktricks.xyz/linux-unix/privilege-escalation#commands-with-sudo-and-suid-commands
 [0m/usr/bin[1;32m/chsh[0m
-/usr/bin[1;31m/sudo		--->	/sudo$[0m
-/usr/bin[1;31m/newgrp		--->	HP-UX_10.20[0m
-/usr/bin[1;31m/sudoedit		--->	Sudo/SudoEdit_1.6.9p21/1.7.2p4/(RHEL_5/6/7/Ubuntu)/Sudo<=1.8.14[0m
-/usr/bin[1;31m/passwd		--->	Apple_Mac_OSX(03-2006)/Solaris_8/9(12-2004)/SPARC_8/9/Sun_Solaris_2.3_to_2.5.1(02-1997)[0m
+/usr/bin[1;31m/sudo        --->    /sudo$[0m
+/usr/bin[1;31m/newgrp      --->    HP-UX_10.20[0m
+/usr/bin[1;31m/sudoedit        --->    Sudo/SudoEdit_1.6.9p21/1.7.2p4/(RHEL_5/6/7/Ubuntu)/Sudo<=1.8.14[0m
+/usr/bin[1;31m/passwd      --->    Apple_Mac_OSX(03-2006)/Solaris_8/9(12-2004)/SPARC_8/9/Sun_Solaris_2.3_to_2.5.1(02-1997)[0m
 /usr/bin[1;32m/gpasswd[0m
-/usr/bin[1;31m/chfn		--->	SuSE_9.3/10[0m
+/usr/bin[1;31m/chfn        --->    SuSE_9.3/10[0m
 /usr/local/bin/suid-so
 /usr/local/bin/suid-env
 /usr/local/bin/suid-env2
 /usr/sbin/exim-4.84-3
 /usr/lib/eject[1;32m/dmcrypt-get-device[0m
 /usr/lib/openssh[1;32m/ssh-keysign[0m
-/usr/lib[1;31m/pt_chown		--->	GNU_glibc_2.1/2.1.1_-6(08-1999)[0m
+/usr/lib[1;31m/pt_chown        --->    GNU_glibc_2.1/2.1.1_-6(08-1999)[0m
 /bin[1;32m/ping6[0m
 /bin[1;32m/ping[0m
-/bin[1;31m/mount		--->	Apple_Mac_OSX(Lion)_Kernel_xnu-1699.32.7_except_xnu-1699.24.8[0m
+/bin[1;31m/mount       --->    Apple_Mac_OSX(Lion)_Kernel_xnu-1699.32.7_except_xnu-1699.24.8[0m
 /bin[1;32m/su[0m
-/bin[1;31m/umount		--->	BSD/Linux(08-1996)[0m
+/bin[1;31m/umount      --->    BSD/Linux(08-1996)[0m
 /sbin[1;32m/mount.nfs[0m
 
 [1;33m[+] [1;32mSGID
@@ -993,24 +993,24 @@ lrwxrwxrwx 1 [1;31mroot[0m [1;31mroot[0m 33 May 14  2017 /etc/systemd/system
 [0m
 [1;33m[+] [1;32mFinding 'pwd' or 'passw' variables (and interesting php db definitions) inside /home /var/www /var/backups /tmp /etc /root /mnt (limit 70)
 [0m/etc/exim4/conf.d/auth/30_exim4-config_examples:[1;31mPASSW[0mDLINE=${sg{\
-/etc/exim4/conf.d/auth/30_exim4-config_examples:		    ^${sg{[1;31mPASSW[0mDLINE}{\\N([^:]+:)(.*)\\N}{\\$2}}"
-/etc/exim4/conf.d/auth/30_exim4-config_examples:		     ^${sg{[1;31mPASSW[0mDLINE}{\\N([^:]+:)(.*)\\N}{\\$2}}\
-/etc/exim4/conf.d/auth/30_exim4-config_examples:		 ; ${sg{[1;31mPASSW[0mDLINE}{\\N([^:]+:)(.*)\\N}{\\$2}}"
+/etc/exim4/conf.d/auth/30_exim4-config_examples:            ^${sg{[1;31mPASSW[0mDLINE}{\\N([^:]+:)(.*)\\N}{\\$2}}"
+/etc/exim4/conf.d/auth/30_exim4-config_examples:             ^${sg{[1;31mPASSW[0mDLINE}{\\N([^:]+:)(.*)\\N}{\\$2}}\
+/etc/exim4/conf.d/auth/30_exim4-config_examples:         ; ${sg{[1;31mPASSW[0mDLINE}{\\N([^:]+:)(.*)\\N}{\\$2}}"
 /etc/exim4/exim4.conf.template:[1;31mPASSW[0mDLINE=${sg{\
-/etc/exim4/exim4.conf.template:		    ^${sg{[1;31mPASSW[0mDLINE}{\\N([^:]+:)(.*)\\N}{\\$2}}"
-/etc/exim4/exim4.conf.template:		     ^${sg{[1;31mPASSW[0mDLINE}{\\N([^:]+:)(.*)\\N}{\\$2}}\
-/etc/exim4/exim4.conf.template:		 ; ${sg{[1;31mPASSW[0mDLINE}{\\N([^:]+:)(.*)\\N}{\\$2}}"
+/etc/exim4/exim4.conf.template:         ^${sg{[1;31mPASSW[0mDLINE}{\\N([^:]+:)(.*)\\N}{\\$2}}"
+/etc/exim4/exim4.conf.template:          ^${sg{[1;31mPASSW[0mDLINE}{\\N([^:]+:)(.*)\\N}{\\$2}}\
+/etc/exim4/exim4.conf.template:      ; ${sg{[1;31mPASSW[0mDLINE}{\\N([^:]+:)(.*)\\N}{\\$2}}"
 /etc/nsswitch.conf:[1;31mpassw[0md:         compat
-/etc/pam.d/common-[1;31mpassw[0mord:[1;31mpassw[0mord	[success=1 default=ignore]	pam_unix.so obscure sha512
+/etc/pam.d/common-[1;31mpassw[0mord:[1;31mpassw[0mord   [success=1 default=ignore]  pam_unix.so obscure sha512
 /etc/security/namespace.init:                gid=$(echo "$[1;31mpassw[0md" | cut -f4 -d":")
 /etc/security/namespace.init:        homedir=$(echo "$[1;31mpassw[0md" | cut -f6 -d":")
 /etc/security/namespace.init:        [1;31mpassw[0md=$(getent [1;31mpassw[0md "$user")
-/etc/ssl/openssl.cnf:challenge[1;31mPassw[0mord		= A challenge [1;31mpassw[0mord
-/etc/ssl/openssl.cnf:challenge[1;31mPassw[0mord_max		= 20
-/etc/ssl/openssl.cnf:challenge[1;31mPassw[0mord_min		= 4
+/etc/ssl/openssl.cnf:challenge[1;31mPassw[0mord       = A challenge [1;31mpassw[0mord
+/etc/ssl/openssl.cnf:challenge[1;31mPassw[0mord_max       = 20
+/etc/ssl/openssl.cnf:challenge[1;31mPassw[0mord_min       = 4
 /home/user/tools/mysql-udf/raptor_udf2.c: * Enter [1;31mpassw[0mord:
-/home/user/tools/privesc-scripts/LinEnum.sh:  echo -e "\e[00;31m[-] Contents of /etc/[1;31mpassw[0md:\e[00m\n$read[1;31mpassw[0md" 
-/home/user/tools/privesc-scripts/LinEnum.sh:  echo -e "\e[00;31m[-] [1;31mPassw[0mord and storage information:\e[00m\n$logindefs" 
+/home/user/tools/privesc-scripts/LinEnum.sh:  echo -e "\e[00;31m[-] Contents of /etc/[1;31mpassw[0md:\e[00m\n$read[1;31mpassw[0md"
+/home/user/tools/privesc-scripts/LinEnum.sh:  echo -e "\e[00;31m[-] [1;31mPassw[0mord and storage information:\e[00m\n$logindefs"
 /home/user/tools/privesc-scripts/LinEnum.sh:    echo -e "\e[00;33m[-] ht[1;31mpassw[0md found - could contain [1;31mpassw[0mords:\e[00m\n$ht[1;31mpassw[0md"
 /home/user/tools/privesc-scripts/LinEnum.sh:hashesin[1;31mpassw[0md=`grep -v '^[^:]*:[x]' /etc/[1;31mpassw[0md 2>/dev/null`
 /home/user/tools/privesc-scripts/LinEnum.sh:ht[1;31mpassw[0md=`find / -name .ht[1;31mpassw[0md -print -exec cat {} \; 2>/dev/null`

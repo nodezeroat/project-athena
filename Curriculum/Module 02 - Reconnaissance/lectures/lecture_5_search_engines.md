@@ -7,7 +7,7 @@
 
 ### Overview
 
-- Known as the “search engine for devices”.
+- Known as the "search engine for devices".
 - Discovers and lists devices connected to the internet such as servers, routers, and webcams.
 
 ### How to Use Shodan for Reconnaissance

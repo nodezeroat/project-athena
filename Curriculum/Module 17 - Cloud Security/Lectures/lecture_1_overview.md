@@ -2,11 +2,11 @@
 
 Cloud security encompasses policies, technologies, and procedures designed to safeguard data, applications, and infrastructure in cloud environments. As the digital shift continues to shape the technological landscape, the importance of robust cloud security measures becomes increasingly evident.
 
-### **Cloud Security**:
+### **Cloud Security**
 
 Cloud security focuses on the protection of online data, applications, and networks to ensure confidentiality, integrity, and availability.
 
-### Key Concepts:
+### Key Concepts
 
 - **Service Models**:
   - **IaaS (Infrastructure as a Service)**: Involves the provision of virtualized computing resources over the internet.
@@ -44,11 +44,11 @@ Cloud security focuses on the protection of online data, applications, and netwo
 - **Serverless Computing:**
   - Serverless computing allows developers to run code without managing the underlying infrastructure. It automatically scales based on demand, and users are billed only for the actual resources consumed during code execution.
 
-* **Object Storage:**
+- **Object Storage:**
 
   - Object storage is a scalable and flexible storage solution designed for storing and retrieving large amounts of unstructured data, such as documents, images, and videos. It provides high durability and availability.
 
-* **Virtual Machines (Compute):**
+- **Virtual Machines (Compute):**
 
   - Virtual machines (VMs) offer on-demand computing resources, allowing users to run applications in a virtualized environment. VMs provide flexibility in terms of operating systems and software configurations.
 
@@ -64,7 +64,7 @@ Cloud security focuses on the protection of online data, applications, and netwo
 
   - Integration and workflow services help connect various applications, services, and systems. They enable the automation of business processes, data flows, and communication between different components.
 
-* **Serverless File Storage:**
+- **Serverless File Storage:**
   - Serverless file storage services provide scalable and fully managed file systems for applications. They eliminate the need for managing traditional file servers and allow seamless integration with serverless architectures.
 
 - **Content Delivery Network (CDN):**

@@ -25,11 +25,11 @@ for line in f:
     if "---" in line:
         if title != "":
             # convert " to \"
-            title = title.replace("\"", "\'")
+            title = title.replace('"', "'")
             # remove matching chars at the start and end of the string
-            title = re.sub(r'^[^a-zA-Z0-9]*|[^a-zA-Z0-9]*$', '', title)
-            
-            fout.write(f"#slide(title: \"{title}\")[\n")
+            title = re.sub(r"^[^a-zA-Z0-9]*|[^a-zA-Z0-9]*$", "", title)
+
+            fout.write(f'#slide(title: "{title}")[\n')
 
         title = ""
         skip = False
@@ -56,10 +56,10 @@ for line in f:
     elif "#" == line.strip()[0] and title == "":
         title = line.strip()[1:]
         print(f"{title}")
-    else :
+    else:
         # parse images such as ![bg right 80%](./figures/intro.png) into #image("./figures/intro.png")
         if "![" in line:
-            line = re.sub(r'!\[.*\]\((.*)\)', r'#image("\1")', line)
+            line = re.sub(r"!\[.*\]\((.*)\)", r'#image("\1")', line)
             buffer.append("// TODO fix image manually")
         # No strip for no indentation
         buffer.append(line)

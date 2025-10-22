@@ -27,11 +27,11 @@ The first line of defense in securing a WiFi network involves choosing the right
 - **Strong Passwords:** Use a complex password for your WiFi network by mixing letters, numbers, and special characters. Avoid common words or easily guessable information.
 - **Change SSID Names:** Change the default SSID to something unique but not personally identifiable. Avoid names that make the network a more likely target for hackers.
 - **Disable WPS:** WPS can be a security vulnerability due to its PIN feature making it easier for devices to connect. Disable WPS to prevent potential brute-force attacks.
-- **Firewalls:** Activate the router’s built-in firewall to add an extra layer of defense. Consider additional firewall software for more comprehensive protection.
-- **Firmware Updates:** Regularly update the router’s firmware to patch security vulnerabilities. Set reminders or enable auto-updates if available.
+- **Firewalls:** Activate the router's built-in firewall to add an extra layer of defense. Consider additional firewall software for more comprehensive protection.
+- **Firmware Updates:** Regularly update the router's firmware to patch security vulnerabilities. Set reminders or enable auto-updates if available.
 - **MAC Filters:** Use MAC address filtering for an additional layer of security. Be aware that MAC addresses can be spoofed by determined attackers.
 - **Reduced Range:** Adjust the signal strength of your router to limit coverage outside your premises. Consider the physical placement of the router in your home or office.
-- **Guest Access:** Create a separate guest network if your router supports it. Ensure it has a different password and doesn’t provide access to the main network.
+- **Guest Access:** Create a separate guest network if your router supports it. Ensure it has a different password and doesn't provide access to the main network.
 - **Monitoring:** Regularly check the list of devices connected to your network. Investigate unknown devices or unusual activity.
 - **Education:** Educate yourself and employees about the risks and threats affecting wireless security. Only then it is possible to deal with threats.
 

@@ -2,13 +2,13 @@
 
 ## What is a Firewall?
 
-It must be noted that firewalls are used for filtering of network traffic in internal network. It determines the traffic that should either be permitted or prohibited in line with specific stipulations. The firewall can be thought of as a gatekeeper of your computer’s entrance point where only trusted sources or IP address are allowed into your network.
+It must be noted that firewalls are used for filtering of network traffic in internal network. It determines the traffic that should either be permitted or prohibited in line with specific stipulations. The firewall can be thought of as a gatekeeper of your computer's entrance point where only trusted sources or IP address are allowed into your network.
 
 The incoming traffic, which is allowed in this network, is configured into a firewall. It differentiates between good traffic and malicious data and either permits or denies packets based on preset security criteria.
 
 The packet data contains such information as its source, destination, content and so on which serves as basis for these rules. They allow traffic from suspect sources, but block it to mitigate cyberattacks.
 
-For instance, the picture below illustrates how a firewall lets genuine traffic through to the user’s private network.
+For instance, the picture below illustrates how a firewall lets genuine traffic through to the user's private network.
 
 ![Firewall 1](images/Firewall_1.png)
 

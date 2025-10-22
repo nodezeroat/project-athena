@@ -45,7 +45,7 @@ Enumeration is the process of extracting detailed information about a network or
 ## Resources
 
 - **NMAP Official Documentation**: [NMAP Documentation](https://nmap.org/book/man.html)
-- **Books**: “Nmap Network Scanning: The Official Nmap Project Guide to Network Discovery and Security Scanning” by Gordon Fyodor Lyon.
+- **Books**: "Nmap Network Scanning: The Official Nmap Project Guide to Network Discovery and Security Scanning" by Gordon Fyodor Lyon.
 - **Enumeration Tools Documentation**:
   - Enum4linux: [Github Repository](https://github.com/portcullislabs/enum4linux)
   - Nbtscan: Information available on various cybersecurity websites.

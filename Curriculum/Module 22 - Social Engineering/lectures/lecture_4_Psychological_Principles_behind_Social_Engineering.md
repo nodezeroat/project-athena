@@ -1,9 +1,9 @@
 # Psychological Principles behind Social Engineering
 
 <span style="float: left; margin-right: 10px;">
-	<img src="../resources/images/SocialEngineering.png" alt="Social Engineering" width="200">
-	<br>
-	<small>Source: [ChatGPT/DALL&middot;E]</small>
+    <img src="../resources/images/SocialEngineering.png" alt="Social Engineering" width="200">
+    <br>
+    <small>Source: [ChatGPT/DALL&middot;E]</small>
 </span>
 <span>
 In this section of the module Social Engineering, we will explore the psychological tricks and methods used in social engineering attacks and why, despite widespread knowledge of these tactics, they remain some of the most efficient in cyberspace.
@@ -83,7 +83,7 @@ In the next sections of this module we will look at the tools and techniques tha
 
 ## Sources
 
-- **1 Website**: [The psychology of social engineering - the “soft” side of cybercrime](https://www.microsoft.com/en-us/security/blog/2020/06/30/psychology-social-engineering-soft-side-cybercrime) - By Microsoft Security Team, June 30, 2020
+- **1 Website**: [The psychology of social engineering - the "soft" side of cybercrime](https://www.microsoft.com/en-us/security/blog/2020/06/30/psychology-social-engineering-soft-side-cybercrime) - By Microsoft Security Team, June 30, 2020
 - **2 Website**: [Understanding the Psychology Behind Social Engineering Attacks](https://medium.com/@michaelroyvarley/understanding-the-psychology-behind-social-engineering-attacks-b3c637ef9026) - By Mike Varley, Oct 1
 - **3 Book**: [Social Engineering: The Science of Human Hacking](https://www.amazon.com/Social-Engineering-Science-Human-Hacking/dp/111943338X) - By Christopher Hadnagy, 2018
 - **4 Website**: [The Psychology of Social Engineering – Why It Works](https://www.cde.state.co.us/dataprivacyandsecurity/socialengineeringeducation) - By Colorado Department of Education, January 21, 2020

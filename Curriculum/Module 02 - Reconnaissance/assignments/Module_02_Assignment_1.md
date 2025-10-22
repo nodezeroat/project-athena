@@ -1,10 +1,10 @@
 ## Assignment: Exploring the Reconnaissance Phase in a Historical Cyber Attack
 
-### Objective:
+### Objective
 
 This assignment aims to deepen your understanding of the reconnaissance phase in cyberattacks. You will select and research a historical cyber attack, focusing primarily on the reconnaissance phase. Analyze and present the methods, tools, and techniques used during this phase.
 
-### Instructions:
+### Instructions
 
 #### 1. **Selection of a Cyber Attack:**
 
@@ -30,13 +30,13 @@ This assignment aims to deepen your understanding of the reconnaissance phase in
 - Ensure your report is clear, concise, and professionally formatted.
 - Include a bibliography section to credit all your sources.
 
-### Submission Guidelines:
+### Submission Guidelines
 
 1. **Report:**
    - Submit your report as a PDF document.
    - Ensure your name, date, and the title of your report are included on the cover page.
 
-### Evaluation Criteria:
+### Evaluation Criteria
 
 1. **Quality of Research:**
 
@@ -57,10 +57,11 @@ By completing this assignment, you will gain a richer understanding of the role 
 
 ### Bonus Points: Reflection on Modern Reconnaissance Techniques
 
-#### Objective:
+#### Objective
+
 Earn bonus points by reflecting on how modern advancements in technology might alter or have altered the reconnaissance phase in cyber attacks. This task involves less intensive research and more on thoughtful speculation and analysis based on current technology trends.
 
-#### Instructions:
+#### Instructions
 
 1. **Technological Advancements:**
    - Briefly research recent advancements in technology (e.g., AI, IoT, big data, cloud computing).
@@ -74,12 +75,12 @@ Earn bonus points by reflecting on how modern advancements in technology might a
    - Add this reflective analysis to your report as a separate section titled "Bonus Points Task: Modern Reconnaissance Techniques."
    - Ensure this section complements the main content of your report, offering forward-looking insights into the evolution of cyber reconnaissance.
 
-### Additional Submission Guidelines for Bonus Points:
+### Additional Submission Guidelines for Bonus Points
 
 - Include this reflection in your report as an additional section.
 - Clearly mark this section as "Bonus Points Task: Reflection on Modern Reconnaissance Techniques" for evaluators to identify.
 
-### Evaluation Criteria for Bonus Points:
+### Evaluation Criteria for Bonus Points
 
 1. **Quality of Reflection:**
    - Depth and creativity of your insights on modern technologies and their impact on cyber reconnaissance.

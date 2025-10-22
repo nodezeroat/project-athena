@@ -57,7 +57,7 @@ Wireless Local Area Networks (WLANs) have become a cornerstone of modern network
 
 ### 1.4.1 Topologies
 
-- **Basic Service Set (BSS):** This is the basic building block of a WLAN. In a BSS, devices communicate with a single access point. It’s akin to a simple, standalone network or a cell in the wireless network.
+- **Basic Service Set (BSS):** This is the basic building block of a WLAN. In a BSS, devices communicate with a single access point. It's akin to a simple, standalone network or a cell in the wireless network.
 - **Extended Service Set (ESS):** An ESS is a series of interconnected BSSs. This setup allows a device to roam seamlessly from one AP to another within the same network, which is common in larger settings like campuses or office buildings.
 - **Mesh Networks:** These networks do not rely on a central AP. Instead, each node in a mesh network can forward data to other nodes, making the network more resilient and flexible.
 - **Ad-Hoc Networks (IBSS):** In an Independent Basic Service Set, devices connect directly without an AP, suitable for small, temporary setups.
@@ -86,7 +86,7 @@ WLANs use radio frequencies, divided into channels, to transmit and receive data
 
 - **Channel Bandwidth:** Refers to the frequency range that each channel occupies. For instance, in the 2.4 GHz band, channels are typically 20 MHz wide.
 - **Channel Utilization:** A key characteristic of WLAN channels is that only one device can effectively transmit data on a channel at any given moment. When multiple devices attempt to use the same channel simultaneously, it leads to collisions and network inefficiencies.
-- **Interference and Overlap:** In the 2.4 GHz band, channels often overlap, causing interference. Channels 1, 6, and 11 are widely used as they don’t overlap.
+- **Interference and Overlap:** In the 2.4 GHz band, channels often overlap, causing interference. Channels 1, 6, and 11 are widely used as they don't overlap.
 - **Channel Selection:** Choosing the right channel is vital for optimal network performance. Factors like neighboring networks, physical obstacles, and device capabilities play a role.
 
 | Frequency Band | Channels | Typical Use               |

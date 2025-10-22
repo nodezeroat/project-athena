@@ -85,4 +85,4 @@ Obtaining a code-signing certificate can be quite expensive, especially when it 
 With that being said, as of now, there is no way to obtain a code-signing certificate for free.
 
 HTTPS-certificates are also managed via PKI, which are used for providing traffic encryption & verifying the ownership of websites.
-Fortunately, HTTPS-certificates are easy & free to obtain. One example of a free certificate authority offering free certificates would be https://letsencrypt.org.
+Fortunately, HTTPS-certificates are easy & free to obtain. One example of a free certificate authority offering free certificates would be <https://letsencrypt.org>.

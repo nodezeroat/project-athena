@@ -12,7 +12,7 @@ The intrusion protection systems (IPS) are the network security devices responsi
 
 ### Security Information and Event Management (SIEM)
 
-The technology known as SIEM analyses security alerts that are produced on an ongoing basis by network hardware and software. It gives a detailed overview of an organisation’s information security.
+The technology known as SIEM analyses security alerts that are produced on an ongoing basis by network hardware and software. It gives a detailed overview of an organisation's information security.
 
 ### Endpoint Detection and Response (EDR)
 
@@ -44,7 +44,7 @@ Vulnerability management encompasses the practice of identifying exposures as we
 
 ### Risk Management
 
-Risk management entails the identification, evaluating and controlling of risks to an organization’s capital and profit. These threats or risks may come from various sources such as financial problems, legal liabilities, poor decision-making, accidents and natural calamities.
+Risk management entails the identification, evaluating and controlling of risks to an organization's capital and profit. These threats or risks may come from various sources such as financial problems, legal liabilities, poor decision-making, accidents and natural calamities.
 
 _source: Overview \[1.\], Overview \[2.\]_
 

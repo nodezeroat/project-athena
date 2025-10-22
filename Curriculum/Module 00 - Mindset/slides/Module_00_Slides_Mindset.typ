@@ -73,8 +73,8 @@
   ][
     // Right: quote
     #text(size: 24pt)[
-      “The most exciting phrase to hear in science, the one that heralds new discoveries,
-      is not ‘Eureka!’ but ‘That’s funny…’”
+      "The most exciting phrase to hear in science, the one that heralds new discoveries,
+      is not 'Eureka!' but 'That's funny…'"
     ]
 
     #text(size: 14pt, style: "italic")[— Isaac Asimov]
@@ -129,7 +129,7 @@
 
 #slide(title: "Prevent Burnout")[
   - Work-Life Balance: Set boundaries and recharge.
-  - Collaborate: Don’t hack alone — support and be supported.
+  - Collaborate: Don't hack alone — support and be supported.
   - Keep Learning: Curiosity keeps burnout at bay.
   - Manage Stress: Use healthy coping strategies.
   - Celebrate Wins: Big or small, every success counts.

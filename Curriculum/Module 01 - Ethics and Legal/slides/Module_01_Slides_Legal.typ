@@ -137,7 +137,7 @@
 #slide(title: "§118a StGB")[
   Widerrechtlicher Zugriff auf ein Computersystem
 
-  === Objektive Tatseite („TUN“ des Täters):
+  === Objektive Tatseite („TUN" des Täters):
   Verschaffung des Zugriffs zu (Teilen) eines fremden Computersystems durch Überwindung einer spezifischen Sicherheitsvorkehrung im Computersystem.
 ]
 
@@ -184,7 +184,7 @@
 ]
 
 #slide(title: "Qualifikation")[
-  - „Normaler“ Strafrahmen: Freiheitsstrafe bis zu 6 Monaten / Geldstrafe bis zu 360 Tagessätzen
+  - „Normaler" Strafrahmen: Freiheitsstrafe bis zu 6 Monaten / Geldstrafe bis zu 360 Tagessätzen
 
   - das Computersystem ist ein wesentlicher Bestandteil der kritischen Infrastruktur: bis zu 2 Jahren Freiheitsstrafe
 

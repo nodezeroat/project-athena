@@ -1,10 +1,10 @@
 ## Assignment: Completing and Analyzing PortSwigger Web Security Labs
 
-### Objective:
+### Objective
 
 The purpose of this assignment is to hone your hands-on skills in web security by engaging with real-world simulations. You will complete two labs from each category at PortSwigger's Web Security Academy and draft comprehensive write-ups detailing your findings, approaches, and solutions.
 
-### Instructions:
+### Instructions
 
 #### 1. **Selection of Labs:**
 
@@ -33,14 +33,14 @@ The purpose of this assignment is to hone your hands-on skills in web security b
 - Your document should have a table of contents, indicating the category and title of each lab.
 - Like any professional report, ensure your document has a cover page with your name, date, and a title that encapsulates the nature of the assignment.
 
-### Submission Guidelines:
+### Submission Guidelines
 
 1. **Lab Write-up Document:**
    - Submit your consolidated lab write-ups as a PDF document on Google Drive.
    - Ensure your name, date, and the title of the assignment are included on the cover page.
    - Ensure your file is named according to the naming convention.
 
-### Evaluation Criteria:
+### Evaluation Criteria
 
 1. **Lab Completion:**
 
@@ -62,10 +62,11 @@ By undertaking this assignment, you will not only improve your practical skills 
 
 ### Bonus Points Task: Advanced Lab Completion
 
-#### Objective:
+#### Objective
+
 Earn bonus points by challenging yourself with more advanced labs. This task will demonstrate your ability to tackle higher complexity problems and deepen your practical understanding of web security.
 
-#### Instructions:
+#### Instructions
 
 1. **Advanced Lab Selection:**
    - Return to [PortSwigger's Web Security Academy](https://portswigger.net/web-security/all-labs).
@@ -83,12 +84,12 @@ Earn bonus points by challenging yourself with more advanced labs. This task wil
      - **Challenges Faced:** Discuss any additional challenges faced due to the higher difficulty and how you overcame them.
      - **Conclusion:** Reflect on what you learned from completing these more advanced labs.
 
-### Additional Submission Guidelines for Bonus Points:
+### Additional Submission Guidelines for Bonus Points
 
 - Include these advanced lab write-ups in your report as an additional section or append them to the respective categories.
 - Clearly mark these sections as "Bonus Points Task: Advanced Lab Completion" for easy identification.
 
-### Evaluation Criteria for Bonus Points:
+### Evaluation Criteria for Bonus Points
 
 1. **Lab Completion and Complexity:**
    - Successful completion of higher-difficulty labs.

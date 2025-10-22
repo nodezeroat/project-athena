@@ -71,7 +71,7 @@ _source: Intrusion Detection and Prevention Systems \[1.\]_
 
 _source: Intrusion Detection and Prevention Systems \[1.\]_
 
-### **Network-Based IDPS (NIDPS)**:
+### **Network-Based IDPS (NIDPS)**
 
 - monitors network traffic (entire network segment or subnet)
 - It's deployed in strategic network locations

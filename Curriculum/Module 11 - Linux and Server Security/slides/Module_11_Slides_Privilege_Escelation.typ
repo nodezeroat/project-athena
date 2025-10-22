@@ -130,7 +130,7 @@
 
 #section-slide(title: "Common Vulnerabilities")
 #slide(title: "Incorrect File Permissions")[
-  - When files have access permissions they shouldn’t, they can be exploited.
+  - When files have access permissions they shouldn't, they can be exploited.
     - Examples:
       - *System Files*: `/etc/passwd`, `/etc/shadow`
       - *Configuration Files*: `*.conf`, `*.txt`
@@ -157,7 +157,7 @@
 ]
 
 #slide(title: "SUID")[
-  - *SUID Binaries*: Files with the `setuid` bit set, which run with the owner’s privileges instead of the user's.
+  - *SUID Binaries*: Files with the `setuid` bit set, which run with the owner's privileges instead of the user's.
 
   ```bash
   $ find / -type f -perm -4000 2>/dev/null
@@ -307,7 +307,7 @@
 
 #section-slide(title: "Quality of Life Improvements")
 #slide(title: "Upgrading Your Reverse Shell")[
-  - Interactive tools (like `sudo` and `passwd`) don’t work without a proper PTY/TTY.
+  - Interactive tools (like `sudo` and `passwd`) don't work without a proper PTY/TTY.
   - Steps to upgrade the shell:
 
   ```bash

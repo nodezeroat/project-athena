@@ -56,25 +56,25 @@ Shared Server: A single server hosting multiple applications/projects
 
 Prices are not accurate. Goal is to understand the development of the prices.
 
-### Assumptions for the Scenario:
+### Assumptions for the Scenario
 
 1. **Starting DAUs (Daily Active Users)**: 500, increasing monthly.
 1. **Growth Rate**: 20% increase in DAUs each month.
 1. **Server Requirements**: Scale up as DAUs increase.
 
-### Cloud Servers:
+### Cloud Servers
 
 - **Initial Setup**: 2 vCPUs, 4GB RAM, 50GB Storage.
 - **Cost**: Starts at $50/month.
 - **Scaling**: Upgrades as DAUs increase, impacting cost.
 
-### Dedicated Servers:
+### Dedicated Servers
 
 - **Initial Setup**: 4 vCPUs, 8GB RAM, 200GB Storage.
 - **Cost**: Fixed at $200/month.
 - **Scaling**: Limited by physical hardware; may need additional servers.
 
-### Shared Servers:
+### Shared Servers
 
 - **Initial Setup**: Standard shared hosting p\[ackage.
 - **Cost**: Fixed at $20/month.
@@ -95,5 +95,5 @@ Prices are not accurate. Goal is to understand the development of the prices.
 
 ### Sources
 
-https://morefield.com/blog/pros-and-cons-of-cloud-computing/
-https://www.cloudways.com/blog/wordpress-shared-vs-dedicated-vs-cloud-hosting/
+<https://morefield.com/blog/pros-and-cons-of-cloud-computing/>
+<https://www.cloudways.com/blog/wordpress-shared-vs-dedicated-vs-cloud-hosting/>
