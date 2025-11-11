@@ -14,12 +14,6 @@
   ),
 )
 
-// #title-slide()
-// #standout-slide(title)
-// #section-slide(title,subtitle)
-// #blank-slide()
-// #slide(title)
-
 #title-slide()
 
 #slide(title: "Warum?")[
@@ -507,7 +501,7 @@
 #slide(title: "Verurteilungs Statistik")[
   #image("./figures/verurteilungs_statistik.png", width: 63%)
 
-  #set text(font: "Noto Sans Mono", weight: "regular", size: 11pt)
+  #set text(weight: "regular", size: 11pt)
   Quelle: Statistik Austria, www.statistik.at (17.09.2025)
 
 ]
