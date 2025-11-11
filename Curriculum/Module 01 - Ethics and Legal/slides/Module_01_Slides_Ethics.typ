@@ -7,7 +7,7 @@
     subtitle: [Hacker Ethics – Guiding Principles in IT Security],
     authors: ([*Marcel Schnideritsch*]),
     extra: [],
-    footer: [Marcel Schnideritsch],
+    footer: [Module 01 - Ethics],
   ),
   config-common(
     handout: false,
@@ -109,7 +109,7 @@
     - Privacy-preserving tech (e.g., encryption)
     - Transparent oversight and accountability
 
-  #alert(""Security" is not an excuse to erase rights.")
+  #alert("\"Security\" is not an excuse to erase rights.")
 ]
 
 #slide(title: "Dilemma 3: Gray Hat Behavior")[

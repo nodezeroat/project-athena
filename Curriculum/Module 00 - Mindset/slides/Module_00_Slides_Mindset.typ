@@ -7,7 +7,7 @@
     subtitle: [Introduction to the Offensive Security Mindset],
     authors: [*Marcel Schnideritsch*],
     extra: [],
-    footer: [Marcel Schnideritsch],
+    footer: [Module 00 - Mindset],
   ),
   config-common(
     handout: false,

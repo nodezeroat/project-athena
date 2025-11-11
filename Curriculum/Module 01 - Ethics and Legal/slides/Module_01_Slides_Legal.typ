@@ -7,7 +7,7 @@
     subtitle: [Überblick über die Rechtslage in Österreich und Deutschland],
     authors: [*Marcel Schnideritsch*],
     extra: [],
-    footer: [Marcel Schnideritsch],
+    footer: [Module 01 - Legal],
   ),
   config-common(
     handout: false,

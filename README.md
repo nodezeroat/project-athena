@@ -1,8 +1,8 @@
-[![Compile Typst Slides and Release](https://github.com/nodezeroat/project-athena/actions/workflows/compile-typst.yml/badge.svg)](https://github.com/nodezeroat/project-athena/actions/workflows/compile-typst.yml)
-
 # Project Athena
 
-![](athena_banner.jpg)
+[![Compile Typst Slides and Release](https://github.com/nodezeroat/project-athena/actions/workflows/compile-typst.yml/badge.svg)](https://github.com/nodezeroat/project-athena/actions/workflows/compile-typst.yml)
+
+![Athena Banner](athena_banner.jpg)
 
 Welcome to the Project Athena repository! This project aims to provide a comprehensive IT-Security curriculum for secondary colleges in engineering.
 
@@ -43,6 +43,8 @@ If you would like to contribute content, please fork the repository, create a ne
 Current Contributors:
 
 [![contributors-img](https://contrib.rocks/image?repo=nodezeroat/project-athena)](https://github.com/nodezeroat/project-athena/graphs/contributors)
+
+![repobeats-analytics](https://repobeats.axiom.co/api/embed/c1449b6b68dffe70d7ec7d12efd75c5a9d6c56b9.svg)
 
 ## License
 
