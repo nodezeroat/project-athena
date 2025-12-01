@@ -25,7 +25,7 @@
   * [Introduction to Reconnaissance](./Module%2002%20-%20Reconnaissance/lectures/lecture_1_introduction.md)
   * [Information Gathering](./Module%2002%20-%20Reconnaissance/lectures/lecture_2_information_gathering.md)
   * [Open Source Intelligence (OSINT)](./Module%2002%20-%20Reconnaissance/lectures/lecture_3_OSINT.md)
-  * [Social Engineering](./Module%2002%20-%20Reconnaissance/lectures/lecture_4_social_engineering.md)
+  * [Social Engineering in Reconnaissance](./Module%2002%20-%20Reconnaissance/lectures/lecture_4_social_engineering.md)
   * [Search Engines for Reconnaissance](./Module%2002%20-%20Reconnaissance/lectures/lecture_5_search_engines.md)
 
 ### Module 03 - Penetration Testing
@@ -36,10 +36,11 @@
 
 * [Introduction](./Module%2004%20-%20Web%20Security/introduction.md)
 * Lectures
-  * [Introduction to Web](./Module%2004%20-%20Web%20Security/lectures/lecture_1_introduction.md)
-  * [Security Features of the Browser](./Module%2004%20-%20Web%20Security/lectures/lecture_2_security_features.md)
-  * [Client Side Vulnerabilities](./Module%2004%20-%20Web%20Security/lectures/lecture_3_client_side.md)
+  * [Introduction to Web Security](./Module%2004%20-%20Web%20Security/lectures/lecture_1_introduction.md)
+  * [Browser Security Features](./Module%2004%20-%20Web%20Security/lectures/lecture_2_security_features.md)
+  * [Client-Side Vulnerabilities](./Module%2004%20-%20Web%20Security/lectures/lecture_3_client_side.md)
   * [Server Side Vulnerabilities](./Module%2004%20-%20Web%20Security/lectures/lecture_4_server_side.md)
+  * [API Security](./Module%2004%20-%20Web%20Security/lectures/lecture_5_api_security.md)
 
 ### Module 05 - Hacking with Python
 
@@ -112,8 +113,8 @@
   * [Overview of Cloud Security](./Module%2017%20-%20Cloud%20Security/lectures/lecture_1_overview.md)
   * [Comparison of Server Types: Cloud, Dedicated, and Shared Servers](./Module%2017%20-%20Cloud%20Security/lectures/lecture_2_pros_cons.md)
   * [User and Permission Management in Cloud Platforms](./Module%2017%20-%20Cloud%20Security/lectures/lecture_3_authentication.md)
-  * [Containerization Overview:](./Module%2017%20-%20Cloud%20Security/lectures/lecture_4_containerization.md)
-  * [Cloud Computing Security Concepts:](./Module%2017%20-%20Cloud%20Security/lectures/lecture_5_security_concepts.md)
+  * [Containerization Overview](./Module%2017%20-%20Cloud%20Security/lectures/lecture_4_containerization.md)
+  * [Cloud Computing Security Concepts](./Module%2017%20-%20Cloud%20Security/lectures/lecture_5_security_concepts.md)
   * [Secure DevOps in the Cloud](./Module%2017%20-%20Cloud%20Security/lectures/lecture_6_secure_devops.md)
   * [Exploring Key Certifications and Standards in On-Premises and Cloud Security](./Module%2017%20-%20Cloud%20Security/lectures/lecture_7_certification.md)
 
