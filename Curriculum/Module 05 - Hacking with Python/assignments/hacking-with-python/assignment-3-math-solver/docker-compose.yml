@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  challenge-server:
+    build:
+      context: .
+      dockerfile: challenge-server/Dockerfile
+    container_name: math-challenge-server
+    ports:
+      - "9999:9999"
+    restart: unless-stopped

@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  uuid-discovery:
+    build:
+      context: ./assignment-1-web-api/vulnerable-app
+      dockerfile: Dockerfile
+    container_name: assignment1-uuid-discovery
+    ports:
+      - "5000:5000"
+    volumes:
+      # Mount to generate app.min.js in assignment directory
+      - ./assignment-1-web-api:/app
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  web-scraping:
+    build:
+      context: ./assignment-2-web-scraping/vulnerable-app
+      dockerfile: Dockerfile
+    container_name: assignment2-web-scraping
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+  math-challenge:
+    build:
+      context: ./assignment-3-math-solver
+      dockerfile: challenge-server/Dockerfile
+    container_name: assignment3-math-challenge
+    ports:
+      - "9999:9999"
+    restart: unless-stopped
+
+networks:
+  default:
+    name: hacking-python-network
